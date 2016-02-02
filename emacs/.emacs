@@ -6,8 +6,8 @@
 ;; backup in one place. flat, no tree structure
 (unless (file-exists-p "~/.emacs.d/emacs-autosave")
   (make-directory "~/.emacs.d/emacs-autosave/"))
-(setq backup-by-copying t      ; don't clobber symlinks
-      backup-directory-alist '(("." . "~/.emacs.d/emacs-backup"))    ; don't litter my fs tree
+(setq backup-by-copying t
+      backup-directory-alist '(("." . "~/.emacs.d/emacs-backup"))
       auto-save-file-name-transforms '((".*" "~/.emacs.d/emacs-autosave/" t)))
 
 ;; y-or-n
@@ -37,8 +37,8 @@
 ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
-                         ;; ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ;; ("elpa" . "http://tromey.com/elpa/")
+                         ;;("marmalade" . "http://marmalade-repo.org/packages/")
+			 ;;("elpa" . "http://tromey.com/elpa/")
 			 ))
 
 ; activate all the packages (in particular autoloads)
@@ -77,9 +77,10 @@
 (add-to-list 'auto-mode-alist '("\\.pde\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
-(add-to-list 'auto-mode-alist '("\\.sql$" . (lambda ()
-                                              (sql-mode)
-                                              (sql-highlight-postgres-keywords))))
+(add-to-list 'auto-mode-alist '("\\.sql$" .
+				(lambda ()
+				  (sql-mode)
+				  (sql-highlight-postgres-keywords))))
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -109,7 +110,7 @@
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 
-;;--------------------------------[ APPEARANCE ]--------------------------------;;
+;;-------------------------------[ APPEARANCE ]------------------------------;;
 
 ;; numbers n stuff
 (line-number-mode 1)
