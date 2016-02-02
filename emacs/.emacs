@@ -1,4 +1,9 @@
 ;;--------------------------------[ GENERAL ]--------------------------------;;
+
+;; stuff
+(setq echo-keystrokes 0.1)
+(setq use-dialog-box 0)
+
 ;; init stuff
 (setq inhibit-splash-screen 1
       initial-scratch-message nil)
@@ -12,14 +17,6 @@
 
 ;; y-or-n
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; stuff
-(setq echo-keystrokes 0.1)
-(setq use-dialog-box 0)
-(setq visible-bell 1)
-
-;; highlight parens
-(show-paren-mode 1)
 
 ;; del selected stuff when type
 (delete-selection-mode 1)
@@ -112,6 +109,12 @@
 
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
 
+;; bell
+(setq visible-bell 1)
+
+;; highlight parens
+(show-paren-mode 1)
+
 ;; numbers n stuff
 (line-number-mode 1)
 (column-number-mode 1)
@@ -136,6 +139,10 @@
 
 ;; THEME :D
 (load-theme 'monokai t)
+
+;; better region-color
+(set-face-attribute 'region nil :background "#3a3a3a" :foreground "#fff")
+
 
 ;;--------------------------------[ EXTRAS ]--------------------------------;;
 
