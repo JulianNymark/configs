@@ -1,0 +1,5 @@
+## this repo will host various config files
+
+---
+
+.emacs should be self containing (will install missing packages on launch)
