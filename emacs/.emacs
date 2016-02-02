@@ -33,7 +33,7 @@
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
 ; list the packages you want
-(setq package-list '(web-mode monokai-theme multiple-cursors paredit))
+(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode))
 ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
