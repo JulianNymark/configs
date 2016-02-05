@@ -106,7 +106,6 @@
   (setq web-mode-sql-indent-offset 2))
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
-
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
 
 ;; bell
@@ -130,8 +129,9 @@
 (set-face-attribute 'default nil :height 100)
 
 ;; smaller tabs (and spacetabs)
+(setq-default indent-tabs-mode nil)
 (setq tab-width 2
-      indent-tabs-mode 0)
+      indent-tabs-mode nil)
 
 ;; c-style
 (setq c-default-style "linux"
