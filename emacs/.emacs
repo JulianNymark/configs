@@ -106,6 +106,8 @@
   (setq web-mode-sql-indent-offset 2))
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
+(setq web-mode-enable-current-column-highlight t)
+
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
 
 ;; bell
