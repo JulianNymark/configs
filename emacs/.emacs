@@ -89,7 +89,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.(c\\|le\\|sa)ss\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.(c|le|sa)ss\$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\`.*/COMMIT_" . diff-mode))
 
 (setq web-mode-engines-alist
