@@ -120,6 +120,8 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
+;; remove bars
+(menu-bar-mode 0)
 ;; remove GUI bars
 (if (display-graphic-p)
     (progn
