@@ -67,6 +67,7 @@
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
 (add-hook 'sql-mode-hook              '(lambda () (setq indent-tabs-mode nil)))
+(add-hook 'go-mode                    (add-hook 'before-save-hook 'gofmt-before-save))
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
