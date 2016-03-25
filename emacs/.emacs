@@ -30,7 +30,7 @@
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
 ; list the packages you want
-(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode))
+(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode))
 ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -90,7 +90,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.(c|le|sa)ss\$" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.(c|le|sa)ss\$" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\`.*/COMMIT_" . diff-mode))
 
 (setq web-mode-engines-alist
