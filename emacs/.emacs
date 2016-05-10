@@ -87,10 +87,11 @@
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.(c|le|sa)ss\$" . less-css-mode))
+(add-to-list 'auto-mode-alist '("\\.(c|le|sa|sc)ss\$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\`.*/COMMIT_" . diff-mode))
 
 (setq web-mode-engines-alist
@@ -98,6 +99,9 @@
         ("php"    . "\\.php\\'")
         ("php"    . "\\.html\\'")
         ("blade"  . "\\.blade\\.")))
+
+(setq web-mode-content-types-alist
+      '(("jsx" . "\\.js[x]?\\'")))
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
