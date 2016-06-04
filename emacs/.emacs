@@ -66,7 +66,10 @@
 (add-hook 'lisp-mode-hook             'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
-(add-hook 'sql-mode-hook              '(lambda () (setq indent-tabs-mode nil)))
+(add-hook 'sql-mode-hook              '(lambda ()
+                                         (setq indent-tabs-mode nil)
+                                         (setq tab-width 4)
+                                         (setq indent-line-function 'insert-tab)))
 (add-hook 'go-mode                    (add-hook 'before-save-hook 'gofmt-before-save))
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
@@ -139,8 +142,7 @@
 
 ;; smaller tabs (and spacetabs)
 (setq-default indent-tabs-mode nil)
-(setq tab-width 2
-      indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; c-style
 (setq c-default-style "linux"
