@@ -1,2 +1,3 @@
 */.emacs.d/*
-!*/.emacs.d/my-kbd.el
+!*/.emacs.d/j-kbd.el
+!*/.emacs.d/j-kbd/*

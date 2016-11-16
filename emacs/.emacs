@@ -27,6 +27,9 @@
 ;; enable some spooky "advaced" features
 (put 'upcase-region 'disabled nil)
 
+;; j keybindings
+(load-file "~/.emacs.d/j-kbd.el")
+
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
 ; list the packages you want
