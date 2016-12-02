@@ -32,23 +32,23 @@
 
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
-; list the packages you want
+                                        ; list the packages you want
 (setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd))
-; list the repositories containing them
+                                        ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ;;("marmalade" . "http://marmalade-repo.org/packages/")
-			 ;;("elpa" . "http://tromey.com/elpa/")
-			 ))
+                         ;;("elpa" . "http://tromey.com/elpa/")
+                         ))
 
-; activate all the packages (in particular autoloads)
+                                        ; activate all the packages (in particular autoloads)
 (package-initialize)
 
-; fetch the list of packages available
+                                        ; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+                                        ; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
@@ -62,7 +62,7 @@
 (defun conditionally-enable-paredit-mode ()
   "enable paredit-mode during eval-expression"
   (if (memq this-command '(eval-expression
-			   slime-interactive-eval))
+                           slime-interactive-eval))
       (paredit-mode 1)))
 
 (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
@@ -82,9 +82,9 @@
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 (add-to-list 'auto-mode-alist '("\\.sql$" .
-				(lambda ()
-				  (sql-mode)
-				  (sql-highlight-postgres-keywords))))
+                                (lambda ()
+                                  (sql-mode)
+                                  (sql-highlight-postgres-keywords))))
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -100,6 +100,7 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\`.*/COMMIT_" . diff-mode))
+(add-to-list 'auto-mode-alist '("\\.csv\\'" . whitespace-mode))
 
 (setq web-mode-engines-alist
       '(("php"    . "\\.phtml\\'")
@@ -119,6 +120,9 @@
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 (setq web-mode-enable-current-column-highlight t)
+
+;; always whitespace minor mode! (but make it look good)
+(add-hook 'prog-mode-hook #'whitespace-mode)
 
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
 
@@ -161,6 +165,23 @@
 ;; don't blink cursor
 (blink-cursor-mode 0)
 
+;; whitespace-mode prettify
+(setq whitespace-style  '(face spaces space-before-tab space-after-tab newline tabs tab-mark trailing indentation))
+;; list of whitespace-style settings
+;;    tabs spaces trailing lines-tail space-before-tab newline indentation
+;;    empty space-after-tab space-mark tab-mark newline-mark
+
+;; set face color & tab-mark color
+(custom-set-faces
+ '(whitespace-tab
+   ((((class color) (background dark)) (:background nil :foreground "#2f2f2b"))
+    (((class color) (background light)) (:background "yellow" :foreground "black"))
+    (t (:inverse-video t)))))
+
+;; WS what symbols = what thing? and how they look (characters)
+(setq whitespace-display-mappings '((space-mark ?\  [?.])
+                                    (newline-mark ?\n [?$ ?\n])
+                                    (tab-mark ?\t [?│ ?\t])))
 
 ;;--------------------------------[ EXTRAS ]--------------------------------;;
 
@@ -174,3 +195,4 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
 (put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)

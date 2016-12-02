@@ -5,21 +5,32 @@
          (interactive)
          (insert "func NAME(){
 
-}")))
+}")
+         (gofmt)))
      (define-key go-mode-map (kbd "C-c m")
        (lambda ()
          (interactive)
          (insert "package main
 
 import (
-	\"log\"
+\"log\"
 )
 
 func main() {
-	log.Println(\"hello world!\")
+log.Println(\"hello world!\")
 }
-")))
+")
+         (gofmt)))
      (define-key go-mode-map (kbd "C-c g")
        (lambda ()
          (interactive)
-         (gofmt)))))
+         (gofmt)))
+     (define-key go-mode-map (kbd "C-c e")
+       (lambda ()
+         (interactive)
+         (insert "if err != nil {
+log.Panic(err)
+}
+")
+         (gofmt)))
+     ))
