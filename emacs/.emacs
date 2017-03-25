@@ -145,6 +145,8 @@
       (scroll-bar-mode 0)
       (menu-bar-mode 0)))
 
+(setq default-frame-alist '((tool-bar-lines 0)))
+
 ;; font size
 (set-face-attribute 'default nil :height 100)
 
