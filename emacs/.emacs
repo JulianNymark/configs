@@ -138,6 +138,7 @@
 
 ;; remove bars
 (menu-bar-mode 0)
+
 ;; remove GUI bars
 (if (display-graphic-p)
     (progn
@@ -145,7 +146,18 @@
       (scroll-bar-mode 0)
       (menu-bar-mode 0)))
 
-(setq default-frame-alist '((tool-bar-lines 0)))
+(setq default-frame-alist '((tool-bar-lines 0)
+                            (cursor-color . "white")
+                            (tool-bar-mode 0)
+                            (scroll-bar-mode 0)
+                            (menu-bar-mode 0)
+                            ))
+
+(defun my/disable-scroll-bars (frame)
+  (modify-frame-parameters frame
+                           '((vertical-scroll-bars . nil)
+                             (horizontal-scroll-bars . nil))))
+(add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
 
 ;; font size
 (set-face-attribute 'default nil :height 100)
