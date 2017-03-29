@@ -188,7 +188,7 @@
 ;; set face color & tab-mark color
 (custom-set-faces
  '(whitespace-tab
-   ((((class color) (background dark)) (:background nil :foreground "#2f2f2b"))
+   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
     (((class color) (background light)) (:background "yellow" :foreground "black"))
     (t (:inverse-video t)))))
 
