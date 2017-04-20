@@ -73,7 +73,8 @@
                                          (setq indent-tabs-mode nil)
                                          (setq tab-width 4)
                                          (setq indent-line-function 'insert-tab)))
-(add-hook 'go-mode                    (add-hook 'before-save-hook 'gofmt-before-save))
+(setq gofmt-command "goimports")
+(add-hook 'before-save-hook 'gofmt-before-save)
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
