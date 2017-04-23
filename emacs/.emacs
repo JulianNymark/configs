@@ -30,6 +30,9 @@
 ;; j keybindings
 (load-file "~/.emacs.d/j-kbd.el")
 
+;; extra .el
+(add-to-list 'load-path "~/.emacs.d/extras/")
+
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
                                         ; list the packages you want
@@ -125,6 +128,10 @@
 ;; always whitespace minor mode! (but make it look good)
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
+;; py-autopep8
+(require 'py-autopep8)
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
 
 ;; bell
@@ -188,10 +195,7 @@
 
 ;; set face color & tab-mark color
 (custom-set-faces
- '(whitespace-tab
-   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
-    (((class color) (background light)) (:background "yellow" :foreground "black"))
-    (t (:inverse-video t)))))
+ '(whitespace-tab ((((class color) (background dark)) (:background nil :foreground "#4f4f4b")) (((class color) (background light)) (:background "yellow" :foreground "black")) (t (:inverse-video t)))))
 
 ;; WS what symbols = what thing? and how they look (characters)
 (setq whitespace-display-mappings '((space-mark ?\  [?.])
