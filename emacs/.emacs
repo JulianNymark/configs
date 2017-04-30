@@ -76,6 +76,20 @@
                                          (setq indent-tabs-mode nil)
                                          (setq tab-width 4)
                                          (setq indent-line-function 'insert-tab)))
+(defun proper-bash ()
+  (interactive)
+  (save-excursion
+    (let ((first-characters (buffer-substring-no-properties 1 31)))
+      (message first-characters)
+      (if (not (string= first-characters "#!/bin/bash\nset -euxo pipefail"))
+          (progn
+            (goto-char 0)
+            (insert "#!/bin/bash\nset -euxo pipefail\n"))
+        ))))
+(defun my-bash-mode-hook ()
+  (add-hook 'before-save-hook 'proper-bash))
+(add-hook 'sh-mode-hook 'my-bash-mode-hook)
+
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
