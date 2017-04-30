@@ -93,10 +93,6 @@
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
-(setq exec-path (append exec-path '("/home/j/bin")))
-(require 'py-autopep8)
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.love\\'" . lua-mode))
