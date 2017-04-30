@@ -72,10 +72,13 @@
 (add-hook 'lisp-mode-hook             'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
-(add-hook 'sql-mode-hook              '(lambda ()
-                                         (setq indent-tabs-mode nil)
-                                         (setq tab-width 4)
-                                         (setq indent-line-function 'insert-tab)))
+
+(defun my-sql-mode-hook ()
+  (setq indent-tabs-mode nil)
+  (setq tab-width 4)
+  (setq indent-line-function 'insert-tab)  )
+(add-hook 'sql-mode-hook 'my-sql-mode-hook)
+
 (defun proper-bash ()
   (interactive)
   (save-excursion
