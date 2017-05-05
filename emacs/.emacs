@@ -82,12 +82,12 @@
 (defun proper-bash ()
   (interactive)
   (save-excursion
-    (let ((first-characters (buffer-substring-no-properties 1 31)))
+    (let ((first-characters (buffer-substring-no-properties 1 30)))
       (message first-characters)
-      (if (not (string= first-characters "#!/bin/bash\nset -euxo pipefail"))
+      (if (not (string= first-characters "#!/bin/bash\nset -euo pipefail"))
           (progn
             (goto-char 0)
-            (insert "#!/bin/bash\nset -euxo pipefail\n"))
+            (insert "#!/bin/bash\nset -euo pipefail\n"))
         ))))
 (defun my-bash-mode-hook ()
   (add-hook 'before-save-hook 'proper-bash))
@@ -98,6 +98,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.cl\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.love\\'" . lua-mode))
 (add-to-list 'auto-mode-alist '("\\.pde\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
