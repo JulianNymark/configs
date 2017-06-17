@@ -72,19 +72,33 @@
 (add-hook 'lisp-mode-hook             'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           'enable-paredit-mode)
-(add-hook 'sql-mode-hook              '(lambda ()
-                                         (setq indent-tabs-mode nil)
-                                         (setq tab-width 4)
-                                         (setq indent-line-function 'insert-tab)))
+
+(defun my-sql-mode-hook ()
+  (setq indent-tabs-mode nil)
+  (setq tab-width 4)
+  (setq indent-line-function 'insert-tab)  )
+(add-hook 'sql-mode-hook 'my-sql-mode-hook)
+
+(defun proper-bash ()
+  (interactive)
+  (save-excursion
+    (let ((first-characters (buffer-substring-no-properties 1 30)))
+      (message first-characters)
+      (if (not (string= first-characters "#!/bin/bash\nset -euo pipefail"))
+          (progn
+            (goto-char 0)
+            (insert "#!/bin/bash\nset -euo pipefail\n"))
+        ))))
+(defun my-bash-mode-hook ()
+  (add-hook 'before-save-hook 'proper-bash))
+(add-hook 'sh-mode-hook 'my-bash-mode-hook)
+
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
-(setq exec-path (append exec-path '("/home/j/bin")))
-(require 'py-autopep8)
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.cl\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.love\\'" . lua-mode))
 (add-to-list 'auto-mode-alist '("\\.pde\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
