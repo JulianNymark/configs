@@ -79,18 +79,19 @@
   (setq indent-line-function 'insert-tab)  )
 (add-hook 'sql-mode-hook 'my-sql-mode-hook)
 
-(defun proper-bash ()
+(defun stricter-bash ()
   (interactive)
   (save-excursion
-    (let ((first-characters (buffer-substring-no-properties 1 30)))
-      (message first-characters)
-      (if (not (string= first-characters "#!/bin/bash\nset -euo pipefail"))
-          (progn
-            (goto-char 0)
-            (insert "#!/bin/bash\nset -euo pipefail\n"))
-        ))))
+    (let ((first-characters (buffer-substring-no-properties 1 (min 30 (+ 1 (buffer-size))))))
+      ;; (message first-characters)
+      (if (string-match "bash" first-characters)
+          (if (not (string= first-characters "#!/bin/bash\nset -euo pipefail"))
+              (progn
+                (goto-char 0)
+                (insert "#!/bin/bash\nset -euo pipefail\n"))
+            )))))
 (defun my-bash-mode-hook ()
-  (add-hook 'before-save-hook 'proper-bash))
+  (add-hook 'before-save-hook 'stricter-bash))
 (add-hook 'sh-mode-hook 'my-bash-mode-hook)
 
 (setq gofmt-command "goimports")
@@ -147,8 +148,8 @@
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
 ;; py-autopep8
-(require 'py-autopep8)
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;; (require 'py-autopep8)
+;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
 
