@@ -96,6 +96,7 @@
 
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'go-mode-hook 'subword-mode)
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
