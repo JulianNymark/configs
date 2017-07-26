@@ -204,7 +204,7 @@
 
 
 ;; better region-color
-(set-face-attribute 'region nil :background "#3a3a3a" :foreground "#fff")
+;;(set-face-attribute 'region nil :background "#3a3a3a" :foreground "#fff")
 
 ;; don't blink cursor
 (blink-cursor-mode 0)
@@ -223,11 +223,14 @@
 
 ;; set face color & tab-mark color
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(whitespace-space ((t (:background nil :foreground "gray30")))))
+ '(whitespace-space
+   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
+    (((class color) (background light)) (:background nil :foreground "#dddddd"))
+    (t (:inverse-video t))))
+ '(whitespace-tab
+   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
+    (((class color) (background light)) (:background nil :foreground "#dddddd"))
+    (t (:inverse-video t)))))
 
 ;;--------------------------------[ EXTRAS ]--------------------------------;;
 
