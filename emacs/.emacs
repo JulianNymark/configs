@@ -36,7 +36,7 @@
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
                                         ; list the packages you want
-(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd))
+(setq package-list '(web-mode monokai-theme color-theme-sanityinc-tomorrow multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd))
                                         ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -216,13 +216,18 @@
 ;;    tabs spaces trailing lines-tail space-before-tab newline indentation
 ;;    empty space-after-tab space-mark tab-mark newline-mark
 
-;; set face color & tab-mark color
-(set-face-attribute 'whitespace-space nil :background nil :foreground "gray30")
-
 ;; WS what symbols = what thing? and how they look (characters)
 (setq whitespace-display-mappings '((space-mark ?\  [?.])
                                     (newline-mark ?\n [?$ ?\n])
                                     (tab-mark ?\t [?│ ?\t])))
+
+;; set face color & tab-mark color
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(whitespace-space ((t (:background nil :foreground "gray30")))))
 
 ;;--------------------------------[ EXTRAS ]--------------------------------;;
 
@@ -237,3 +242,11 @@
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yaml-mode web-mode systemd paredit multiple-cursors monokai-theme markdown-mode lua-mode less-css-mode go-mode dockerfile-mode color-theme-sanityinc-tomorrow))))
