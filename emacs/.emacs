@@ -31,7 +31,7 @@
 (load-file "~/.emacs.d/j-kbd.el")
 
 ;; extra .el
-(add-to-list 'load-path "~/.emacs.d/extras/")
+;; (add-to-list 'load-path "~/.emacs.d/extras/")
 
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
@@ -199,7 +199,9 @@
       c-basic-offset 4)
 
 ;; THEME :D
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
+(load-theme 'sanityinc-tomorrow-day t)
+
 
 ;; better region-color
 (set-face-attribute 'region nil :background "#3a3a3a" :foreground "#fff")
@@ -208,14 +210,14 @@
 (blink-cursor-mode 0)
 
 ;; whitespace-mode prettify
-(setq whitespace-style  '(face spaces space-before-tab space-after-tab newline tabs tab-mark trailing indentation))
+(setq whitespace-style
+      '(face spaces space-before-tab space-after-tab newline tabs tab-mark trailing indentation))
 ;; list of whitespace-style settings
 ;;    tabs spaces trailing lines-tail space-before-tab newline indentation
 ;;    empty space-after-tab space-mark tab-mark newline-mark
 
 ;; set face color & tab-mark color
-(custom-set-faces
- '(whitespace-tab ((((class color) (background dark)) (:background nil :foreground "#4f4f4b")) (((class color) (background light)) (:background "yellow" :foreground "black")) (t (:inverse-video t)))))
+(set-face-attribute 'whitespace-space nil :background nil :foreground "gray30")
 
 ;; WS what symbols = what thing? and how they look (characters)
 (setq whitespace-display-mappings '((space-mark ?\  [?.])
