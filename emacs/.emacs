@@ -31,12 +31,12 @@
 (load-file "~/.emacs.d/j-kbd.el")
 
 ;; extra .el
-(add-to-list 'load-path "~/.emacs.d/extras/")
+;; (add-to-list 'load-path "~/.emacs.d/extras/")
 
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
                                         ; list the packages you want
-(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode))
+(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode color-theme-sanityinc-tomorrow))
                                         ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -79,22 +79,24 @@
   (setq indent-line-function 'insert-tab)  )
 (add-hook 'sql-mode-hook 'my-sql-mode-hook)
 
-(defun proper-bash ()
+(defun stricter-bash ()
   (interactive)
   (save-excursion
-    (let ((first-characters (buffer-substring-no-properties 1 30)))
-      (message first-characters)
-      (if (not (string= first-characters "#!/bin/bash\nset -euo pipefail"))
-          (progn
-            (goto-char 0)
-            (insert "#!/bin/bash\nset -euo pipefail\n"))
-        ))))
+    (let ((first-characters (buffer-substring-no-properties 1 (min 30 (+ 1 (buffer-size))))))
+      ;; (message first-characters)
+      (if (string-match "bash" first-characters)
+          (if (not (string= first-characters "#!/bin/bash\nset -euo pipefail"))
+              (progn
+                (goto-char 0)
+                (insert "#!/bin/bash\nset -euo pipefail\n"))
+            )))))
 (defun my-bash-mode-hook ()
-  (add-hook 'before-save-hook 'proper-bash))
+  (add-hook 'before-save-hook 'stricter-bash))
 (add-hook 'sh-mode-hook 'my-bash-mode-hook)
 
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'go-mode-hook 'subword-mode)
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
@@ -147,8 +149,8 @@
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
 ;; py-autopep8
-(require 'py-autopep8)
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;; (require 'py-autopep8)
+;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
@@ -198,28 +200,38 @@
       c-basic-offset 4)
 
 ;; THEME :D
-(load-theme 'monokai t)
+;;(load-theme 'monokai t)
+(load-theme 'sanityinc-tomorrow-day t)
+
 
 ;; better region-color
-(set-face-attribute 'region nil :background "#3a3a3a" :foreground "#fff")
+;;(set-face-attribute 'region nil :background "#3a3a3a" :foreground "#fff")
 
 ;; don't blink cursor
 (blink-cursor-mode 0)
 
 ;; whitespace-mode prettify
-(setq whitespace-style  '(face spaces space-before-tab space-after-tab newline tabs tab-mark trailing indentation))
+(setq whitespace-style
+      '(face spaces space-before-tab space-after-tab newline tabs tab-mark trailing indentation))
 ;; list of whitespace-style settings
 ;;    tabs spaces trailing lines-tail space-before-tab newline indentation
 ;;    empty space-after-tab space-mark tab-mark newline-mark
-
-;; set face color & tab-mark color
-(custom-set-faces
- '(whitespace-tab ((((class color) (background dark)) (:background nil :foreground "#4f4f4b")) (((class color) (background light)) (:background "yellow" :foreground "black")) (t (:inverse-video t)))))
 
 ;; WS what symbols = what thing? and how they look (characters)
 (setq whitespace-display-mappings '((space-mark ?\  [?.])
                                     (newline-mark ?\n [?$ ?\n])
                                     (tab-mark ?\t [?│ ?\t])))
+
+;; set face color & tab-mark color
+(custom-set-faces
+ '(whitespace-space
+   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
+    (((class color) (background light)) (:background nil :foreground "#dddddd"))
+    (t (:inverse-video t))))
+ '(whitespace-tab
+   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
+    (((class color) (background light)) (:background nil :foreground "#dddddd"))
+    (t (:inverse-video t)))))
 
 ;;--------------------------------[ EXTRAS ]--------------------------------;;
 
@@ -234,7 +246,18 @@
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+<<<<<<< HEAD
 
 ;; ace jump mode!
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+=======
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yaml-mode web-mode systemd paredit multiple-cursors monokai-theme markdown-mode lua-mode less-css-mode go-mode dockerfile-mode color-theme-sanityinc-tomorrow))))
+>>>>>>> 4435a913841da4a99e8880c60f3d4bdd179c84e6
