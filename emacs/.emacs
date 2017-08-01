@@ -36,7 +36,7 @@
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
                                         ; list the packages you want
-(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd))
+(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode))
                                         ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -44,14 +44,14 @@
                          ;;("elpa" . "http://tromey.com/elpa/")
                          ))
 
-                                        ; activate all the packages (in particular autoloads)
+;; activate all the packages (in particular autoloads)
 (package-initialize)
 
-                                        ; fetch the list of packages available
+;; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
-                                        ; install the missing packages
+;; install the missing packages
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
@@ -150,6 +150,7 @@
 (require 'py-autopep8)
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
+
 ;;-------------------------------[ APPEARANCE ]------------------------------;;
 
 ;; bell
@@ -233,3 +234,7 @@
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+;; ace jump mode!
+(require 'ace-jump-mode)
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
