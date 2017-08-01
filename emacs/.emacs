@@ -246,18 +246,7 @@
 (global-set-key (kbd "C-c C-SPC") 'mc/mark-pop)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-<<<<<<< HEAD
 
 ;; ace jump mode!
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
-=======
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (yaml-mode web-mode systemd paredit multiple-cursors monokai-theme markdown-mode lua-mode less-css-mode go-mode dockerfile-mode color-theme-sanityinc-tomorrow))))
->>>>>>> 4435a913841da4a99e8880c60f3d4bdd179c84e6
