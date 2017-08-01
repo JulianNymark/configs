@@ -36,7 +36,7 @@
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
                                         ; list the packages you want
-(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode color-theme-sanityinc-tomorrow))
+(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode color-theme-sanityinc-tomorrow emmet-mode))
                                         ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -145,6 +145,11 @@
 
 (setq web-mode-enable-current-column-highlight t)
 
+(require 'emmet-mode)
+(add-hook 'web-mode-hook  'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+
 ;; always whitespace minor mode! (but make it look good)
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
@@ -224,14 +229,12 @@
 
 ;; set face color & tab-mark color
 (custom-set-faces
- '(whitespace-space
-   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
-    (((class color) (background light)) (:background nil :foreground "#dddddd"))
-    (t (:inverse-video t))))
- '(whitespace-tab
-   ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
-    (((class color) (background light)) (:background nil :foreground "#dddddd"))
-    (t (:inverse-video t)))))
+ '(whitespace-space ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
+                     (((class color) (background light)) (:background nil :foreground "#dddddd"))
+                     (t (:inverse-video t))))
+ '(whitespace-tab ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
+                   (((class color) (background light)) (:background nil :foreground "#dddddd"))
+                   (t (:inverse-video t)))))
 
 ;;--------------------------------[ EXTRAS ]--------------------------------;;
 
