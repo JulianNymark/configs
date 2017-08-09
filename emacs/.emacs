@@ -181,7 +181,6 @@
       (menu-bar-mode 0)))
 
 (setq default-frame-alist '((tool-bar-lines 0)
-                            (cursor-color . "white")
                             (tool-bar-mode 0)
                             (scroll-bar-mode 0)
                             (menu-bar-mode 0)
