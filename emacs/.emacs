@@ -36,7 +36,7 @@
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
                                         ; list the packages you want
-(setq package-list '(web-mode monokai-theme multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode color-theme-sanityinc-tomorrow emmet-mode))
+(setq package-list '(web-mode multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode emmet-mode))
                                         ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -206,7 +206,9 @@
 
 ;; THEME :D
 ;;(load-theme 'monokai t)
-(load-theme 'sanityinc-tomorrow-day t)
+;;(load-theme 'sanityinc-tomorrow-day t)
+;;(load-theme 'github t)
+(load-theme 'adwaita t)
 
 
 ;; better region-color
@@ -229,12 +231,12 @@
 
 ;; set face color & tab-mark color
 (custom-set-faces
- '(whitespace-space ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
-                     (((class color) (background light)) (:background nil :foreground "#dddddd"))
-                     (t (:inverse-video t))))
- '(whitespace-tab ((((class color) (background dark)) (:background nil :foreground "#4f4f4b"))
-                   (((class color) (background light)) (:background nil :foreground "#dddddd"))
-                   (t (:inverse-video t)))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(whitespace-space ((((class color) (background dark)) (:background nil :foreground "#4f4f4b")) (((class color) (background light)) (:background nil :foreground "#dddddd")) (t (:inverse-video t))))
+ '(whitespace-tab ((((class color) (background dark)) (:background nil :foreground "#4f4f4b")) (((class color) (background light)) (:background nil :foreground "#dddddd")) (t (:inverse-video t)))))
 
 ;;--------------------------------[ EXTRAS ]--------------------------------;;
 
@@ -253,3 +255,11 @@
 ;; ace jump mode!
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (github-theme yaml-mode web-mode systemd paredit multiple-cursors monokai-theme markdown-mode lua-mode less-css-mode go-mode emmet-mode dockerfile-mode color-theme-sanityinc-tomorrow ace-jump-mode))))
