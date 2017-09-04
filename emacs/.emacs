@@ -36,7 +36,7 @@
 ;;--------------------------------[ PACKAGES ]--------------------------------;;
 (require 'package)
                                         ; list the packages you want
-(setq package-list '(web-mode multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode emmet-mode magit))
+(setq package-list '(web-mode multiple-cursors paredit go-mode lua-mode less-css-mode markdown-mode yaml-mode dockerfile-mode systemd ace-jump-mode emmet-mode magit origami))
                                         ; list the repositories containing them
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
@@ -97,6 +97,7 @@
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook 'subword-mode)
+(add-hook 'go-mode-hook 'origami-mode)
 
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-mode))
@@ -261,4 +262,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (github-theme yaml-mode web-mode systemd paredit multiple-cursors monokai-theme markdown-mode lua-mode less-css-mode go-mode emmet-mode dockerfile-mode color-theme-sanityinc-tomorrow ace-jump-mode))))
+    (origami github-theme yaml-mode web-mode systemd paredit multiple-cursors monokai-theme markdown-mode lua-mode less-css-mode go-mode emmet-mode dockerfile-mode color-theme-sanityinc-tomorrow ace-jump-mode))))
+
+;; origami-mode
+(require 'origami)
+(load-file "~/.emacs.d/j-kbd/origami.el")
