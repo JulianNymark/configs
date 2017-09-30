@@ -1,0 +1,16 @@
+{
+    "workbench.colorTheme": "Material Dark Soda",
+    "editor.fontWeight": "normal",
+    "editor.fontFamily": "'DejaVu Sans Mono'",
+    "window.zoomLevel": 0,
+    "editor.lineNumbers": "off",
+    "macros": {
+        "emacsCtrlO": [
+            "editor.action.moveLinesUpAction",
+            "cursorDown",
+            "cursorDown"
+        ]
+    },
+    "extensions.ignoreRecommendations": false,
+    "go.coverageDecorator": "gutter"
+}
