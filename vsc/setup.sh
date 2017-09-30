@@ -3,7 +3,7 @@ set -euo pipefail
 
 # this script will:
 # 1. try to install vsc extensions
-# 2. copy keybindings.json & settings.json into your user preferences (no overwrite!)
+# 2. copy keybindings.json & settings.json into your user preferences
 
 ############################
 # try to install extentions
