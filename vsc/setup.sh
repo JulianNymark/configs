@@ -17,6 +17,7 @@ declare -a arr=(
     "jbw91.theme-material-dark-soda"
     "lukehoban.Go"
     "selbh.keyboard-scroll"
+    "ms-vscode.cpptools"
     )
 
 for e in "${arr[@]}"
@@ -30,3 +31,8 @@ done
 
 cp -n ./settings.json "$HOME/.config/Code/User/settings.json"
 cp -n ./keybindings.json "$HOME/.config/Code/User/keybindings.json"
+
+############################
+# deps listing
+############################
+whereis clang-format
