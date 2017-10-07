@@ -31,17 +31,24 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export GOPATH="$HOME/go"
 
+#############
+## SYNQ
+#############
+
+source .zshrc_synq
+
 ###########
 ## aliases
 ###########
 
-alias la='ls -la'
+alias la='ls -la --color'
 alias _='sudo'
 
 alias tree='tree -a -C -I "node_modules" -I ".git"'
 alias s='sleep'
 alias more='less'
 alias beep='bell'
+alias ..='cd ..'
 
 ############
 ## GIT
@@ -104,14 +111,14 @@ dbash(){
 ## prompt
 #############
 
-# autoload -U promptinit && promptinit
-# prompt j blue
+autoload -U promptinit && promptinit
+prompt j blue
 
-# TMOUT=1
+TMOUT=1
 
-# TRAPALRM() {
-#     zle reset-prompt
-# }
+TRAPALRM() {
+    zle reset-prompt
+}
 
 ############
 ## evals
