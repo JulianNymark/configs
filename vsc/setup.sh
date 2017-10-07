@@ -18,6 +18,8 @@ declare -a arr=(
     "lukehoban.Go"
     "selbh.keyboard-scroll"
     "ms-vscode.cpptools"
+    "redhat.java"
+    "gerane.Theme-ArtSchool"
     )
 
 for e in "${arr[@]}"
@@ -36,3 +38,4 @@ cp -n ./keybindings.json "$HOME/.config/Code/User/keybindings.json"
 # deps listing
 ############################
 whereis clang-format
+whereis java

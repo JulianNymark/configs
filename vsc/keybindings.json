@@ -5,12 +5,12 @@
     { "key": "ctrl+x ctrl+t",      "command": "macros.emacsCtrlO",
         "when": "editorTextFocus && !editorReadonly" },
     { "key": "ctrl+c s",      "command": "editor.action.showSnippets",
-            "when": "editorTextFocus && !editorReadonly" },
+        "when": "editorTextFocus && !editorReadonly" },
     { "key": "ctrl+x k",      "command": "workbench.action.closeActiveEditor",
-            "when": "editorTextFocus && !editorReadonly" },
+        "when": "editorTextFocus && !editorReadonly" },
     { "key": "alt+backspace",      "command": "deleteWordLeft",
-            "when": "editorTextFocus && !editorReadonly" },
+        "when": "editorTextFocus && !editorReadonly" },
     { "key": "alt+g alt+g",      "command": "workbench.action.gotoLine",
-            "when": "editorTextFocus && !editorReadonly" },
+        "when": "editorTextFocus && !editorReadonly" },
     { "key": "ctrl+x f",      "command": "explorer.newFile" }
 ]

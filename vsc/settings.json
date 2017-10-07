@@ -1,7 +1,8 @@
 {
-    "workbench.colorTheme": "Material Dark Soda",
+    "workbench.colorTheme": "ArtSchool",
+    "editor.fontSize":16,
     "editor.fontWeight": "normal",
-    "editor.fontFamily": "'DejaVu Sans Mono'",
+    "editor.fontFamily": "'Droid Sans Mono'",
     "window.zoomLevel": 0,
     "editor.lineNumbers": "off",
     "macros": {
