@@ -82,13 +82,13 @@
 (defun stricter-bash ()
   (interactive)
   (save-excursion
-    (let ((first-characters (buffer-substring-no-properties 1 (min 30 (+ 1 (buffer-size))))))
+    (let ((first-characters (buffer-substring-no-properties 1 (min 38 (+ 1 (buffer-size))))))
       ;; (message first-characters)
       (if (string-match "bash" first-characters)
-          (if (not (string= first-characters "#!/bin/bash\nset -euo pipefail"))
+          (if (not (string= first-characters "#!/usr/bin/env bash\nset -euo pipefail"))
               (progn
                 (goto-char 0)
-                (insert "#!/bin/bash\nset -euo pipefail\n"))
+                (insert "#!/usr/bin/env bash\nset -euo pipefail\n"))
             )))))
 (defun my-bash-mode-hook ()
   (add-hook 'before-save-hook 'stricter-bash))
