@@ -1,5 +1,15 @@
 {
     "workbench.colorTheme": "ArtSchool",
+    "editor.tokenColorCustomizations": {
+    "textMateRules": [
+        {
+            "scope": "support.function",
+            "settings": {
+                "foreground": "#1fbb91"
+            }
+        }
+    ]
+    },
     "editor.fontSize":14,
     "editor.fontWeight": "normal",
     "editor.fontFamily": "'Droid Sans Mono'",
