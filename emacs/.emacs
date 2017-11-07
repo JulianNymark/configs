@@ -267,3 +267,7 @@
 ;; origami-mode
 (require 'origami)
 (load-file "~/.emacs.d/j-kbd/origami.el")
+
+;; editorconfig
+(require 'editorconfig)
+(editorconfig-mode 1)
