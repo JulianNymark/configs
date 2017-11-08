@@ -10,6 +10,7 @@ set -euo pipefail
 ############################
 
 declare -a arr=(
+    "dbaeumer.vscode-eslint"
     "EditorConfig.editorconfig"
     "JPTarquino.postgresql"
     "PeterJausovec.vscode-docker"
