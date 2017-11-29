@@ -10,31 +10,38 @@ set -euo pipefail
 ############################
 
 declare -a arr=(
-    "dbaeumer.vscode-eslint"
-    "EditorConfig.editorconfig"
-    "JPTarquino.postgresql"
-    "PeterJausovec.vscode-docker"
-    "geddski.macros"
-    "hiro-sun.vscode-emacs"
-    "jbw91.theme-material-dark-soda"
-    "lukehoban.Go"
-    "selbh.keyboard-scroll"
-    "ms-vscode.cpptools"
-    "redhat.java"
-    "gerane.Theme-ArtSchool"
-    )
+	"dbaeumer.vscode-eslint"
+	"EditorConfig.editorconfig"
+	"eg2.tslint"
+	"foxundermoon.shell-format"
+	"geddski.macros"
+	"gerane.Theme-ArtSchool"
+	"hiro-sun.vscode-emacs"
+	"jbw91.theme-material-dark-soda"
+	"JPTarquino.postgresql"
+	"lukehoban.Go"
+	"ms-vscode.cpptools"
+	"PeterJausovec.vscode-docker"
+	"redhat.java"
+	"selbh.keyboard-scroll"
+)
 
-for e in "${arr[@]}"
-do
-   code --install-extension "$e"
+for e in "${arr[@]}"; do
+	code --install-extension "$e"
 done
 
 ############################
 # copy user preferences (-n no clobber!)
 ############################
 
-cp -n ./settings.json "$HOME/.config/Code/User/settings.json"
-cp -n ./keybindings.json "$HOME/.config/Code/User/keybindings.json"
+user_settings_directory="$HOME/.config/Code/User"
+
+if [ "$(uname)" == "Darwin" ]; then
+	user_settings_directory="$HOME/Library/Application\ Support/Code/User"
+fi
+
+cp -n ./settings.json "$user_settings_directory/settings.json"
+cp -n ./keybindings.json "$user_settings_directory/keybindings.json"
 
 ############################
 # deps listing
