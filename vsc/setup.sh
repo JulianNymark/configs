@@ -7,15 +7,17 @@ set -euo pipefail
 
 # mac or linux
 USER_SETTINGS_DIRECTORY="$HOME/.config/Code/User"
+CODE='code-oss'
 if [ "$(uname)" == "Darwin" ]; then
 	USER_SETTINGS_DIRECTORY="$HOME/Library/Application Support/Code/User"
+	CODE='code'
 fi
 
 ############################
 # install extensions
 ############################
 while read extension; do
-	code --install-extension $extension
+	$CODE --install-extension $extension
 done <./list_extensions
 
 ############################
