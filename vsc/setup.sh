@@ -5,43 +5,25 @@ set -euo pipefail
 # 1. try to install vsc extensions
 # 2. copy keybindings.json & settings.json into your user preferences
 
-############################
-# try to install extentions
-############################
+# mac or linux
+USER_SETTINGS_DIRECTORY="$HOME/.config/Code/User"
+if [ "$(uname)" == "Darwin" ]; then
+	USER_SETTINGS_DIRECTORY="$HOME/Library/Application Support/Code/User"
+fi
 
-declare -a arr=(
-	"dbaeumer.vscode-eslint"
-	"EditorConfig.editorconfig"
-	"eg2.tslint"
-	"foxundermoon.shell-format"
-	"geddski.macros"
-	"gerane.Theme-ArtSchool"
-	"hiro-sun.vscode-emacs"
-	"jbw91.theme-material-dark-soda"
-	"JPTarquino.postgresql"
-	"lukehoban.Go"
-	"ms-vscode.cpptools"
-	"PeterJausovec.vscode-docker"
-	"redhat.java"
-	"selbh.keyboard-scroll"
-)
-
-for e in "${arr[@]}"; do
-	code --install-extension "$e"
-done
+############################
+# install extensions
+############################
+while read extension; do
+	code --install-extension $extension
+done <./list_extensions
 
 ############################
 # copy user preferences (-n no clobber!)
 ############################
 
-user_settings_directory="$HOME/.config/Code/User"
-
-if [ "$(uname)" == "Darwin" ]; then
-	user_settings_directory="$HOME/Library/Application\ Support/Code/User"
-fi
-
-cp -n ./settings.json "$user_settings_directory/settings.json"
-cp -n ./keybindings.json "$user_settings_directory/keybindings.json"
+cp -n ./settings.json "$USER_SETTINGS_DIRECTORY/settings.json"
+cp -n ./keybindings.json "$USER_SETTINGS_DIRECTORY/keybindings.json"
 
 ############################
 # deps listing
