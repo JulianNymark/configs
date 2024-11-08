@@ -10,3 +10,8 @@ To "wire things up" (symlink) after cloning, run:
 ./symlink.sh
 ```
 
+If bootstrapping a machine for the very first time, run:
+
+```
+./dependencies.sh
+```
