@@ -1,5 +1,14 @@
-## this repo will host various config files
+# Configs
 
----
+> store your configs in a VCS already! (do it right now!)
 
-.emacs should be self containing (will install missing packages on launch)
+## Usage
+
+To "wire things up" (symlink) after cloning, run:
+
+```
+./symlink.sh
+```
+
+
+
