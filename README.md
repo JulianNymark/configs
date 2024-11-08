@@ -10,5 +10,3 @@ To "wire things up" (symlink) after cloning, run:
 ./symlink.sh
 ```
 
-
-
