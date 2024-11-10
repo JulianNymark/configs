@@ -328,11 +328,11 @@ require("lazy").setup({
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
 
-			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[H]elp" })
-			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[K]eymaps" })
-			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[F]iles" })
+			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[h]elp" })
+			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[k]eymaps" })
+			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[f]iles" })
 			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[s]elect Telescope" })
-			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "current [W]ord" })
+			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "current [w]ord" })
 			vim.keymap.set("n", "<leader>s<leader>", builtin.live_grep, { desc = "by grep" })
 			vim.keymap.set("n", "<leader>sc", function()
 				local cwd = vim.fn.expand("%:p:h")
@@ -345,8 +345,8 @@ require("lazy").setup({
 					additional_args = { "--no-ignore-vcs" },
 				})
 			end, { desc = "[c]urrent dir by grep" })
-			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[D]iagnostics" })
-			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[R]esume" })
+			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[d]iagnostics" })
+			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[r]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
