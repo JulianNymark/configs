@@ -53,5 +53,20 @@ function ChgListchars()
 	end
 end
 vim.keymap.set("n", "<Leader>_", ChgListchars, { desc = "Toggle Whitespace (_) rendering" })
+
 vim.keymap.set("n", "<Leader>fs", ":w<CR>", { desc = "[s]ave" })
 vim.keymap.set("n", "<Leader>fS", ":wa<CR>", { desc = "[S]ave all" })
+
+-- enable marks for counted jumps
+vim.keymap.set("n", "j", function()
+	if vim.v.count > 1 then
+		return "m'" .. vim.v.count .. "gj"
+	end
+	return "gj"
+end, { remap = false, expr = true })
+vim.keymap.set("n", "k", function()
+	if vim.v.count > 1 then
+		return "m'" .. vim.v.count .. "gk"
+	end
+	return "gk"
+end, { remap = false, expr = true })
