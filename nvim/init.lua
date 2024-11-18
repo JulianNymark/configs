@@ -209,6 +209,7 @@ require("lazy").setup({
 				["<leader>s"] = { name = "[s]earch", _ = "which_key_ignore" },
 				["<leader>t"] = { name = "[t]oggle", _ = "which_key_ignore" },
 				["<leader>w"] = { name = "[w]orkspace", _ = "which_key_ignore" },
+				["<leader><leader>"] = { name = "utility", _ = "which_key_ignore" },
 			})
 			-- visual mode
 			require("which-key").register({
