@@ -348,7 +348,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[d]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[r]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			vim.keymap.set("n", "<leader>b<leader>", function()
 				require("telescope").extensions.file_browser.file_browser()
@@ -725,7 +725,9 @@ require("lazy").setup({
 			-- See `:help cmp`
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			luasnip.config.setup({})
+			luasnip.config.setup({
+				exit_roots = false,
+			})
 
 			cmp.setup({
 				snippet = {
@@ -1112,3 +1114,4 @@ require("lazy").setup({
 -- vim: ts=2 sts=2 sw=2 et
 
 require("remap")
+require("snippets")

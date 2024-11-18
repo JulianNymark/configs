@@ -70,3 +70,5 @@ vim.keymap.set("n", "k", function()
 	end
 	return "gk"
 end, { remap = false, expr = true })
+
+vim.keymap.set("n", "<Leader><Leader>s", "<cmd>source ~/.config/nvim/lua/snippets.lua<CR>")
