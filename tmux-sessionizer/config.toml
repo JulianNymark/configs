@@ -1,0 +1,8 @@
+session_sort_order = "LastAttached"
+excluded_dirs = [
+  "node_modules",
+]
+
+[[search_dirs]]
+path = "/Users/username/Repos"
+depth = 10
