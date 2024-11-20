@@ -77,3 +77,7 @@ vim.keymap.set(
 	"<cmd>source ~/.config/nvim/lua/snippets.lua<CR>",
 	{ desc = "source snippets" }
 )
+
+-- Noice
+vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
+vim.keymap.set("n", "<leader>sm", "<cmd>NoiceTelescope<CR>", { desc = "[m]essages" })

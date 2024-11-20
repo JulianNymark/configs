@@ -205,6 +205,7 @@ require("lazy").setup({
 				["<leader>g"] = { name = "[g]it", _ = "which_key_ignore" },
 				["<leader>gl"] = { name = "[l]ist", _ = "which_key_ignore" },
 				["<leader>h"] = { name = "Git [h]unk", _ = "which_key_ignore" },
+				["<leader>n"] = { name = "[n]oice", _ = "which_key_ignore" },
 				["<leader>r"] = { name = "[r]efactor", _ = "which_key_ignore" },
 				["<leader>s"] = { name = "[s]earch", _ = "which_key_ignore" },
 				["<leader>t"] = { name = "[t]oggle", _ = "which_key_ignore" },
@@ -325,6 +326,7 @@ require("lazy").setup({
 			-- Enable Telescope extensions if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
+			pcall(require("telescope").load_extension, "noice")
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
@@ -1062,6 +1064,38 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>.", swap.swap_with_right_with_opp, { desc = "swap with right sibling" })
 			vim.keymap.set("n", "<leader>,", swap.swap_with_left_with_opp, { desc = "swap with left sibling" })
 		end,
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			{
+				lsp = {
+					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+					override = {
+						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+						["vim.lsp.util.stylize_markdown"] = true,
+						["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+					},
+				},
+				-- you can enable a preset for easier configuration
+				presets = {
+					bottom_search = true, -- use a classic bottom cmdline for search
+					command_palette = true, -- position the cmdline and popupmenu together
+					long_message_to_split = true, -- long messages will be sent to a split
+					inc_rename = false, -- enables an input dialog for inc-rename.nvim
+					lsp_doc_border = false, -- add a border to hover docs and signature help
+				},
+			},
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
 	},
 	-- {
 	-- 	"mfussenegger/nvim-lint",
