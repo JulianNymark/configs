@@ -194,27 +194,30 @@ require("lazy").setup({
 		"folke/which-key.nvim",
 		event = "VimEnter", -- Sets the loading event to 'VimEnter'
 		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
+			local wk = require("which-key")
+			wk.setup()
 
 			-- Document existing key chains
-			require("which-key").register({
-				["<leader>b"] = { name = "[b]rowse", _ = "which_key_ignore" },
-				["<leader>c"] = { name = "[c]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[d]ocument", _ = "which_key_ignore" },
-				["<leader>f"] = { name = "[f]ile", _ = "which_key_ignore" },
-				["<leader>g"] = { name = "[g]it", _ = "which_key_ignore" },
-				["<leader>gl"] = { name = "[l]ist", _ = "which_key_ignore" },
-				["<leader>h"] = { name = "Git [h]unk", _ = "which_key_ignore" },
-				["<leader>n"] = { name = "[n]oice", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[r]efactor", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[s]earch", _ = "which_key_ignore" },
-				["<leader>t"] = { name = "[t]oggle", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[w]orkspace", _ = "which_key_ignore" },
-				["<leader><leader>"] = { name = "utility", _ = "which_key_ignore" },
+			wk.add({
+				{ "<leader>b", group = "[b]rowse" },
+				{ "<leader>c", group = "[c]ode" },
+				{ "<leader>d", group = "[d]ocument" },
+				{ "<leader>f", group = "[f]ile" },
+				{ "<leader>g", group = "[g]it" },
+				{ "<leader>gl", group = "[l]ist" },
+				{ "<leader>h", group = "Git [h]unk" },
+				{ "<leader>n", group = "[n]oice" },
+				{ "<leader>r", group = "[r]efactor" },
+				{ "<leader>s", group = "[s]earch" },
+				{ "<leader>t", group = "[t]oggle" },
+				{ "<leader>w", group = "[w]orkspace" },
+				{ "<leader><leader>", group = "utility" },
 			})
+			-- wk.add({})
+
 			-- visual mode
-			require("which-key").register({
-				["<leader>h"] = { "Git [H]unk" },
+			wk.add({
+				{ "<leader>h", desc = "Git [H]unk" },
 			}, { mode = "v" })
 		end,
 	},
@@ -557,18 +560,21 @@ require("lazy").setup({
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
 				--    https://github.com/pmizio/typescript-tools.nvim
-				tsserver = {
-					on_attach = nil,
-					capabilities = capabilities,
-					commands = {
-						OrganizeImports = {
-							organize_imports,
-							description = "Organize Imports",
-						},
-					},
-					root_dir = nvim_lsp.util.root_pattern("package.json"),
-					single_file_support = false,
-				},
+
+				-- TODO: remove if permanently broken?
+				-- tsserver = {
+				-- 	on_attach = nil,
+				-- 	capabilities = capabilities,
+				-- 	commands = {
+				-- 		OrganizeImports = {
+				-- 			organize_imports,
+				-- 			description = "Organize Imports",
+				-- 		},
+				-- 	},
+				-- 	root_dir = nvim_lsp.util.root_pattern("package.json"),
+				-- 	single_file_support = false,
+				-- },
+				ts_ls = {},
 				denols = {
 					root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
 				},

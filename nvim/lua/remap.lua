@@ -82,4 +82,4 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
 vim.keymap.set("n", "<leader>sm", "<cmd>NoiceTelescope<CR>", { desc = "[m]essages" })
 
-vim.keymap.set("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[m]essages" })
+vim.keymap.set("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[t]wilight (focus scope hl)" })
