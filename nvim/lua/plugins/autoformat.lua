@@ -1,5 +1,4 @@
-return 
-{ -- Autoformat (conform.nvim)
+return {
 	"stevearc/conform.nvim",
 	lazy = false,
 	event = { "BufReadPre", "BufNewFile" },
