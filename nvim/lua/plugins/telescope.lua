@@ -170,6 +170,8 @@ return {
 					},
 				})
 			end, { desc = "[S]earch [C]urrent directory (browse)" })
+
+			require("telescope_grouped_keymaps")
 		end,
 	},
 }

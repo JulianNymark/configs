@@ -7,14 +7,72 @@ local action_state = require("telescope.actions.state")
 
 local conf = require("telescope.config").values
 
+local wk_conf = require("which-key.config")
+
+-- this is how the tables in the wk_conf.mappings table look
+--[[
+local example = {
+	mode = "n",
+	lhs = "<Space><Space>",
+	idx = 300,
+	group = true,
+	desc = "description XYZ",
+}
+]]
+
+local filter = function(_table, filterIter)
+	local out = {}
+
+	for k, v in pairs(_table) do
+		if filterIter(v, k, _table) then
+			table.insert(out, v)
+		end
+	end
+
+	return out
+end
+
+local mapping_groups = filter(wk_conf.mappings, function(val, _, _)
+	return val.group == true
+end)
+
+local function get_group_desc(mode, lhs)
+	for _, value in pairs(mapping_groups) do
+		if value.mode == mode and value.lhs == lhs then
+			return value.desc
+		end
+	end
+	return nil
+end
+
+-- convert leaderString to <leader> for matching
+local leaderString = vim.g.mapleader
+if leaderString == " " then
+	leaderString = "<Space>"
+end
+
+local function concatenate_group_descs(mode, lhs)
+	local concat_desc = ""
+	local curr = lhs:gsub(leaderString, "<leader>")
+
+	while string.len(curr) > 2 do
+		curr = string.sub(curr, 1, -2)
+		local found_desc = get_group_desc(mode, curr)
+		if found_desc then
+			concat_desc = found_desc .. " " .. concat_desc
+		end
+	end
+
+	return concat_desc
+end
+
 local function gen_from_keymaps(opts)
 	local function get_desc(entry)
 		if entry.callback and not entry.desc then
 			return require("telescope.actions.utils")._get_anon_function_name(debug.getinfo(entry.callback))
 		end
-		-- TODO: this entry.mode .. entry.lhs is where we can check for all substring group matches and concatenate
-		vim.print(entry.mode .. " " .. entry.lhs)
-		return vim.F.if_nil(entry.desc, entry.rhs):gsub("\n", "\\n")
+		local groups_desc = concatenate_group_descs(entry.mode, entry.lhs)
+		return groups_desc .. vim.F.if_nil(entry.desc, entry.rhs):gsub("\n", "\\n")
 	end
 
 	local function get_lhs(entry)
@@ -121,3 +179,5 @@ end
 vim.keymap.set("n", "<leader>sK", function()
 	picker_grouped_keymaps({})
 end, { desc = "grouped keymaps" })
+
+print("loaded telescope_grouped_keymaps")
