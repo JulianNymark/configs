@@ -7,6 +7,51 @@ local action_state = require("telescope.actions.state")
 
 local conf = require("telescope.config").values
 
+local function gen_from_keymaps(opts)
+	local function get_desc(entry)
+		if entry.callback and not entry.desc then
+			return require("telescope.actions.utils")._get_anon_function_name(debug.getinfo(entry.callback))
+		end
+		-- TODO: this entry.mode .. entry.lhs is where we can check for all substring group matches and concatenate
+		vim.print(entry.mode .. " " .. entry.lhs)
+		return vim.F.if_nil(entry.desc, entry.rhs):gsub("\n", "\\n")
+	end
+
+	local function get_lhs(entry)
+		return utils.display_termcodes(entry.lhs)
+	end
+
+	local displayer = require("telescope.pickers.entry_display").create({
+		separator = "▏",
+		items = {
+			{ width = 2 },
+			{ width = opts.width_lhs },
+			{ remaining = true },
+		},
+	})
+	local make_display = function(entry)
+		return displayer({
+			entry.mode,
+			get_lhs(entry),
+			get_desc(entry),
+		})
+	end
+
+	return function(entry)
+		local desc = get_desc(entry)
+		local lhs = get_lhs(entry)
+		return make_entry.set_default_entry_mt({
+			mode = entry.mode,
+			lhs = lhs,
+			desc = desc,
+			valid = entry ~= "",
+			value = entry,
+			ordinal = entry.mode .. " " .. lhs .. " " .. desc,
+			display = make_display,
+		}, opts)
+	end
+end
+
 local picker_grouped_keymaps = function(opts)
 	opts.modes = vim.F.if_nil(opts.modes, { "n", "i", "c", "x" })
 	opts.show_plug = vim.F.if_nil(opts.show_plug, true)
@@ -49,7 +94,7 @@ local picker_grouped_keymaps = function(opts)
 			prompt_title = "Key Maps",
 			finder = finders.new_table({
 				results = keymaps_table,
-				entry_maker = opts.entry_maker or make_entry.gen_from_keymaps(opts),
+				entry_maker = opts.entry_maker or gen_from_keymaps(opts),
 			}),
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr)
