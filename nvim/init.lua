@@ -106,3 +106,4 @@ require("lazy").setup("plugins", {
 
 require("remap")
 require("snippets")
+require("telescope_grouped_keymaps")
