@@ -170,8 +170,24 @@ return {
 					},
 				})
 			end, { desc = "[S]earch [C]urrent directory (browse)" })
+		end,
+	},
+	{
+		"JulianNymark/telescope_grouped_keymaps.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"folke/which-key.nvim",
+		},
+		opts = {},
+		config = function()
+			local module = require("telescope_grouped_keymaps")
+			module.setup()
 
-			require("telescope_grouped_keymaps")
+			vim.keymap.set("n", "<leader>sK", function()
+				module.picker_grouped_keymaps({})
+			end, { desc = "grouped keymaps" })
+
+			print("loaded telescope_grouped_keymaps")
 		end,
 	},
 }

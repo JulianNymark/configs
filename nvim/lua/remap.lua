@@ -75,11 +75,11 @@ vim.keymap.set(
 	"n",
 	"<Leader><Leader>s",
 	"<cmd>source ~/.config/nvim/lua/snippets.lua<CR>",
-	{ desc = "source snippets" }
+	{ desc = "[s]ource snippets" }
 )
 
 -- Noice
-vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
+vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "[d]ismiss messages" })
 vim.keymap.set("n", "<leader>sm", "<cmd>NoiceTelescope<CR>", { desc = "[m]essages" })
 
 vim.keymap.set("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[t]wilight (focus scope hl)" })
