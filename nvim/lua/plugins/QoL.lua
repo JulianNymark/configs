@@ -126,12 +126,7 @@ return {
 			vim.keymap.set("n", "<leader>,", swap.swap_with_left_with_opp, { desc = "swap with left sibling" })
 		end,
 	},
-	-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-	--
-	-- This is often very useful to both group configuration, as well as handle
-	-- lazy loading plugins that don't need to be loaded immediately at startup.
-	--
-	-- For example, in the following configuration, we use:
+	-- The following configuration
 	--  event = 'VimEnter'
 	--
 	-- which loads which-key before all the UI elements are loaded. Events can be
