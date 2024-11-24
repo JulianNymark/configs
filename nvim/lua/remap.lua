@@ -26,7 +26,7 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { remap = false })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { remap = false })
-vim.keymap.set("n", "<Leader>p", 'vi""*p', { desc = '[p]aste clipboard into ""' })
+-- vim.keymap.set("n", "<Leader>p", 'vi""*p', { desc = '[p]aste clipboard into ""' })
 
 vim.api.nvim_create_user_command("JsonF", function()
 	vim.cmd("%!jq .")

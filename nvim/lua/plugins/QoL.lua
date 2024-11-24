@@ -168,4 +168,23 @@ return {
 	},
 	{ "numToStr/Comment.nvim", opts = {} },
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	{
+		"epwalsh/pomo.nvim",
+		version = "*", -- Recommended, use latest release instead of latest commit
+		-- cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
+		dependencies = {
+			-- Optional, but highly recommended if you want to use the "Default" timer
+			"rcarriga/nvim-notify",
+		},
+		opts = {
+			-- See below for full list of options 👇
+		},
+		config = function(_, opts)
+			require("pomo").setup(opts)
+			vim.keymap.set("n", "<leader>ps", "<cmd>TimerStart 25m Work<CR>", { desc = "[s]tart timer" })
+			vim.keymap.set("n", "<leader>pS", "<cmd>TimerStop<CR>", { desc = "[S]top timer" })
+			vim.keymap.set("n", "<leader>pp", "<cmd>TimerPause<CR>", { desc = "[p]ause timer" })
+			vim.keymap.set("n", "<leader>pP", "<cmd>TimerResume<CR>", { desc = "[P]lay timer" })
+		end,
+	},
 }
