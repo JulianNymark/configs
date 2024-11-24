@@ -49,7 +49,6 @@ function ChgListchars()
 		vim.opt.listchars = lc1
 	end
 end
-vim.keymap.set("n", "<Leader>_", ChgListchars, { desc = "Toggle Whitespace (_) rendering" })
 
 vim.keymap.set("n", "<Leader>fs", ":w<CR>", { desc = "[s]ave" })
 vim.keymap.set("n", "<Leader>fS", ":wa<CR>", { desc = "[S]ave all" })
@@ -80,3 +79,4 @@ vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "[d]ismiss m
 vim.keymap.set("n", "<leader>sm", "<cmd>NoiceTelescope<CR>", { desc = "[m]essages" })
 
 vim.keymap.set("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[t]wilight (focus scope hl)" })
+vim.keymap.set("n", "<Leader>t_", ChgListchars, { desc = "Toggle Whitespace (_) rendering" })
