@@ -26,28 +26,17 @@ return {
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
-			-- Conform can also run multiple formatters sequentially
-			-- python = { "isort", "black" },
-			--
-			-- You can use a sub-list to tell conform to run *until* a formatter
-			-- is found.
-			javascript = { { "prettierd", "eslint" } },
-			javascriptreact = { { "prettierd", "eslint" } },
-			typescript = { { "prettierd", "eslint" } },
-			typescriptreact = { { "prettierd", "eslint" } },
+			javascript = { "prettierd", "eslint", stop_after_first = true },
+			javascriptreact = { "prettierd", "eslint", stop_after_first = true },
+			typescript = { "prettierd", "eslint", stop_after_first = true },
+			typescriptreact = { "prettierd", "eslint", stop_after_first = true },
 
-			css = { { "prettierd", "eslint" } },
-			scss = { { "prettierd", "eslint" } },
-			json = { { "prettierd", "eslint" } },
-			svelte = { { "prettierd", "eslint" } },
-			graphql = { { "prettierd", "eslint" } },
-			markdown = { { "prettierd", "eslint" } },
-			-- javascript = { "biome", "biome-check" },
-			-- javascriptreact = { "biome", "biome-check" },
-			-- typescript = { "biome", "biome-check" },
-			-- typescriptreact = { "biome", "biome-check" },
-			-- css = { "biome", "biome-check" },
-			-- json = { "jq" },
+			css = { "prettierd", "eslint", stop_after_first = true },
+			scss = { "prettierd", "eslint", stop_after_first = true },
+			json = { "prettierd", "eslint", stop_after_first = true },
+			svelte = { "prettierd", "eslint", stop_after_first = true },
+			graphql = { "prettierd", "eslint", stop_after_first = true },
+			markdown = { "prettierd", "eslint", stop_after_first = true },
 		},
 	},
 }

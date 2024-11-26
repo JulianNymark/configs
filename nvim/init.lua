@@ -97,6 +97,9 @@ require("lazy").setup("plugins", {
 			lazy = "💤 ",
 		},
 	},
+	dev = {
+		path = "~/Repos/nvim",
+	},
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`

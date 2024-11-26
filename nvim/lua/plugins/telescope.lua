@@ -178,16 +178,9 @@ return {
 			"nvim-telescope/telescope.nvim",
 			"folke/which-key.nvim",
 		},
-		opts = {},
 		config = function()
-			local module = require("telescope_grouped_keymaps")
-			module.setup()
-
-			vim.keymap.set("n", "<leader>sK", function()
-				module.picker_grouped_keymaps({})
-			end, { desc = "grouped keymaps" })
-
-			print("loaded telescope_grouped_keymaps")
+			require("telescope_grouped_keymaps").setup()
+			print("telescope_grouped_keymaps loaded")
 		end,
 	},
 }

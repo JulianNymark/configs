@@ -1,14 +1,44 @@
 return {
 	{
+		"nyoom-engineering/oxocarbon.nvim",
+		config = function()
+			-- vim.cmd.colorscheme("oxocarbon")
+		end,
+	},
+	{
+		"ayu-theme/ayu-vim",
+		config = function()
+			-- vim.cmd.colorscheme("ayu")
+		end,
+	},
+	{
+		{
+			"maxmx03/fluoromachine.nvim",
+			lazy = false,
+			priority = 1000,
+			config = function()
+				local fm = require("fluoromachine")
+
+				fm.setup({
+					glow = true,
+					theme = "fluoromachine",
+					transparent = true,
+				})
+
+				vim.cmd.colorscheme("fluoromachine")
+			end,
+		},
+	},
+	{
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000, -- Make sure to load this before all the other start plugins.
 		init = function()
-			vim.cmd.colorscheme("catppuccin-mocha")
+			-- vim.cmd.colorscheme("catppuccin-mocha")
 
 			-- You can configure highlights by doing something like:
-			vim.cmd.hi("Comment gui=none")
+			-- vim.cmd.hi("Comment gui=none")
 		end,
 	},
 	{
