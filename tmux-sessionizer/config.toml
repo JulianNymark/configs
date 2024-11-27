@@ -1,3 +1,4 @@
+default_session = "main"
 session_sort_order = "LastAttached"
 excluded_dirs = [
   "node_modules",
