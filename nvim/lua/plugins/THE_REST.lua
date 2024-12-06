@@ -8,7 +8,9 @@ return {
 			-- is it not using tresitter?!
 			-- maybe it's just a configuration issue?
 			"folke/twilight.nvim",
-			opts = {},
+			opts = {
+				context = 0,
+			},
 		},
 	},
 }

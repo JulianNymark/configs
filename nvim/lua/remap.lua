@@ -38,7 +38,8 @@ vim.keymap.set(
 	{ desc = "Copy file:[L]ine_number to clipboard" }
 )
 
-vim.keymap.set("n", "<cr>", "@@")
+-- TODO: this should be limited (not for q: command selection etc...)
+-- vim.keymap.set("n", "<cr>", "@@")
 
 local lc1 = "tab:» ,trail:·,space:·,nbsp:␣,eol:$"
 local lc2 = "tab:  ,trail: ,nbsp: ,eol: "
