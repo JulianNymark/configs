@@ -29,15 +29,19 @@ vim.api.nvim_create_user_command("JsonF", function()
 	vim.cmd("%!jq .")
 end, { nargs = 0 })
 
+-- TODO: make this not pollute the history (treat as one del + paste operation?)
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
+
 local function git_sharelink_prefix()
 	local function is_git_repo()
-		local is_repo = vim.fn.system("git rev-parse --is-inside-work-tree")
+		local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
 
 		return vim.v.shell_error == 0
 	end
 
 	local function verify_git_branch(branch_name)
-		local is_repo = vim.fn.system("git rev-parse --verify " .. branch_name)
+		local _ = vim.fn.system("git rev-parse --verify " .. branch_name)
 
 		return vim.v.shell_error == 0
 	end
@@ -47,17 +51,11 @@ local function git_sharelink_prefix()
 	end
 
 	local raw_url = vim.fn.system("git remote get-url origin")
-
 	local processed_url = raw_url:gsub("^.-@", ""):gsub(":", "/"):gsub("%.git", "")
-
 	local main_branch_name = verify_git_branch("master") and "master" or "main"
 
 	return processed_url .. "/blob/" .. main_branch_name .. "/"
 end
-
--- TODO: make this not pollute the history (treat as one del + paste operation?)
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
 
 -- line sharing
 vim.keymap.set("n", "<Leader>l", function()
