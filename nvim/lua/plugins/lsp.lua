@@ -156,25 +156,15 @@ return {
 		local servers = {
 			clangd = {},
 			pyright = {},
-			rust_analyzer = {},
+			rust_analyzer = {
+				-- until https://github.com/hrsh7th/cmp-nvim-lsp/issues/72 is solved
+				capabilities = vim.lsp.protocol.make_client_capabilities(),
+			},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
 			-- Some languages (like typescript) have entire language plugins that can be useful:
 			--    https://github.com/pmizio/typescript-tools.nvim
 
-			-- TODO: remove if permanently broken?
-			-- tsserver = {
-			-- 	on_attach = nil,
-			-- 	capabilities = capabilities,
-			-- 	commands = {
-			-- 		OrganizeImports = {
-			-- 			organize_imports,
-			-- 			description = "Organize Imports",
-			-- 		},
-			-- 	},
-			-- 	root_dir = nvim_lsp.util.root_pattern("package.json"),
-			-- 	single_file_support = false,
-			-- },
 			ts_ls = {},
 			denols = {
 				root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
