@@ -21,6 +21,18 @@ ls.add_snippets(nil, {
 	css = {
 		ls.parser.parse_snippet("ax", "var(--ax-$1);$0"),
 	},
+	rust = {
+		ls.parser.parse_snippet(
+			"tests",
+			[[#[cfg(test)]
+mod tests {
+	use super::*;
+
+	$1
+}
+]]
+		),
+	},
 })
 
 vim.keymap.set("n", "<Leader><Leader>`", function()
