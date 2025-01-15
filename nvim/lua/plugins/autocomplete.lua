@@ -72,6 +72,15 @@ return {
 			},
 			completion = { completeopt = "menu,menuone,noinsert" },
 
+			formatting = {
+				fields = { "abbr", "kind", "menu" },
+				expandable_indicator = false,
+				format = function(entry, vim_item)
+					vim_item.menu = entry.source.name
+					return vim_item
+				end,
+			},
+
 			-- For an understanding of why these mappings were
 			-- chosen, you will need to read `:help ins-completion`
 			--
