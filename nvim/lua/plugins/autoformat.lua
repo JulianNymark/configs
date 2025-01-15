@@ -6,7 +6,7 @@ return {
 		{
 			"<leader>ff",
 			function()
-				require("conform").format({ async = true, lsp_fallback = true })
+				require("conform").format({ async = true, lsp_format = "prefer" })
 			end,
 			mode = "",
 			desc = "[f]ormat",
