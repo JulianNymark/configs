@@ -19,10 +19,18 @@ return {
 			config = function()
 				local fm = require("fluoromachine")
 
+				function overrides(c, color)
+					return {
+						-- ["@text.diff.add"] = { link = "DiffAdd" },
+						-- ["@text.diff.delete"] = { link = "DiffDelete" },
+					}
+				end
+
 				fm.setup({
 					glow = true,
 					theme = "fluoromachine",
 					transparent = true,
+					overrides = overrides,
 				})
 
 				vim.cmd.colorscheme("fluoromachine")
