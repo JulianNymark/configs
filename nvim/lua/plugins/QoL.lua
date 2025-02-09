@@ -142,7 +142,7 @@ return {
 			wk.add({
 				{ "<leader>b", group = "[b]rowse" },
 				{ "<leader>c", group = "[c]ode" },
-				{ "<leader>d", group = "[d]ocument" },
+				{ "<leader>d", group = "[d]ebug" },
 				{ "<leader>f", group = "[f]ile" },
 				{ "<leader>g", group = "[g]it" },
 				{ "<leader>gl", group = "[l]ist" },
