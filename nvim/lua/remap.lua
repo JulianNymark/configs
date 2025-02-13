@@ -1,37 +1,40 @@
 vim.g.mapleader = " "
--- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = ":Ex netrw [P]eruse [V]olumes (disk)" })
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch, { desc = "clear highlight search hits" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
--- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-vim.keymap.set("n", "<leader>q", "<cmd>copen<CR>", { desc = "Open quickfix list" })
-vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Go to next [q]uickfix item" })
-vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Go to previous [q]uickfix item" })
+
+local map = vim.keymap.set
+-- map("n", "<leader>pv", vim.cmd.Ex, { desc = ":Ex netrw [P]eruse [V]olumes (disk)" })
+
+map("n", "<Esc>", vim.cmd.nohlsearch, { desc = "clear highlight search hits" })
+map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+-- map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<leader>q", "<cmd>copen<CR>", { desc = "Open quickfix list" })
+map("n", "]q", "<cmd>cnext<CR>zz", { desc = "Go to next [q]uickfix item" })
+map("n", "[q", "<cmd>cprev<CR>zz", { desc = "Go to previous [q]uickfix item" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- TIP: Disable arrow keys in normal mode
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+map("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+map("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+map("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+map("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { remap = false })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { remap = false })
--- vim.keymap.set("n", "<Leader>p", 'vi""*p', { desc = '[p]aste clipboard into ""' })
+map("n", "<C-d>", "<C-d>zz", { remap = false })
+map("n", "<C-u>", "<C-u>zz", { remap = false })
+-- map("n", "<Leader>p", 'vi""*p', { desc = '[p]aste clipboard into ""' })
 
 vim.api.nvim_create_user_command("JsonF", function()
 	vim.cmd("%!jq .")
 end, { nargs = 0 })
 
 -- TODO: make this not pollute the history (treat as one del + paste operation?)
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
 
 local function git_sharelink_prefix()
 	local function is_git_repo()
@@ -58,13 +61,13 @@ local function git_sharelink_prefix()
 end
 
 -- line sharing
-vim.keymap.set("n", "<Leader>l", function()
+map("n", "<Leader>l", function()
 	local line_link = vim.fn.expand("%") .. "#L" .. vim.fn.line(".")
 	local share_link = git_sharelink_prefix() .. line_link
 
 	vim.fn.setreg("*", share_link) -- send to the clipboard
 end, { desc = "Copy file:[L]ine_number to clipboard" })
-vim.keymap.set("v", "<Leader>l", function()
+map("v", "<Leader>l", function()
 	-- press the esc key to leave visual mode
 	local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
 	vim.api.nvim_feedkeys(esc, "x", false) -- it's blocking == the best! (incredibly predictable)
@@ -80,7 +83,7 @@ vim.keymap.set("v", "<Leader>l", function()
 end, { desc = "Copy file:[L]ine_number to clipboard" })
 
 -- TODO: this should be limited (not for q: command selection etc...)
--- vim.keymap.set("n", "<cr>", "@@")
+-- map("n", "<cr>", "@@")
 
 local lc1 = "tab:» ,trail:·,space:·,nbsp:␣,eol:$"
 local lc2 = "tab:  ,trail: ,nbsp: ,eol: "
@@ -92,37 +95,50 @@ function ChgListchars()
 	end
 end
 
-vim.keymap.set("n", "<Leader>fs", ":w<CR>", { desc = "[s]ave" })
-vim.keymap.set("n", "<Leader>fS", ":wa<CR>", { desc = "[S]ave all" })
+map("n", "<Leader>fs", ":w<CR>", { desc = "[s]ave" })
+map("n", "<Leader>fS", ":wa<CR>", { desc = "[S]ave all" })
 
 -- enable marks for counted jumps
-vim.keymap.set("n", "j", function()
+map("n", "j", function()
 	if vim.v.count > 1 then
 		return "m'" .. vim.v.count .. "gj"
 	end
 	return "gj"
 end, { remap = false, expr = true })
-vim.keymap.set("n", "k", function()
+map("n", "k", function()
 	if vim.v.count > 1 then
 		return "m'" .. vim.v.count .. "gk"
 	end
 	return "gk"
 end, { remap = false, expr = true })
 
-vim.keymap.set(
-	"n",
-	"<Leader><Leader>s",
-	"<cmd>source ~/.config/nvim/lua/snippets.lua<CR>",
-	{ desc = "[s]ource snippets" }
-)
+map("n", "<Leader><Leader>s", "<cmd>source ~/.config/nvim/lua/snippets.lua<CR>", { desc = "[s]ource snippets" })
 
 -- Notifications
-vim.keymap.set("n", "<leader>nd", function()
+map("n", "<leader>nd", function()
 	Snacks.notifier.hide()
 end, { desc = "[d]ismiss messages" })
-vim.keymap.set("n", "<leader>sm", function()
+map("n", "<leader>sm", function()
 	Snacks.notifier.show_history()
 end, { desc = "[m]essages" })
 
-vim.keymap.set("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[t]wilight (focus scope hl)" })
-vim.keymap.set("n", "<Leader>t_", ChgListchars, { desc = "Toggle Whitespace (_) rendering" })
+map("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[t]wilight (focus scope hl)" })
+map("n", "<Leader>t_", ChgListchars, { desc = "Toggle Whitespace (_) rendering" })
+
+-- Nvim DAP
+map("n", "<Leader>dl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })
+map("n", "<Leader>dj", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Debugger step over" })
+map("n", "<Leader>dk", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Debugger step out" })
+map("n", "<Leader>dc", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
+map("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
+map(
+	"n",
+	"<Leader>dd",
+	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+	{ desc = "Debugger set conditional breakpoint" }
+)
+map("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugger reset" })
+map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
+
+-- rustaceanvim
+-- map("n", "<Leader>dt", "<cmd>lua vim.cmd('RustLsp testables')<CR>", { desc = "Debugger testables" })
