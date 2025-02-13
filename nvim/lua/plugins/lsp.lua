@@ -69,7 +69,7 @@ return {
 
 				-- Fuzzy find all the symbols in your current document / file.
 				--  Symbols are things like variables, functions, types, etc.
-				map("<leader>fs", require("telescope.builtin").lsp_document_symbols, "[f]ile [s]ymbols")
+				map("gs", require("telescope.builtin").lsp_document_symbols, "[f]ile [s]ymbols")
 
 				-- Fuzzy find all the symbols in your current workspace.
 				--  Similar to document symbols, except searches over your entire project.
