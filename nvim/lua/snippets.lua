@@ -14,8 +14,8 @@ local snippets = {
 	["```"] = ls.parser.parse_snippet("```", "```\n$0\n```"),
 }
 
-local stateSnip = ls.parser.parse_snippet("state", "const [$1, ${1/(.*)/set${1:/capitalize}/}] = useState($0)")
-local refSnip = ls.parser.parse_snippet("ref", "const $1 = useRef($0)")
+local stateSnip = ls.parser.parse_snippet("state", "const [$1, ${1/(.*)/set${1:/capitalize}/}] = useState($0);")
+local refSnip = ls.parser.parse_snippet("ref", "const $1 = useRef($0);")
 
 ls.add_snippets(nil, {
 	all = {
