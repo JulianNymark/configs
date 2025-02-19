@@ -14,12 +14,23 @@ local snippets = {
 	["```"] = ls.parser.parse_snippet("```", "```\n$0\n```"),
 }
 
+local stateSnip = ls.parser.parse_snippet("state", "const [$1, ${1/(.*)/set${1:/capitalize}/}] = useState($0)")
+local refSnip = ls.parser.parse_snippet("ref", "const $1 = useRef($0)")
+
 ls.add_snippets(nil, {
 	all = {
 		ls.parser.parse_snippet("snippet", "TEST SNIPPET all"),
 	},
 	css = {
 		ls.parser.parse_snippet("ax", "var(--ax-$1);$0"),
+	},
+	javascriptreact = {
+		stateSnip,
+		refSnip,
+	},
+	typescriptreact = {
+		stateSnip,
+		refSnip,
 	},
 	rust = {
 		ls.parser.parse_snippet(
