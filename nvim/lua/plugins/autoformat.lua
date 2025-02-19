@@ -11,6 +11,14 @@ return {
 			mode = "",
 			desc = "[f]ormat",
 		},
+		{
+			"<leader>fF",
+			function()
+				require("conform").format({ async = true })
+			end,
+			mode = "",
+			desc = "[F]ormat without LSP",
+		},
 	},
 	opts = {
 		notify_on_error = false,
