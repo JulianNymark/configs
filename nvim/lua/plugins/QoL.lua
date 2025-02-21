@@ -54,7 +54,7 @@ return {
 			local harpoon = require("harpoon")
 			harpoon:setup()
 
-			vim.keymap.set("n", "<leader>a", function()
+			vim.keymap.set("n", "<leader>fa", function()
 				harpoon:list():add()
 			end, { desc = "[A]dd to harpoon list" })
 			vim.keymap.set("n", "<C-e>", function()
