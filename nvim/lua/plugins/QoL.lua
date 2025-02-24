@@ -140,6 +140,7 @@ return {
 
 			-- Document existing key chains
 			wk.add({
+				{ "<leader>a", group = "[a]i" },
 				{ "<leader>b", group = "[b]rowse" },
 				{ "<leader>c", group = "[c]ode" },
 				{ "<leader>d", group = "[d]ebug" },
