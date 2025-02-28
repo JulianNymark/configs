@@ -56,10 +56,10 @@ return {
 
 			vim.keymap.set("n", "<leader>fa", function()
 				harpoon:list():add()
-			end, { desc = "[A]dd to harpoon list" })
+			end, { desc = "[a]dd to harpoon list" })
 			vim.keymap.set("n", "<C-e>", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end, { desc = "[E]xplicate harpoon list" })
+			end, { desc = "[e]xplicate harpoon list" })
 
 			vim.keymap.set("n", "<C-h>", function()
 				harpoon:list():select(1)
@@ -83,7 +83,7 @@ return {
 			end, { desc = "[P]revious harpoon buffer" })
 			vim.keymap.set("n", "<C-S-N>", function()
 				harpoon:list():next()
-			end, { desc = "[N]ext harpoon buffer" })
+			end, { desc = "[n]ext harpoon buffer" })
 		end,
 	},
 	{
@@ -158,7 +158,7 @@ return {
 
 			-- visual mode
 			wk.add({
-				{ "<leader>h", desc = "Git [H]unk" },
+				{ "<leader>h", desc = "Git [h]unk" },
 			}, { mode = "v" })
 		end,
 	},
