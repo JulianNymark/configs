@@ -10,7 +10,7 @@ return {
 			self_hosted = {
 				__inherited_from = "openai",
 				endpoint = "http://localhost:11434/v1",
-				model = "qwen2.5-coder:7b",
+				model = "qwen2.5-coder:14b",
 				timeout = 30000, -- timeout in milliseconds
 				temperature = 0, -- adjust if needed
 				max_tokens = 4096,
@@ -45,6 +45,7 @@ return {
 				dismiss = "<C-<Space>>",
 			},
 		},
+		hints = { enabled = false },
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = "make",

@@ -5,11 +5,11 @@ local map = vim.keymap.set
 -- map("n", "<leader>pv", vim.cmd.Ex, { desc = ":Ex netrw [P]eruse [V]olumes (disk)" })
 
 map("n", "<Esc>", vim.cmd.nohlsearch, { desc = "clear highlight search hits" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic message" })
+map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic message" })
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
 -- map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-map("n", "<leader>q", "<cmd>copen<CR>", { desc = "Open quickfix list" })
+map("n", "<leader>q", "<cmd>copen<CR>", { desc = "Open [q]uickfix list" })
 map("n", "]q", "<cmd>cnext<CR>zz", { desc = "Go to next [q]uickfix item" })
 map("n", "[q", "<cmd>cprev<CR>zz", { desc = "Go to previous [q]uickfix item" })
 
@@ -66,7 +66,7 @@ map("n", "<Leader>l", function()
 	local share_link = git_sharelink_prefix() .. line_link
 
 	vim.fn.setreg("*", share_link) -- send to the clipboard
-end, { desc = "Copy file:[L]ine_number to clipboard" })
+end, { desc = "Copy file & [l]ine_number to clipboard" })
 map("v", "<Leader>l", function()
 	-- press the esc key to leave visual mode
 	local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
@@ -80,7 +80,7 @@ map("v", "<Leader>l", function()
 	local share_link = git_sharelink_prefix() .. line_link
 
 	vim.fn.setreg("*", share_link) -- send to the clipboard
-end, { desc = "Copy file:[L]ine_number to clipboard" })
+end, { desc = "Copy file & [l]ine_number to clipboard" })
 
 -- TODO: this should be limited (not for q: command selection etc...)
 -- map("n", "<cr>", "@@")

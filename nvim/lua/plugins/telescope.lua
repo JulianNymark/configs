@@ -118,7 +118,7 @@ return {
 					prompt_title = "by grep (disabled ignores)",
 					additional_args = { "--no-ignore-vcs" },
 				})
-			end, { desc = "[c]urrent dir by grep" })
+			end, { desc = "current dir (grep, no [i]gnore vcs)" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[d]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[r]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
@@ -153,7 +153,7 @@ return {
 			-- Shortcut for searching your Neovim configuration files
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[N]eovim files" })
+			end, { desc = "[n]eovim files" })
 		end,
 	},
 	{
@@ -169,7 +169,7 @@ return {
 						folder_browser = true,
 					},
 				})
-			end, { desc = "[S]earch [C]urrent directory (browse)" })
+			end, { desc = "[b]rowse [c]urrent directory" })
 		end,
 	},
 	{
