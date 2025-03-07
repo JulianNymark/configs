@@ -43,9 +43,34 @@ return {
 		--    That is to say, every time a new file is opened that is associated with
 		--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
 		--    function will be executed to configure the current buffer
+
+		local custom_lsp_disables = function(event)
+			local client = vim.lsp.get_client_by_id(event.data.client_id)
+			local is_deno_project = function()
+				local buf_dir = vim.fn.expand("%:p:h")
+				local found_dir =
+					require("lspconfig").util.root_pattern("deno.json", "deno.jsonc", "deno.lock")(buf_dir)
+				if found_dir then
+					return true
+				end
+				return false
+			end
+			if client and client.name == "ts_ls" and is_deno_project() then
+				vim.print("LspAttach: disabling ts_ls for buffer due to auto detecting deno project")
+				-- NOTE: stopping the client, since the buffer seems to still want to talk to the
+				-- lsp despite it being detached (gives errors)
+				vim.lsp.stop_client(event.data.client_id)
+				-- vim.lsp.buf_detach_client(event.buf, event.data.client_id)
+			end
+		end
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
+				-- WARN: automatically disable certain LSPs undor certain conditions!!
+				-- this could lead to strange behaviour! (beware of doing too much "magic", add printouts!)
+				custom_lsp_disables(event)
+
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
@@ -147,6 +172,7 @@ return {
 		end
 
 		local nvim_lsp = require("lspconfig")
+
 		--  Add any additional override configuration in the following tables. Available keys are:
 		--  - cmd (table): Override the default command used to start the server
 		--  - filetypes (table): Override the default list of associated filetypes for the server
@@ -165,10 +191,14 @@ return {
 			-- Some languages (like typescript) have entire language plugins that can be useful:
 			--    https://github.com/pmizio/typescript-tools.nvim
 
-			ts_ls = {},
 			denols = {
-				root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+				root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
 			},
+			ts_ls = {},
+			tailwindcss = {},
+			eslint = {},
+			-- eslint_d = {},
+			prettierd = {},
 			cssls = {
 				settings = {
 					css = {
@@ -189,10 +219,6 @@ return {
 					},
 				},
 			},
-			tailwindcss = {},
-			eslint = {},
-			-- eslint_d = {},
-			prettierd = {},
 			-- prettier = {},
 			-- biome = {
 			-- 	 root_dir = function(fname)
