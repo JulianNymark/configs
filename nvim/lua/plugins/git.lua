@@ -6,7 +6,11 @@ return {
 		},
 		config = function() -- This is the function that runs, AFTER loading
 			local vgit = require("vgit")
-			vgit.setup({})
+			vgit.setup({
+				settings = {
+					live_blame = { enabled = false },
+				},
+			})
 			vim.keymap.set("n", "<C-k>", vgit.hunk_up, { desc = "hunk up" })
 			vim.keymap.set("n", "<C-j>", vgit.hunk_down, { desc = "hunk down" })
 			vim.keymap.set("n", "<leader>gs", vgit.buffer_hunk_stage, { desc = "buffer hunk [s]tage" })
