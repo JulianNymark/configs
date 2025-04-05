@@ -114,3 +114,4 @@ vim.diagnostic.config({
 
 require("remap")
 require("snippets")
+require("filetypes")
