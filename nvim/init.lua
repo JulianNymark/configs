@@ -66,6 +66,10 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+-- I want to ensure filetypes exist _before_ loading any
+-- lazy plugins, specifically the treesitter one
+require("filetypes")
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -114,4 +118,3 @@ vim.diagnostic.config({
 
 require("remap")
 require("snippets")
-require("filetypes")
