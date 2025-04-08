@@ -32,9 +32,9 @@ vim.api.nvim_create_user_command("JsonF", function()
 	vim.cmd("%!jq .")
 end, { nargs = 0 })
 
--- TODO: make this not pollute the history (treat as one del + paste operation?)
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
-map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
+-- TODO: mini.move does this better + preserves history
+-- map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
+-- map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
 
 local function git_sharelink_prefix()
 	local function is_git_repo()
