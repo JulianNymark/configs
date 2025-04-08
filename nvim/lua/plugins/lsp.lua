@@ -218,6 +218,16 @@ return {
 					},
 				},
 			},
+			cssmodules_ls = {
+				-- init_options = {
+				-- 	camelCase = "dashes",
+				-- },
+				on_attach = function(client)
+					-- sadly this LSP collides with ts_ls
+					client.server_capabilities.definitionProvider = false
+				end,
+			},
+
 			-- prettier = {},
 			-- biome = {
 			-- 	 root_dir = function(fname)
