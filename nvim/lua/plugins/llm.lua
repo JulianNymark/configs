@@ -32,9 +32,9 @@ return {
 						},
 					}
 				end,
-				parse_response_data = function(ctx, data_stream, event_state, opts)
-					require("avante.providers").openai.parse_response(ctx, data_stream, event_state, opts)
-				end,
+				-- parse_response_data = function(ctx, data_stream, event_state, opts)
+				-- 	require("avante.providers").openai.parse_response(ctx, data_stream, event_state, opts)
+				-- end,
 			},
 		},
 		mappings = {
