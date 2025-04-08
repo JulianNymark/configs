@@ -48,6 +48,18 @@ vim.opt.hlsearch = true
 
 vim.opt.tabstop = 2
 
+-- load "per project" config via .nvimrc
+vim.o.exrc = true
+
+-- the defaults are insane
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		vim.opt.formatoptions:remove("c")
+		vim.opt.formatoptions:remove("r")
+		vim.opt.formatoptions:remove("o")
+	end,
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
