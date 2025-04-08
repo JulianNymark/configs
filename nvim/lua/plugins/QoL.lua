@@ -192,4 +192,7 @@ return {
 			vim.keymap.set("n", "<leader>pP", "<cmd>TimerResume<CR>", { desc = "[P]lay timer" })
 		end,
 	},
+	{
+		"andymass/vim-matchup",
+	},
 }
