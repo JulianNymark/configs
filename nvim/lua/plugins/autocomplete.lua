@@ -32,6 +32,7 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/cmp-buffer",
+		"KieranBrannigan/cmp-css-variables",
 	},
 	config = function()
 		-- See `:help cmp`
@@ -64,6 +65,8 @@ return {
 			}),
 		})
 
+		local types = require("cmp.types")
+
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -87,9 +90,9 @@ return {
 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
 			mapping = cmp.mapping.preset.insert({
 				-- Select the [n]ext item
-				["<C-n>"] = cmp.mapping.select_next_item(),
+				["<C-n>"] = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior }),
 				-- Select the [p]revious item
-				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior }),
 
 				-- Scroll the documentation window [b]ack / [f]orward
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -143,6 +146,7 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "path" },
 				{ name = "buffer", keyword_length = 5 },
+				{ name = "css-variables" },
 			},
 		})
 	end,
