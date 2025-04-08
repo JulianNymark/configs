@@ -9,6 +9,7 @@ return {
 			vgit.setup({
 				settings = {
 					live_blame = { enabled = false },
+					buffer_gutter_blame_preview = {},
 				},
 			})
 			vim.keymap.set("n", "<C-k>", vgit.hunk_up, { desc = "hunk up" })
@@ -37,4 +38,6 @@ return {
 		-- TODO: test it out more, can i not select hunks?!
 		"sindrets/diffview.nvim",
 	},
+
+	-- snacks and mini both have git stuff... grok it all
 }
