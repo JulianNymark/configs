@@ -146,3 +146,20 @@ map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugge
 
 -- InspectTree
 map("n", "<Leader>tT", "<cmd>InspectTree<CR>", { desc = "[T]reesitter AST Inspect" })
+
+---@param mods string filename-modifiers
+---@return string
+-- :h filename-modifiers
+local function get_path(mods)
+	return vim.fn.fnamemodify(vim.fn.expand("%"), mods)
+end
+
+---@param path string
+local function copy_to_clipboard(path)
+	vim.fn.setreg("+", path)
+	vim.api.nvim_echo({ { "Copied: " .. path } }, false, {})
+end
+
+map("n", "<Leader>fc", function()
+	copy_to_clipboard(get_path(":."))
+end, { desc = "[c]opy path (relative)" })
