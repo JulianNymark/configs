@@ -38,6 +38,12 @@ return {
 					right = "L",
 					down = "J",
 					up = "K",
+					-- wack behaviour when tapping esc before hjkl?! (maybe a karabiner thing)
+					-- seems to trigger <M-*> somehow? therefore disabling those here
+					line_left = "",
+					line_right = "",
+					line_down = "",
+					line_up = "",
 				},
 			})
 
