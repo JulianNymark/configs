@@ -14,7 +14,7 @@
 | n    | <kbd>q:</kbd>                                      | open command window (search history of commands)             |
 | n    | <kbd>:r FILE</kbd>                                 | retrieve the contents of FILE at cursor                      |
 | n    | <kbd>:r !ls</kbd>                                  | retrieve the contents of the <kbd>ls</kbd> command at cursor |
-| i    | <kbd>P</kbd> | paste over selection (<kbd>P</kbd> does not write the deleted text to register == nice repeated overwrites, <kbd>p</kbd> however does write to registers) |
+| v    | <kbd>P</kbd> | paste over selection (<kbd>P</kbd> does not write the deleted text to register == nice repeated overwrites, <kbd>p</kbd> however does write to registers) |
 
 ## commands
 
