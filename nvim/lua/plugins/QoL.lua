@@ -47,7 +47,11 @@ return {
 				},
 			})
 
-			require("mini.operators").setup()
+			require("mini.operators").setup({
+				replace = {
+					prefix = "gp",
+				},
+			})
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
