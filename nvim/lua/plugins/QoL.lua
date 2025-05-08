@@ -65,6 +65,11 @@ return {
 				},
 			})
 
+			-- NOTE: mini.surround seems not as powerful as nvim.surround
+			-- require("mini.surround").setup({})
+			-- still want a way to use tree-sitter for the {,(,[ matchers... (currently it matches on _any_, eg string contents...)
+			-- I want to be able to distinguish between both, but usually I think I want code cognizant matches (so tree-sitter)
+
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
@@ -76,6 +81,9 @@ return {
 		config = function()
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
+				aliases = {
+					["b"] = { ")", "}", "]" },
+				},
 			})
 		end,
 	},
