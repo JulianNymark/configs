@@ -49,19 +49,19 @@ return {
 
 			require("mini.operators").setup({
 				evaluate = {
-					prefix = "g=",
+					prefix = "-=",
 				},
 				exchange = {
-					prefix = "gx",
+					prefix = "-x",
 				},
 				multiply = {
-					prefix = "gm",
+					prefix = "-m",
 				},
 				replace = {
-					prefix = "gp",
+					prefix = "-r",
 				},
 				sort = {
-					prefix = "gs",
+					prefix = "-s",
 				},
 			})
 
@@ -187,6 +187,7 @@ return {
 				{ "<leader>t", group = "[t]oggle" },
 				{ "<leader>w", group = "[w]orkspace" },
 				{ "<leader><leader>", group = "utility" },
+				{ "gr", group = "LSP" },
 			})
 
 			-- visual mode
