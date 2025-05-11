@@ -142,7 +142,14 @@ return {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
 			callback = function(event)
 				vim.lsp.buf.clear_references()
-				vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event.buf })
+
+				autocmd_group_exists = vim.tbl_filter(function(elem)
+					return elem.group_name == "kickstart-lsp-highlight"
+				end, vim.api.nvim_get_autocmds({}))
+
+				if not vim.tbl_isempty(autocmd_group_exists) then
+					vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event.buf })
+				end
 			end,
 		})
 
@@ -222,6 +229,7 @@ return {
 					client.server_capabilities.definitionProvider = false
 				end,
 			},
+			zk = {},
 
 			-- prettier = {},
 			-- biome = {
