@@ -2,8 +2,8 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
-		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-		"williamboman/mason-lspconfig.nvim",
+		{ "mason-org/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
@@ -11,34 +11,9 @@ return {
 
 		-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/lazydev.nvim", opts = {} },
 	},
 	config = function()
-		-- Brief aside: **What is LSP?**
-		--
-		-- LSP is an initialism you've probably heard, but might not understand what it is.
-		--
-		-- LSP stands for Language Server Protocol. It's a protocol that helps editors
-		-- and language tooling communicate in a standardized fashion.
-		--
-		-- In general, you have a "server" which is some tool built to understand a particular
-		-- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-		-- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-		-- processes that communicate with some "client" - in this case, Neovim!
-		--
-		-- LSP provides Neovim with features like:
-		--  - Go to definition
-		--  - Find references
-		--  - Autocompletion
-		--  - Symbol Search
-		--  - and more!
-		--
-		-- Thus, Language Servers are external tools that must be installed separately from
-		-- Neovim. This is where `mason` and related plugins come into play.
-		--
-		-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-		-- and elegantly composed help section, `:help lsp-vs-treesitter`
-
 		local custom_lsp_disables = function(event)
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
 			local is_deno_project = function()
@@ -169,7 +144,7 @@ return {
 			vim.lsp.buf.execute_command(params)
 		end
 
-		local nvim_lsp = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 
 		--  Add any additional override configuration in the following tables. Available keys are:
 		--  - cmd (table): Override the default command used to start the server
@@ -190,7 +165,7 @@ return {
 			--    https://github.com/pmizio/typescript-tools.nvim
 
 			-- denols = {
-			-- 	root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+			-- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
 			-- },
 			ts_ls = {},
 			tailwindcss = {},
@@ -207,6 +182,9 @@ return {
 				},
 			},
 			lua_ls = {
+				-- server_capabilities = {
+				-- 	semanticTokensProvider = vim.NIL,
+				-- },
 				settings = {
 					Lua = {
 						diagnostics = {
