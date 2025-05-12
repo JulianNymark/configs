@@ -12,7 +12,7 @@ language = "en"
 default-title = "Untitled"
 
 # Template used to generate a note's filename, without extension.
-filename = "{{id}}-{{slug title}}"
+filename = "{{id}}"
 
 # The file extension used for the notes.
 extension = "md"
@@ -95,8 +95,8 @@ t = "zk edit --interactive --tag $@"
 
 config = 'nvim "$HOME/Repos/configs/zk/config.toml"'
 
-daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal"'
-journal = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/journal --interactive"
+daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal" --group journal'
+journal = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/journal --group journal --interactive"
 
 # new notes
 n = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random"'
