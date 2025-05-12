@@ -1,6 +1,6 @@
 # split strings
 s () {
-				node -r 'fs' -e "console.log(fs.readFileSync(process.stdin.fd).toString().split('$1' || ' '))" 
+  node -r 'fs' -e "console.log(fs.readFileSync(process.stdin.fd).toString().split('$1' || ' '))" 
 }
 
 # new git project setup (using bare repos & worktrees)
@@ -19,4 +19,11 @@ alias repo='f(){
   echo "gitdir: ./.bare" > .git;
   git worktree add main;
 }; f'
+
+# my_ip = TBD
+
+my_age () {
+  local time=$(($(date -vDecm -v06d -v1991y +%s) - $(date +%s)))
+  printf 'I am %d years %d days old\n' $(($time/60/60/24/365 * -1)) $(($time/60/60/24%365 * -1)) 
+}
 
