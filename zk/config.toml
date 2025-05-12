@@ -96,7 +96,7 @@ t = "zk edit --interactive --tag $@"
 config = 'nvim "$HOME/Repos/configs/zk/config.toml"'
 
 daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal" --group journal'
-journal = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/journal --group journal --interactive"
+journal = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/journal --interactive"
 
 # new notes
 n = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random"'
