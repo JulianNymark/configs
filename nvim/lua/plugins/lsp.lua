@@ -189,9 +189,9 @@ return {
 			-- Some languages (like typescript) have entire language plugins that can be useful:
 			--    https://github.com/pmizio/typescript-tools.nvim
 
-			denols = {
-				root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
-			},
+			-- denols = {
+			-- 	root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+			-- },
 			ts_ls = {},
 			tailwindcss = {},
 			eslint = {},
@@ -229,7 +229,6 @@ return {
 					client.server_capabilities.definitionProvider = false
 				end,
 			},
-			zk = {},
 
 			-- prettier = {},
 			-- biome = {
