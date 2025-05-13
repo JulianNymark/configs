@@ -79,10 +79,30 @@ return {
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
 		config = function()
-			require("nvim-surround").setup({
+			local surr = require("nvim-surround")
+			local surr_utils = require("nvim-surround.config")
+			surr.setup({
 				-- Configuration here, or leave empty to use defaults
 				aliases = {
+					-- brackets, curly brackets, square brackets
 					["b"] = { ")", "}", "]" },
+				},
+				surrounds = {
+					-- CSS block
+					["b"] = {
+						add = function()
+							local input = surr_utils.get_input("Enter a block selector: ")
+							if input then
+								return {
+									{ input .. " {" },
+									{
+										"}",
+									},
+								}
+							end
+							return { { "" }, { "" } }
+						end,
+					},
 				},
 			})
 		end,
