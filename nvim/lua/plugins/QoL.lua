@@ -225,6 +225,7 @@ return {
 		end,
 	},
 	{
+		-- BUG: a quick `gc` + slow `c` doesn't work, but slow `g`+`c`+`c` does, quick `gcc` does
 		"numToStr/Comment.nvim",
 		opts = {},
 		dependencies = {

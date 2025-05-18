@@ -180,7 +180,6 @@ return {
 		},
 		config = function()
 			require("telescope_grouped_keymaps").setup()
-			print("telescope_grouped_keymaps loaded")
 		end,
 	},
 }
