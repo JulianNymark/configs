@@ -89,9 +89,9 @@ return {
 				},
 				surrounds = {
 					-- CSS block
-					["b"] = {
+					["c"] = {
 						add = function()
-							local input = surr_utils.get_input("Enter a block selector: ")
+							local input = surr_utils.get_input("Enter a CSS selector: ")
 							if input then
 								return {
 									{ input .. " {" },
