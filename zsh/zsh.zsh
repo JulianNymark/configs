@@ -27,10 +27,4 @@ my_age () {
   printf 'I am %d years %d days old\n' $(($time/60/60/24/365 * -1)) $(($time/60/60/24%365 * -1));
 }
 
-jq_workspace_scripts () {
-  echo $@;
-  jq -r '.scripts | with_entries(select(.key | test(":")))' $@;
-}
-FUNCS=$(functions jq_workspace_scripts);
-
-alias npmsa='rg --files --glob "package.json" | xargs -n1 -I{} zsh -c "eval $FUNCS; jq_workspace_scripts {}"'
+alias npmsa="rg --files --glob package.json | xargs -I {} jq -r '.scripts? | with_entries(select(.key | test(\":\")))? | select(. | length > 0) | {key: input_filename, value: .}' {} | jq -s 'from_entries'"
