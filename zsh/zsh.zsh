@@ -27,4 +27,20 @@ my_age () {
   printf 'I am %d years %d days old\n' $(($time/60/60/24/365 * -1)) $(($time/60/60/24%365 * -1));
 }
 
-alias npmsa="rg --files --glob package.json | xargs -I {} jq -r '.scripts? | with_entries(select(.key | test(\":\")))? | select(. | length > 0) | {key: input_filename, value: .}' {} | jq -s 'from_entries'"
+yarna () {
+  local filter="$1"
+  rg --files --glob package.json | xargs -I {} jq -r \
+    '.scripts? 
+     | with_entries(select(.key | test(":")))?
+     | select(. | length > 0)
+     | { (input_filename): . }' {} \
+  | jq -s 'add' \
+  | jq --arg filter "$filter" '
+      if $filter == "" then .
+      else with_entries(
+        .value |= with_entries(
+          select((.key + " " + .value) | test($filter))
+        )
+      ) | with_entries(select(.value != {}))
+      end'
+}
