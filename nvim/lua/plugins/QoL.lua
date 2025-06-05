@@ -263,4 +263,22 @@ return {
 	{
 		"andymass/vim-matchup",
 	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async" },
+		-- TODO: harpoon2 doesn't seem to properly open files? (BufRead?)
+		event = "BufRead",
+		-- event = "VeryLazy",
+		-- event = "FileType",
+		opts = {},
+		config = function()
+			vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+			vim.opt.foldcolumn = "1" -- '0' is not bad
+			vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+			vim.opt.foldenable = true
+			vim.opt.foldlevelstart = 99
+
+			require("ufo").setup()
+		end,
+	},
 }

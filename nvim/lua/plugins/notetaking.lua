@@ -1,7 +1,7 @@
 return {
 	{
 		"zk-org/zk-nvim",
-		branch = "fix/client-nil-error",
+		-- branch = "fix/client-nil-error",
 
 		config = function()
 			require("zk").setup({
