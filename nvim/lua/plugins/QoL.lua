@@ -108,44 +108,28 @@ return {
 		end,
 	},
 	{
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local harpoon = require("harpoon")
-			harpoon:setup()
+		"cbochs/grapple.nvim",
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons", lazy = true },
+		},
+		opts = {
+			-- scope = "git", -- also try out "git_branch"
+			-- icons = false, -- setting to "true" requires "nvim-web-devicons"
+			-- status = false,
+		},
+		keys = {
+			{ "<leader>fa", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
+			{ "<c-e>", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
 
-			vim.keymap.set("n", "<leader>fa", function()
-				harpoon:list():add()
-			end, { desc = "[a]dd to harpoon list" })
-			vim.keymap.set("n", "<C-e>", function()
-				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end, { desc = "[e]xplicate harpoon list" })
+			{ "<c-h>", "<cmd>Grapple select index=1<cr>", desc = "grapple 1" },
+			{ "<c-t>", "<cmd>Grapple select index=2<cr>", desc = "grapple 2" },
+			{ "<c-n>", "<cmd>Grapple select index=3<cr>", desc = "grapple 3" },
+			{ "<c-s>", "<cmd>Grapple select index=4<cr>", desc = "grapple 4" },
+			{ "<c-_>", "<cmd>Grapple select index=5<cr>", desc = "grapple 5" },
 
-			vim.keymap.set("n", "<C-h>", function()
-				harpoon:list():select(1)
-			end, { desc = "harpoon 1" })
-			vim.keymap.set("n", "<C-t>", function()
-				harpoon:list():select(2)
-			end, { desc = "harpoon 2" })
-			vim.keymap.set("n", "<C-n>", function()
-				harpoon:list():select(3)
-			end, { desc = "harpoon 3" })
-			vim.keymap.set("n", "<C-s>", function()
-				harpoon:list():select(4)
-			end, { desc = "harpoon 4" })
-			vim.keymap.set("n", "<C-_>", function()
-				harpoon:list():select(5)
-			end, { desc = "harpoon 5" })
-
-			-- Toggle previous & next buffers stored within Harpoon list
-			vim.keymap.set("n", "<C-S-P>", function()
-				harpoon:list():prev()
-			end, { desc = "[P]revious harpoon buffer" })
-			vim.keymap.set("n", "<C-S-N>", function()
-				harpoon:list():next()
-			end, { desc = "[n]ext harpoon buffer" })
-		end,
+			{ "<c-s-n>", "<cmd>Grapple cycle_tags next<cr>", desc = "Go to next tag" },
+			{ "<c-s-p>", "<cmd>Grapple cycle_tags prev<cr>", desc = "Go to previous tag" },
+		},
 	},
 	{
 		"jiaoshijie/undotree",
