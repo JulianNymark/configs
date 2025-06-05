@@ -1,4 +1,3 @@
-.DS_Store
 */.emacs.d/*
 !*/.emacs.d/j-kbd/
 !*/.emacs.d/j-kbd.el
