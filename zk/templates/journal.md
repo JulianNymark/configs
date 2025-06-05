@@ -4,10 +4,6 @@ date: {{ format-date now 'long' }}
 tags: []
 ---
 
-# Goal of the Day
-
----
-
 # Gratitudes
 
 1.
