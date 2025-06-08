@@ -222,6 +222,7 @@ return {
 			-- 	 		or util.find_git_ancestor(fname)
 			-- 	 end,
 			-- },
+			jsonls = {},
 		}
 
 		-- Ensure the servers and tools above are installed
