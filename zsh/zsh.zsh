@@ -44,3 +44,6 @@ yarna () {
       ) | with_entries(select(.value != {}))
       end'
 }
+
+GPG_TTY=$(tty)
+export GPG_TTY

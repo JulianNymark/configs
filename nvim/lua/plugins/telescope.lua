@@ -156,22 +156,22 @@ return {
 			end, { desc = "[n]eovim files" })
 		end,
 	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
-			local fb = require("telescope").extensions.file_browser
-			vim.keymap.set("n", "<Leader>bc", function()
-				fb.file_browser({
-					cwd = vim.fn.expand("%:p:h"),
-					hidden = {
-						file_browser = true,
-						folder_browser = true,
-					},
-				})
-			end, { desc = "[b]rowse [c]urrent directory" })
-		end,
-	},
+	-- {
+	-- 	"nvim-telescope/telescope-file-browser.nvim",
+	-- 	dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		local fb = require("telescope").extensions.file_browser
+	-- 		vim.keymap.set("n", "<Leader>bc", function()
+	-- 			fb.file_browser({
+	-- 				cwd = vim.fn.expand("%:p:h"),
+	-- 				hidden = {
+	-- 					file_browser = true,
+	-- 					folder_browser = true,
+	-- 				},
+	-- 			})
+	-- 		end, { desc = "[b]rowse [c]urrent directory" })
+	-- 	end,
+	-- },
 	{
 		"JulianNymark/telescope_grouped_keymaps.nvim",
 		dependencies = {

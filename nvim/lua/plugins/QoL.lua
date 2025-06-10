@@ -113,9 +113,7 @@ return {
 			{ "nvim-tree/nvim-web-devicons", lazy = true },
 		},
 		opts = {
-			-- scope = "git", -- also try out "git_branch"
-			-- icons = false, -- setting to "true" requires "nvim-web-devicons"
-			-- status = false,
+			scope = "git_branch",
 		},
 		keys = {
 			{ "<leader>fa", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
@@ -263,6 +261,39 @@ return {
 			vim.opt.foldlevelstart = 99
 
 			require("ufo").setup()
+		end,
+	},
+	{
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"folke/snacks.nvim",
+		},
+		keys = {
+			{
+				"<leader>bc",
+				mode = { "n", "v" },
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+			{
+				"<leader>b<leader>",
+				"<cmd>Yazi cwd<cr>",
+				desc = "Open the file manager in nvim's working directory",
+			},
+			{
+				"<leader>br",
+				"<cmd>Yazi toggle<cr>",
+				desc = "Resume the last yazi session",
+			},
+		},
+		opts = {
+			open_for_directories = true,
+		},
+		init = function()
+			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+			-- vim.g.loaded_netrw = 1
+			vim.g.loaded_netrwPlugin = 1
 		end,
 	},
 }
