@@ -15,7 +15,6 @@ return {
 	},
 	config = function()
 		local custom_lsp_disables = function(event)
-			local client = vim.lsp.get_client_by_id(event.data.client_id)
 			local is_deno_project = function()
 				local buf_dir = vim.fn.expand("%:p:h")
 				local found_dir =
@@ -25,8 +24,17 @@ return {
 				end
 				return false
 			end
+
+			local client = vim.lsp.get_client_by_id(event.data.client_id)
+
 			if client and client.name == "ts_ls" and is_deno_project() then
 				vim.print("LspAttach: disabling ts_ls for buffer due to auto detecting deno project")
+				-- NOTE: stopping the client, since the buffer seems to still want to talk to the
+				-- lsp despite it being detached (gives errors)
+				vim.lsp.stop_client(event.data.client_id)
+				-- vim.lsp.buf_detach_client(event.buf, event.data.client_id)
+			elseif client and client.name == "denols" and not is_deno_project() then
+				vim.print("LspAttach: disabling denols for buffer due to NOT auto detecting deno project")
 				-- NOTE: stopping the client, since the buffer seems to still want to talk to the
 				-- lsp despite it being detached (gives errors)
 				vim.lsp.stop_client(event.data.client_id)
@@ -148,7 +156,7 @@ return {
 			vim.lsp.buf.execute_command(params)
 		end
 
-		-- local lspconfig = require("lspconfig")
+		local lspconfig = require("lspconfig")
 
 		--  Add any additional override configuration in the following tables. Available keys are:
 		--  - cmd (table): Override the default command used to start the server
@@ -168,9 +176,9 @@ return {
 			-- Some languages (like typescript) have entire language plugins that can be useful:
 			--    https://github.com/pmizio/typescript-tools.nvim
 
-			-- denols = {
-			-- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
-			-- },
+			denols = {
+				root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+			},
 			ts_ls = {},
 			tailwindcss = {},
 			eslint = {},
