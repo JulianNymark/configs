@@ -248,10 +248,7 @@ return {
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = { "kevinhwang91/promise-async" },
-		-- TODO: harpoon2 doesn't seem to properly open files? (BufRead?)
 		event = "BufRead",
-		-- event = "VeryLazy",
-		-- event = "FileType",
 		opts = {},
 		config = function()
 			vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
