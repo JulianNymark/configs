@@ -45,5 +45,9 @@ yarna () {
       end'
 }
 
-GPG_TTY=$(tty)
-export GPG_TTY
+## gnupg issue on macos fixed by setting the following in ~/.gnupg/gpg.conf
+# use-agent
+# pinentry-mode loopback
+##
+# then reload with: `echo RELOADAGENT | gpg-connect-agent`
+# this made it so it remembers the passphrase in keychain again
