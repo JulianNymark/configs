@@ -19,10 +19,13 @@ return {
 			config = function()
 				local fm = require("fluoromachine")
 
-				function overrides(c, color)
+				local function overrides(c, color)
 					return {
-						-- ["@text.diff.add"] = { link = "DiffAdd" },
-						-- ["@text.diff.delete"] = { link = "DiffDelete" },
+						["@text.diff.add"] = { link = "DiffAdd" },
+						["@text.diff.delete"] = { link = "DiffDelete" },
+						["diffLine"] = { fg = "#888888" },
+						["diffRemoved"] = { fg = "#ff0000" },
+						["diffAdded"] = { fg = "#00ff00" },
 					}
 				end
 
