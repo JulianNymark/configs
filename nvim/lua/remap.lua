@@ -29,7 +29,7 @@ map("n", "<C-u>", "<C-u>zz", { remap = false })
 -- map("n", "<Leader>p", 'vi""*p', { desc = '[p]aste clipboard into ""' })
 
 vim.api.nvim_create_user_command("JsonF", function()
-	vim.cmd("%!jq .")
+  vim.cmd("%!jq .")
 end, { nargs = 0 })
 
 -- TODO: mini.move does this better + preserves history
@@ -37,49 +37,49 @@ end, { nargs = 0 })
 -- map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
 
 local function git_sharelink_prefix()
-	local function is_git_repo()
-		local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
+  local function is_git_repo()
+    local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
 
-		return vim.v.shell_error == 0
-	end
+    return vim.v.shell_error == 0
+  end
 
-	local function verify_git_branch(branch_name)
-		local _ = vim.fn.system("git rev-parse --verify " .. branch_name)
+  local function verify_git_branch(branch_name)
+    local _ = vim.fn.system("git rev-parse --verify " .. branch_name)
 
-		return vim.v.shell_error == 0
-	end
+    return vim.v.shell_error == 0
+  end
 
-	if not is_git_repo() then
-		return ""
-	end
+  if not is_git_repo() then
+    return ""
+  end
 
-	local raw_url = vim.fn.system("git remote get-url origin")
-	local processed_url = raw_url:gsub("^.-@", ""):gsub(":", "/"):gsub("%.git", "")
-	local main_branch_name = verify_git_branch("master") and "master" or "main"
+  local raw_url = vim.fn.system("git remote get-url origin")
+  local processed_url = raw_url:gsub("^.-@", ""):gsub(":", "/"):gsub("%.git", "")
+  local main_branch_name = verify_git_branch("master") and "master" or "main"
 
-	return processed_url .. "/blob/" .. main_branch_name .. "/"
+  return processed_url .. "/blob/" .. main_branch_name .. "/"
 end
 
 -- line sharing
 map("n", "<Leader>l", function()
-	local line_link = vim.fn.expand("%") .. "#L" .. vim.fn.line(".")
-	local share_link = git_sharelink_prefix() .. line_link
+  local line_link = vim.fn.expand("%") .. "#L" .. vim.fn.line(".")
+  local share_link = git_sharelink_prefix() .. line_link
 
-	vim.fn.setreg("*", share_link) -- send to the clipboard
+  vim.fn.setreg("*", share_link) -- send to the clipboard
 end, { desc = "Copy file & [l]ine_number to clipboard" })
 map("v", "<Leader>l", function()
-	-- press the esc key to leave visual mode
-	local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
-	vim.api.nvim_feedkeys(esc, "x", false) -- it's blocking == the best! (incredibly predictable)
+  -- press the esc key to leave visual mode
+  local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+  vim.api.nvim_feedkeys(esc, "x", false) -- it's blocking == the best! (incredibly predictable)
 
-	local l_from = vim.fn.getpos("'<")[2]
-	local l_to = vim.fn.getpos("'>")[2]
+  local l_from = vim.fn.getpos("'<")[2]
+  local l_to = vim.fn.getpos("'>")[2]
 
-	local file_link = vim.fn.expand("%")
-	local line_link = file_link .. "#L" .. l_from .. "-L" .. l_to
-	local share_link = git_sharelink_prefix() .. line_link
+  local file_link = vim.fn.expand("%")
+  local line_link = file_link .. "#L" .. l_from .. "-L" .. l_to
+  local share_link = git_sharelink_prefix() .. line_link
 
-	vim.fn.setreg("*", share_link) -- send to the clipboard
+  vim.fn.setreg("*", share_link) -- send to the clipboard
 end, { desc = "Copy file & [l]ine_number to clipboard" })
 
 -- TODO: this should be limited (not for q: command selection etc...)
@@ -88,11 +88,11 @@ end, { desc = "Copy file & [l]ine_number to clipboard" })
 local lc1 = "tab:» ,trail:·,space:·,nbsp:␣,eol:$"
 local lc2 = "tab:  ,trail: ,nbsp: ,eol: "
 function ChgListchars()
-	if vim.o.listchars == lc1 then
-		vim.opt.listchars = lc2
-	else
-		vim.opt.listchars = lc1
-	end
+  if vim.o.listchars == lc1 then
+    vim.opt.listchars = lc2
+  else
+    vim.opt.listchars = lc1
+  end
 end
 
 map("n", "<Leader>fs", ":w<CR>", { desc = "[s]ave" })
@@ -100,26 +100,26 @@ map("n", "<Leader>fS", ":wa<CR>", { desc = "[S]ave all" })
 
 -- enable marks for counted jumps
 map("n", "j", function()
-	if vim.v.count > 1 then
-		return "m'" .. vim.v.count .. "gj"
-	end
-	return "gj"
+  if vim.v.count > 1 then
+    return "m'" .. vim.v.count .. "gj"
+  end
+  return "gj"
 end, { remap = false, expr = true })
 map("n", "k", function()
-	if vim.v.count > 1 then
-		return "m'" .. vim.v.count .. "gk"
-	end
-	return "gk"
+  if vim.v.count > 1 then
+    return "m'" .. vim.v.count .. "gk"
+  end
+  return "gk"
 end, { remap = false, expr = true })
 
 map("n", "<Leader><Leader>s", "<cmd>source ~/.config/nvim/lua/snippets.lua<CR>", { desc = "[s]ource snippets" })
 
 -- Notifications
 map("n", "<leader>nd", function()
-	Snacks.notifier.hide()
+  Snacks.notifier.hide()
 end, { desc = "[d]ismiss messages" })
 map("n", "<leader>sm", function()
-	Snacks.notifier.show_history()
+  Snacks.notifier.show_history()
 end, { desc = "[m]essages" })
 
 map("n", "<leader>tt", "<cmd>Twilight<CR>", { desc = "[t]wilight (focus scope hl)" })
@@ -132,10 +132,10 @@ map("n", "<Leader>dk", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Debugge
 map("n", "<Leader>dc", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
 map("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
 map(
-	"n",
-	"<Leader>dd",
-	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-	{ desc = "Debugger set conditional breakpoint" }
+  "n",
+  "<Leader>dd",
+  "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+  { desc = "Debugger set conditional breakpoint" }
 )
 map("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugger reset" })
 map("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
@@ -151,15 +151,15 @@ map("n", "<Leader>tT", "<cmd>InspectTree<CR>", { desc = "[T]reesitter AST Inspec
 ---@return string
 -- :h filename-modifiers
 local function get_path(mods)
-	return vim.fn.fnamemodify(vim.fn.expand("%"), mods)
+  return vim.fn.fnamemodify(vim.fn.expand("%"), mods)
 end
 
 ---@param path string
 local function copy_to_clipboard(path)
-	vim.fn.setreg("+", path)
-	vim.api.nvim_echo({ { "Copied: " .. path } }, false, {})
+  vim.fn.setreg("+", path)
+  vim.api.nvim_echo({ { "Copied: " .. path } }, false, {})
 end
 
 map("n", "<Leader>fc", function()
-	copy_to_clipboard(get_path(":."))
+  copy_to_clipboard(get_path(":."))
 end, { desc = "[c]opy path (relative)" })

@@ -1,12 +1,12 @@
 return {
-	{
-		"zk-org/zk-nvim",
-		-- branch = "fix/client-nil-error",
+  {
+    "zk-org/zk-nvim",
+    -- branch = "fix/client-nil-error",
 
-		config = function()
-			require("zk").setup({
-				picker = "telescope",
-			})
-		end,
-	},
+    config = function()
+      require("zk").setup({
+        picker = "telescope",
+      })
+    end,
+  },
 }

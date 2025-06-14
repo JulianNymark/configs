@@ -1,5 +1,5 @@
 return {
-	{
-		"wsdjeg/quickfix.nvim",
-	},
+  {
+    "wsdjeg/quickfix.nvim",
+  },
 }

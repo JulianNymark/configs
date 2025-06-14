@@ -1,5 +1,5 @@
 vim.filetype.add({
-	extension = {
-		stempl = "stempl",
-	},
+  extension = {
+    stempl = "stempl",
+  },
 })
