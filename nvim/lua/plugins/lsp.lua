@@ -158,6 +158,10 @@ return {
 
 		local lspconfig = require("lspconfig")
 
+		-- for omnisharp
+		local pid = vim.fn.getpid()
+		local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/OmniSharp"
+
 		--  Add any additional override configuration in the following tables. Available keys are:
 		--  - cmd (table): Override the default command used to start the server
 		--  - filetypes (table): Override the default list of associated filetypes for the server
@@ -231,6 +235,9 @@ return {
 			-- 	 end,
 			-- },
 			jsonls = {},
+			omnisharp = {
+				cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+			},
 		}
 
 		-- Ensure the servers and tools above are installed
