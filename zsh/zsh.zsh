@@ -1,53 +1,17 @@
-# split strings
-s () {
-  node -r 'fs' -e "console.log(fs.readFileSync(process.stdin.fd).toString().split('$1' || ' '))" 
-}
+# cli completion (also see ./completion.zsh)
+autoload -U +X compinit && compinit
 
-# new git project setup (using bare repos & worktrees)
-# USAGE: repo githubuser/reponame
-#
-# new structure becomes:
-# project
-#   ├── .bare
-#   ├── feature
-#   └── main
-alias gclb='f(){ git clone --bare "$@" .bare }; f'
-alias repo='f(){
-  mkdir -p "$HOME/Repos/$1";
-  cd "$HOME/Repos/$1";
-  gclb "git@github.com:$1.git";
-  echo "gitdir: ./.bare" > .git;
-  git worktree add main;
-}; f'
+source $HOME/.config/zsh/_before.zsh
+source $HOME/.config/zsh/common.zsh
 
-# my_ip = TBD
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-my_age () {
-  local time=$(($(date -vDecm -v06d -v1991y +%s) - $(date +%s)));
-  printf 'I am %d years %d days old\n' $(($time/60/60/24/365 * -1)) $(($time/60/60/24%365 * -1));
-}
+##################
+## oh-my-zsh
+##################
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git per-directory-history kubectl fzf)
+source $ZSH/oh-my-zsh.sh
 
-yarna () {
-  local filter="$1"
-  rg --files --glob package.json | xargs -I {} jq -r \
-    '.scripts? 
-     | with_entries(select(.key | test(":")))?
-     | select(. | length > 0)
-     | { (input_filename): . }' {} \
-  | jq -s 'add' \
-  | jq --arg filter "$filter" '
-      if $filter == "" then .
-      else with_entries(
-        .value |= with_entries(
-          select((.key + " " + .value) | test($filter))
-        )
-      ) | with_entries(select(.value != {}))
-      end'
-}
-
-## gnupg issue on macos fixed by setting the following in ~/.gnupg/gpg.conf
-# use-agent
-# pinentry-mode loopback
-##
-# then reload with: `echo RELOADAGENT | gpg-connect-agent`
-# this made it so it remembers the passphrase in keychain again
+source $HOME/.config/zsh/_after.zsh

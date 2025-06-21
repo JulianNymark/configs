@@ -1,3 +1,2 @@
-*/.emacs.d/*
-!*/.emacs.d/j-kbd/
-!*/.emacs.d/j-kbd.el
+# ignore files starting with _
+**/_*
