@@ -163,3 +163,7 @@ end
 map("n", "<Leader>fc", function()
   copy_to_clipboard(get_path(":."))
 end, { desc = "[c]opy path (relative)" })
+
+map("n", "<Leader>fx", function()
+  vim.ui.open(vim.fn.expand("%"))
+end, { desc = "open current file" })
