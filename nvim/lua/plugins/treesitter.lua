@@ -13,7 +13,8 @@ return {
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { "ruby" },
       },
-      indent = { enable = true, disable = { "ruby" } },
+      -- indenting in treesitter is not always on point (LSP is better)
+      indent = { enable = false },
       matchup = {
         enable = true,
       },
