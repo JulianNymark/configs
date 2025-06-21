@@ -22,6 +22,7 @@ alias c='pwd | pbcopy'
 alias p='cd $(pbpaste)'
 
 alias fix_yarn='yarn clean ; rm -r node_modules .yarn/cache && yarn'
+alias grrh='git reset --hard origin/HEAD'
 
 alias vim='nvim'
 
@@ -102,10 +103,3 @@ export NVM_DIR="$HOME/.nvm"
 export git_editor="nvim -f"
 export editor="nvim -f"
 export visual="nvim -f"
-
-## gnupg issue on macos fixed by setting the following in ~/.gnupg/gpg.conf
-# use-agent
-# pinentry-mode loopback
-##
-# then reload with: `echo RELOADAGENT | gpg-connect-agent`
-# this made it so it remembers the passphrase in keychain again
