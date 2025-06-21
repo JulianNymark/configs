@@ -237,6 +237,7 @@ return {
       omnisharp = {
         cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
       },
+      html = {},
     }
 
     -- Ensure the servers and tools above are installed
