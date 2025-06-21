@@ -103,3 +103,8 @@ export NVM_DIR="$HOME/.nvm"
 export git_editor="nvim -f"
 export editor="nvim -f"
 export visual="nvim -f"
+
+export GPG_TTY=$(tty)
+# ensure that the global git config knows the right gpg program
+# git config --global gpg.program $(which gpg2)
+
