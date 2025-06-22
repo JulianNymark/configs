@@ -18,6 +18,15 @@ return {
       matchup = {
         enable = true,
       },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = false, -- start with normal 'v'
+          node_incremental = "<c-h>",
+          scope_incremental = "<c-k>",
+          node_decremental = "<c-l>",
+        },
+      },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
