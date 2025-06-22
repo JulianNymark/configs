@@ -15,7 +15,9 @@
 | n    | <kbd>:r FILE</kbd>                                 | retrieve the contents of FILE at cursor                      |
 | n    | <kbd>:r !ls</kbd>                                  | retrieve the contents of the <kbd>ls</kbd> command at cursor |
 | v    | <kbd>P</kbd> | paste over selection (<kbd>P</kbd> does not write the deleted text to register == nice repeated overwrites, <kbd>p</kbd> however does write to registers) |
-| n    | <kbd>m'</kbd> | add current cursor position to the jump list (not a mark), useful for macros |
+| n    | <kbd>m`</kbd> | add current cursor position (line:col) to the temporary mark ` |
+| n    | <kbd>``</kbd> | go to the temporary mark ` |
+| i | <kbd>\<C-r\>\<C-r\>h</kbd> | paste contents of recorded macro in register h |
 
 ## commands
 
