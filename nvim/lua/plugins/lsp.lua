@@ -126,6 +126,7 @@ return {
         map("K", function()
           vim.lsp.buf.hover({
             border = "rounded",
+            max_width = 75,
           })
         end, "Hover Documentation")
 
