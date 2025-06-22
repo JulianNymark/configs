@@ -15,6 +15,7 @@
 | n    | <kbd>:r FILE</kbd>                                 | retrieve the contents of FILE at cursor                      |
 | n    | <kbd>:r !ls</kbd>                                  | retrieve the contents of the <kbd>ls</kbd> command at cursor |
 | v    | <kbd>P</kbd> | paste over selection (<kbd>P</kbd> does not write the deleted text to register == nice repeated overwrites, <kbd>p</kbd> however does write to registers) |
+| n    | <kbd>m'</kbd> | add current cursor position to the jump list (not a mark), useful for macros |
 
 ## commands
 
@@ -22,6 +23,10 @@
 | ------- | ----------------------------------------- |
 | :e      | (edit) reload buffer from disk            |
 | :noa w  | noautocommand w (save without formatting) |
+
+## lua
+
+- `vim.api.nvim_feedkeys("some_string_of_keys", 'n', true)` lets you emulate keyboard input.
 
 ## behaviours
 
