@@ -89,6 +89,53 @@ return {
               return { { "`${" }, { "}`" } }
             end,
           },
+          -- fancy comment header
+          ["h"] = {
+            add = function()
+              local commentstring = vim.bo.commentstring or "// %s"
+              local prefix = commentstring:match("^(.-)%s") or "//"
+              local comment_char = prefix:sub(1, 1)
+
+              local is_single_char = prefix:match("^(%S)%1+$") ~= nil
+              if not is_single_char and #prefix > 1 then
+                comment_char = prefix:sub(2, 2)
+              end
+
+              -- Get visual selection
+              local start_line = vim.fn.getpos("'<")[2] - 1
+              local end_line = vim.fn.getpos("'>")[2]
+
+              local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+              if not lines or #lines == 0 then
+                return
+              end
+
+              -- Strip leading/trailing whitespace and add comment prefix
+              for i, line in ipairs(lines) do
+                local trimmed = line:gsub("^%s*(.-)%s*$", "%1")
+                if not trimmed:find("^" .. vim.pesc(prefix)) then
+                  lines[i] = prefix .. " " .. trimmed
+                end
+              end
+
+              vim.api.nvim_buf_set_lines(0, start_line, end_line, false, lines)
+
+              -- Get the max line length (including comment char)
+              local max_len = 0
+              for _, line in ipairs(lines) do
+                max_len = math.max(max_len, #line)
+              end
+
+              -- Create the top and bottom border line
+              local border = comment_char:rep(max_len)
+
+              if is_single_char then
+                border = prefix .. comment_char:rep(max_len - #prefix)
+              end
+
+              return { { border }, { border } }
+            end,
+          },
         },
       })
     end,
