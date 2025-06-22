@@ -61,12 +61,12 @@ local function git_sharelink_prefix()
 end
 
 -- line sharing
-map("n", "<Leader>l", function()
+map("n", "<Leader>fl", function()
   local line_link = vim.fn.expand("%") .. "#L" .. vim.fn.line(".")
   local share_link = git_sharelink_prefix() .. line_link
 
   vim.fn.setreg("*", share_link) -- send to the clipboard
-end, { desc = "Copy file & [l]ine_number to clipboard" })
+end, { desc = "Copy [f]ile & [l]ine_number to clipboard" })
 map("v", "<Leader>l", function()
   -- press the esc key to leave visual mode
   local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
@@ -167,3 +167,18 @@ end, { desc = "[c]opy path (relative)" })
 map("n", "<Leader>fx", function()
   vim.ui.open(vim.fn.expand("%"))
 end, { desc = "open current file" })
+
+---@param mode string the mode
+---@param key_string string a string of inputs (accepts termcodes eg. <CR>)
+local function feedkeys(mode, key_string)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key_string, true, false, true), mode, true)
+end
+
+-- [r]efactor: [s]quash self
+-- (eg. turn "string.match(target, pattern)" -> "target:match(pattern)")
+-- implemented for: lua
+map("n", "<Leader>rs", function()
+  if vim.bo.filetype == "lua" then
+    feedkeys("n", "F.hdiwr:m`/(<CR>ldw``P/(<CR>ldw")
+  end
+end, { desc = "[s]quash" })

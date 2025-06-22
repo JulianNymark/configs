@@ -202,20 +202,19 @@ return {
 
       -- Document existing key chains
       wk.add({
+        { "<leader><leader>", group = "utility" },
         { "<leader>a", group = "[a]i" },
         { "<leader>b", group = "[b]rowse" },
         { "<leader>c", group = "[c]ode" },
         { "<leader>d", group = "[d]ebug" },
         { "<leader>f", group = "[f]ile" },
         { "<leader>g", group = "[g]it" },
-        { "<leader>gl", group = "[l]ist" },
         { "<leader>h", group = "Git [h]unk" },
         { "<leader>n", group = "[n]oice" },
         { "<leader>r", group = "[r]efactor" },
         { "<leader>s", group = "[s]earch" },
         { "<leader>t", group = "[t]oggle" },
         { "<leader>w", group = "[w]orkspace" },
-        { "<leader><leader>", group = "utility" },
         { "gr", group = "LSP" },
       })
 
