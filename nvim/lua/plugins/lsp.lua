@@ -41,6 +41,44 @@ return {
       end
     end
 
+    vim.api.nvim_create_autocmd("BufWinEnter", {
+      pattern = "*.gd",
+      callback = function(event)
+        --------------------------------------------------------------------------------------------------------
+        -- Use External Editor: On
+        -- Exec Path: nvim
+        -- Exec Flags: --server /tmp/godot.pipe --remote-send "<esc>:n {file}<CR>:call cursor({line},{col})<CR>"
+        --------------------------------------------------------------------------------------------------------
+
+        local pipe = "/tmp/godot.pipe"
+        local root_dir = vim.fs.dirname(vim.fs.find({ "project.godot", ".git" }, { upward = true })[1])
+        local existing_client = nil
+
+        for _, client in pairs(vim.lsp.get_clients()) do
+          if client.name == "Godot" and client.config.root_dir == root_dir then
+            existing_client = client
+            break
+          end
+        end
+
+        if existing_client then
+          vim.defer_fn(function()
+            vim.lsp.buf_attach_client(0, existing_client.id)
+          end, 100)
+        else
+          local cmd = vim.lsp.rpc.connect("127.0.0.1", 6005)
+          vim.lsp.start({
+            name = "Godot",
+            cmd = cmd,
+            root_dir = root_dir,
+            on_attach = function(client, bufnr)
+              vim.fn.serverstart(pipe)
+            end,
+          })
+        end
+      end,
+    })
+
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
