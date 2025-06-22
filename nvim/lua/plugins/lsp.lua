@@ -238,6 +238,7 @@ return {
         cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
       },
       html = {},
+      gdtoolkit = {},
     }
 
     -- Ensure the servers and tools above are installed
