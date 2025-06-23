@@ -25,6 +25,8 @@ alias fix_yarn='yarn clean ; rm -r node_modules .yarn/cache && yarn'
 alias grrh='git reset --hard origin/HEAD'
 
 alias vim='nvim'
+alias v='nvim'
+alias nvimswpdel='rm ~/.local/state/nvim/swap/*'
 
 # split strings
 s () {
@@ -96,15 +98,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. "/Users/username/.deno/env"
-# export deno_install="/users/username/.deno"
-# export path="$deno_install/bin:$path"
+# . "/Users/username/.deno/env"
+# export DENO_INSTALL="/Users/juliannymark/.deno"
+# export PATH="$DENO_INSTALL/bin:$PATH"
 
-export git_editor="nvim -f"
-export editor="nvim -f"
-export visual="nvim -f"
+export GIT_EDITOR="nvim -f"
+export EDITOR="nvim -f"
+export VISUAL="nvim -f"
 
 export GPG_TTY=$(tty)
 # ensure that the global git config knows the right gpg program
 # git config --global gpg.program $(which gpg2)
 
+source $HOME/.config/zsh/completion.zsh
