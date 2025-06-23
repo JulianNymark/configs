@@ -203,19 +203,19 @@ return {
       -- Document existing key chains
       wk.add({
         { "<leader><leader>", group = "utility" },
-        { "<leader>a", group = "[a]i" },
-        { "<leader>b", group = "[b]rowse" },
-        { "<leader>c", group = "[c]ode" },
-        { "<leader>d", group = "[d]ebug" },
-        { "<leader>f", group = "[f]ile" },
-        { "<leader>g", group = "[g]it" },
-        { "<leader>h", group = "Git [h]unk" },
-        { "<leader>n", group = "[n]oice" },
-        { "<leader>r", group = "[r]efactor" },
-        { "<leader>s", group = "[s]earch" },
-        { "<leader>t", group = "[t]oggle" },
-        { "<leader>w", group = "[w]orkspace" },
-        { "gr", group = "LSP" },
+        { "<leader>a",        group = "[a]i" },
+        { "<leader>b",        group = "[b]rowse" },
+        { "<leader>c",        group = "[c]ode" },
+        { "<leader>d",        group = "[d]ebug" },
+        { "<leader>f",        group = "[f]ile" },
+        { "<leader>g",        group = "[g]it" },
+        { "<leader>h",        group = "Git [h]unk" },
+        { "<leader>n",        group = "[n]oice" },
+        { "<leader>r",        group = "[r]efactor" },
+        { "<leader>s",        group = "[s]earch" },
+        { "<leader>t",        group = "[t]oggle" },
+        { "<leader>w",        group = "[w]orkspace" },
+        { "gr",               group = "LSP" },
       })
 
       -- visual mode
@@ -240,7 +240,6 @@ return {
     end,
   },
   { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
-  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
   -- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
   {
     "epwalsh/pomo.nvim",
@@ -274,7 +273,7 @@ return {
     config = function()
       vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
       vim.opt.foldcolumn = "1" -- '0' is not bad
-      vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
       vim.opt.foldenable = true
       vim.opt.foldlevelstart = 99
 

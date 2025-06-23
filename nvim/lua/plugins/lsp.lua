@@ -7,17 +7,18 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
 
     -- Useful status updates for LSP.
-    { "j-hui/fidget.nvim", opts = {} },
+    { "j-hui/fidget.nvim",    opts = {} },
 
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
-    { "folke/lazydev.nvim", opts = {} },
+    { "folke/lazydev.nvim",   opts = {} },
   },
   config = function()
     local custom_lsp_disables = function(event)
       local is_deno_project = function()
         local buf_dir = vim.fn.expand("%:p:h")
-        local found_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc", "deno.lock")(buf_dir)
+        local found_dir =
+            require("lspconfig").util.root_pattern("deno.json", "deno.jsonc", "deno.lock")(buf_dir)
         if found_dir then
           return true
         end
@@ -282,6 +283,7 @@ return {
       },
       html = {},
       gdtoolkit = {},
+      ["bash-language-server"] = {},
     }
 
     -- Ensure the servers and tools above are installed
