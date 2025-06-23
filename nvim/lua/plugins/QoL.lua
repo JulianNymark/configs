@@ -241,6 +241,7 @@ return {
   },
   { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+  -- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
   {
     "epwalsh/pomo.nvim",
     version = "*", -- Recommended, use latest release instead of latest commit
