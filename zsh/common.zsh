@@ -108,6 +108,10 @@ export VISUAL="nvim -f"
 
 export GPG_TTY=$(tty)
 # ensure that the global git config knows the right gpg program
-# git config --global gpg.program $(which gpg2)
+# $ git config --global gpg.program $(which gpg2)
+#
+# $ brew install pinentry-mac
+# add the following to ~/.gnupg/gpg.conf:
+# pinentry-program /opt/homebrew/bin/pinentry-mac
 
 source $HOME/.config/zsh/completion.zsh
