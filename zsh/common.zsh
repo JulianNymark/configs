@@ -110,7 +110,7 @@ export GPG_TTY=$(tty)
 # ensure that the global git config knows the right gpg program
 # $ git config --global gpg.program $(which gpg2)
 #
-# $ brew install pinentry-mac
+# $ brew install gpg2 gnupg pinentry-mac
 # add the following to ~/.gnupg/gpg.conf:
 # pinentry-program /opt/homebrew/bin/pinentry-mac
 
