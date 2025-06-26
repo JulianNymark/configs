@@ -22,15 +22,22 @@ return {
   },
   opts = {
     notify_on_error = false,
+    stop_after_first = true,
     format_on_save = function(bufnr)
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional
       -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = true, lua = true }
+      local prefer_lsp = { c = true, cpp = true, lua = true }
+      local function get_lsp_fallback()
+        if prefer_lsp[vim.bo[bufnr].filetype] then
+          return "prefer" -- soft "only LSP"
+        end
+        return "fallback" -- soft "no LSP" LSP "if nothing else"
+      end
       return {
         timeout_ms = 500,
-        -- lsp_format = "prefer",
-        lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+        stop_after_first = true,
+        lsp_format = get_lsp_fallback(),
       }
     end,
     formatters_by_ft = {
