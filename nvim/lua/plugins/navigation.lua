@@ -4,11 +4,34 @@ return {
     "andymass/vim-matchup",
   },
   {
-    "smoka7/hop.nvim",
-    version = "*",
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
     opts = {
-      keys = "etovxqpdygfblzhckisuran",
+      ---@type table<string, Flash.Config>
+      modes = {
+        search = { enabled = false },
+        char   = { enabled = false, autohide = true }
+      }
     },
+    init = function()
+      local flash = require("flash")
+      vim.keymap.set("n", "f", function()
+        flash.jump({
+          ---- to only match start of wor
+          -- search = {
+          --   mode = function(str)
+          --     return "\\<" .. str
+          --   end
+          -- }
+        })
+      end)
+      vim.keymap.set("n", "F", function()
+        flash.jump({
+          label = { uppercase = false },
+        })
+      end)
+    end
   },
   {
     "cbochs/grapple.nvim",
