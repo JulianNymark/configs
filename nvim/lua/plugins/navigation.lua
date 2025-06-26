@@ -11,13 +11,14 @@ return {
       ---@type table<string, Flash.Config>
       modes = {
         search = { enabled = false },
-        char   = { enabled = false, autohide = true }
+        char   = { enabled = false }
       }
     },
     init = function()
       local flash = require("flash")
       vim.keymap.set("n", "f", function()
         flash.jump({
+          label = { uppercase = false },
           ---- to only match start of word
           -- search = {
           --   mode = function(str)
