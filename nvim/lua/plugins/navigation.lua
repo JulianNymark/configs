@@ -18,7 +18,7 @@ return {
       local flash = require("flash")
       vim.keymap.set("n", "f", function()
         flash.jump({
-          ---- to only match start of wor
+          ---- to only match start of word
           -- search = {
           --   mode = function(str)
           --     return "\\<" .. str
