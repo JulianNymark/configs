@@ -261,10 +261,6 @@ return {
     end,
   },
   {
-    -- even better % and matching words
-    "andymass/vim-matchup",
-  },
-  {
     -- folding
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
@@ -273,7 +269,7 @@ return {
     config = function()
       vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
       vim.opt.foldcolumn = "1" -- '0' is not bad
-      vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+      vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.opt.foldenable = true
       vim.opt.foldlevelstart = 99
 

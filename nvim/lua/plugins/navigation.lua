@@ -1,5 +1,16 @@
 return {
   {
+    -- even better % and matching words
+    "andymass/vim-matchup",
+  },
+  {
+    "smoka7/hop.nvim",
+    version = "*",
+    opts = {
+      keys = "etovxqpdygfblzhckisuran",
+    },
+  },
+  {
     "cbochs/grapple.nvim",
     dependencies = {
       { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -8,17 +19,17 @@ return {
       scope = "git_branch",
     },
     keys = {
-      { "<leader>fa", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
-      { "<c-e>", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
+      { "<leader>fa", "<cmd>Grapple toggle<cr>",          desc = "Tag a file" },
+      { "<c-e>",      "<cmd>Grapple toggle_tags<cr>",     desc = "Toggle tags menu" },
 
-      { "<c-h>", "<cmd>Grapple select index=1<cr>", desc = "grapple 1" },
-      { "<c-t>", "<cmd>Grapple select index=2<cr>", desc = "grapple 2" },
-      { "<c-n>", "<cmd>Grapple select index=3<cr>", desc = "grapple 3" },
-      { "<c-s>", "<cmd>Grapple select index=4<cr>", desc = "grapple 4" },
-      { "<c-_>", "<cmd>Grapple select index=5<cr>", desc = "grapple 5" },
+      { "<c-h>",      "<cmd>Grapple select index=1<cr>",  desc = "grapple 1" },
+      { "<c-t>",      "<cmd>Grapple select index=2<cr>",  desc = "grapple 2" },
+      { "<c-n>",      "<cmd>Grapple select index=3<cr>",  desc = "grapple 3" },
+      { "<c-s>",      "<cmd>Grapple select index=4<cr>",  desc = "grapple 4" },
+      { "<c-_>",      "<cmd>Grapple select index=5<cr>",  desc = "grapple 5" },
 
-      { "<c-s-n>", "<cmd>Grapple cycle_tags next<cr>", desc = "Go to next tag" },
-      { "<c-s-p>", "<cmd>Grapple cycle_tags prev<cr>", desc = "Go to previous tag" },
+      { "<c-s-n>",    "<cmd>Grapple cycle_tags next<cr>", desc = "Go to next tag" },
+      { "<c-s-p>",    "<cmd>Grapple cycle_tags prev<cr>", desc = "Go to previous tag" },
     },
   },
   {
