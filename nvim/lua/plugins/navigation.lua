@@ -11,26 +11,31 @@ return {
       ---@type table<string, Flash.Config>
       modes = {
         search = { enabled = false },
-        char   = { enabled = false, autohide = true }
+        char   = { enabled = true, jump_labels = true },
+      },
+      highlight = {
+        groups = {
+          current = "FlashMatch" -- less confusing with color scheme
+        }
       }
     },
     init = function()
       local flash = require("flash")
-      vim.keymap.set("n", "f", function()
+      vim.keymap.set({ "n", "x", "o" }, "F", function()
+        flash.jump({})
+      end, { desc = "Flash" })
+      vim.keymap.set({ "n", "x", "o" }, "f", function()
         flash.jump({
-          ---- to only match start of word
-          -- search = {
-          --   mode = function(str)
-          --     return "\\<" .. str
-          --   end
-          -- }
+          search = {
+            mode = function(str)
+              return "\\<" .. str
+            end,
+          }
         })
-      end)
-      vim.keymap.set("n", "F", function()
-        flash.jump({
-          label = { uppercase = false },
-        })
-      end)
+      end, { desc = "Flash (words)" })
+      vim.keymap.set("o", "r", function()
+        flash.remote({})
+      end, { desc = "Flash (remote)" })
     end
   },
   {
