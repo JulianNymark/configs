@@ -26,6 +26,7 @@ alias grrh='git reset --hard origin/HEAD'
 
 alias vim='nvim'
 alias v='nvim'
+alias n='nvim'
 alias nvimswpdel='rm ~/.local/state/nvim/swap/*'
 
 # split strings
