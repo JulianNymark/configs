@@ -25,13 +25,7 @@ return {
         flash.jump({})
       end, { desc = "Flash" })
       vim.keymap.set({ "n", "x", "o" }, "f", function()
-        flash.jump({
-          search = {
-            mode = function(str)
-              return "\\<" .. str
-            end,
-          }
-        })
+        flash.jump({})
       end, { desc = "Flash (words)" })
       vim.keymap.set("o", "r", function()
         flash.remote({})

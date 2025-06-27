@@ -21,7 +21,7 @@ return {
       { "nvim-telescope/telescope-ui-select.nvim" },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+      { "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -107,6 +107,13 @@ return {
       vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[f]iles" })
       vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[s]elect Telescope" })
       vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "current [w]ord" })
+
+      vim.keymap.set("v", "<leader>s", function()
+        local searchstring = require("utils").get_visual_selection()
+        vim.print(searchstring)
+        builtin.grep_string({ search = searchstring })
+      end, { noremap = true, desc = "search selection (grep)" })
+
       vim.keymap.set("n", "<leader>s<leader>", builtin.live_grep, { desc = "by grep" })
       vim.keymap.set("n", "<leader>sc", function()
         local cwd = vim.fn.expand("%:p:h")
