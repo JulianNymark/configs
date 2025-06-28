@@ -11,7 +11,7 @@ return {
       ---@type table<string, Flash.Config>
       modes = {
         search = { enabled = false },
-        char   = { enabled = true, jump_labels = true },
+        char   = { enabled = false },
       },
       highlight = {
         groups = {
@@ -21,12 +21,12 @@ return {
     },
     init = function()
       local flash = require("flash")
-      vim.keymap.set({ "n", "x", "o" }, "F", function()
+      vim.keymap.set({ "n", "x", "o" }, "s", function()
         flash.jump({})
       end, { desc = "Flash" })
-      vim.keymap.set({ "n", "x", "o" }, "f", function()
+      vim.keymap.set({ "n", "x", "o" }, "S", function()
         flash.jump({})
-      end, { desc = "Flash (words)" })
+      end, { desc = "Flash" })
       vim.keymap.set("o", "r", function()
         flash.remote({})
       end, { desc = "Flash (remote)" })

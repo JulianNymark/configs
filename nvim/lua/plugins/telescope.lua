@@ -180,13 +180,21 @@ return {
   -- 	end,
   -- },
   {
-    "JulianNymark/telescope_grouped_keymaps.nvim",
+    "JulianNymark/telescope-grouped-keymaps.nvim",
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "folke/which-key.nvim",
     },
-    config = function()
-      require("telescope_grouped_keymaps").setup()
-    end,
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>sK",
+        function()
+          require("telescope-grouped-keymaps").picker_grouped_keymaps({})
+        end,
+        desc = "search grouped keymaps"
+      }
+    },
   },
 }
