@@ -41,7 +41,7 @@ return {
 
       css = { "prettierd", "eslint" },
       scss = { "prettierd", "eslint" },
-      json = { "prettierd", "eslint" },
+      json = { "prettierd", "eslint", lsp_format = "prefer" },
       svelte = { "prettierd", "eslint" },
       graphql = { "prettierd", "eslint" },
       markdown = { "prettierd", "eslint" },
