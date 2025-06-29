@@ -2,24 +2,27 @@ return {
   "stevearc/conform.nvim",
   lazy = false,
   event = { "BufReadPre", "BufNewFile" },
-  keys = {
-    {
+  config = function(_, opts)
+    local conform = require("conform")
+    conform.setup(opts)
+    vim.keymap.set(
+      "n",
       "<leader>ff",
       function()
-        require("conform").format({ async = true, lsp_format = "prefer" })
+        conform.format({ async = true, lsp_format = "prefer" })
       end,
-      mode = "",
-      desc = "[f]ormat",
-    },
-    {
+      { desc = "[f]ormat" }
+    )
+
+    vim.keymap.set(
+      "n",
       "<leader>fF",
       function()
-        require("conform").format({ async = true, lsp_format = "fallback" })
+        conform.format({ async = true, lsp_format = "fallback" })
       end,
-      mode = "",
-      desc = "[F]ormat without LSP",
-    },
-  },
+      { desc = "[F]ormat without LSP" }
+    )
+  end,
   opts = {
     notify_on_error = false,
     stop_after_first = true,

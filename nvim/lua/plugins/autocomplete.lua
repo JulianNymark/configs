@@ -141,10 +141,10 @@ return {
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       }),
       sources = {
-        { name = "luasnip", priority = 10 },
+        { name = "luasnip",      priority = 10 },
         { name = "nvim_lsp" },
         { name = "path" },
-        { name = "buffer", keyword_length = 5 },
+        { name = "buffer",       keyword_length = 5 },
         { name = "css-variables" },
       },
     })
