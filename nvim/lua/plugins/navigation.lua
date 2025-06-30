@@ -82,11 +82,13 @@ return {
       open_for_directories = true,
       floating_window_scaling_factor = 1,
       set_keymappings_function = function(bufnr, config, context)
-        local quit_fn = function()
-          context.api:emit_to_yazi({ "quit" })
-        end
-        vim.keymap.set({ "n", "t" }, "<Esc>", quit_fn, { buffer = bufnr, desc = "Quit Yazi" })
-        vim.keymap.set({ "n", "t" }, "q", quit_fn, { buffer = bufnr, desc = "Quit Yazi" })
+        vim.api.nvim_create_autocmd("TermLeave", {
+          callback = function()
+            context.api:emit_to_yazi({ "quit" })
+          end,
+          buffer = bufnr,
+          desc = "Yazi: quit if leaving terminal mode",
+        })
       end,
     },
     init = function()
