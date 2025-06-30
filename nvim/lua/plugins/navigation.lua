@@ -11,13 +11,13 @@ return {
       ---@type table<string, Flash.Config>
       modes = {
         search = { enabled = false },
-        char   = { enabled = false },
+        char = { enabled = false },
       },
       highlight = {
         groups = {
-          current = "FlashMatch" -- less confusing with color scheme
-        }
-      }
+          current = "FlashMatch", -- less confusing with color scheme
+        },
+      },
     },
     init = function()
       local flash = require("flash")
@@ -30,7 +30,7 @@ return {
       vim.keymap.set("o", "r", function()
         flash.remote({})
       end, { desc = "Flash (remote)" })
-    end
+    end,
   },
   {
     "cbochs/grapple.nvim",
@@ -81,6 +81,13 @@ return {
     opts = {
       open_for_directories = true,
       floating_window_scaling_factor = 1,
+      set_keymappings_function = function(bufnr, config, context)
+        local quit_fn = function()
+          context.api:emit_to_yazi({ "quit" })
+        end
+        vim.keymap.set({ "n", "t" }, "<Esc>", quit_fn, { buffer = bufnr, desc = "Quit Yazi" })
+        vim.keymap.set({ "n", "t" }, "q", quit_fn, { buffer = bufnr, desc = "Quit Yazi" })
+      end,
     },
     init = function()
       -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
