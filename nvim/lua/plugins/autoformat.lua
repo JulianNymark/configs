@@ -32,6 +32,11 @@ return {
         timeout_ms = 500,
       }
     end,
+    formatters = {
+      gdformat = {
+        prepend_args = { "-s", "4" }
+      }
+    },
     formatters_by_ft = {
       c = { lsp_format = "prefer" },
       cpp = { lsp_format = "prefer" },
@@ -48,6 +53,8 @@ return {
       svelte = { "prettierd", "eslint" },
       graphql = { "prettierd", "eslint" },
       markdown = { "prettierd", "eslint" },
+
+      gdscript = { "gdformat" }
     },
   },
 }
