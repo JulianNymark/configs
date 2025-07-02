@@ -17,6 +17,8 @@ alias repo='f(){
 
 alias npms="cat package.json | jq .scripts"
 alias npmd="cat package.json | jq '.|{dependencies: .dependencies, devDependencies: .devDependencies}'"
+alias yarns=npms
+alias yarnd=npmd
 
 alias c='pwd | pbcopy'
 alias p='cd $(pbpaste)'
@@ -28,6 +30,8 @@ alias vim='nvim'
 alias v='nvim'
 alias n='nvim'
 alias nvimswpdel='rm ~/.local/state/nvim/swap/*'
+
+alias rga='rg --no-ignore-vcs' # rg "all"
 
 # split strings
 s () {
