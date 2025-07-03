@@ -12,7 +12,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ## oh-my-zsh
 ##################
 ZSH_THEME="robbyrussell"
-plugins=(git per-directory-history kubectl fzf asdf)
+plugins=(git per-directory-history kubectl fzf asdf yarn)
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 if [ -f $HOME/.config/zsh/_after.zsh ]; then
