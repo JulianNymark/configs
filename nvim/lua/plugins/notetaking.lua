@@ -9,4 +9,18 @@ return {
       })
     end,
   },
+  {
+    'nfrid/markdown-togglecheck',
+    dependencies = { 'nfrid/treesitter-utils' },
+    ft = { 'markdown' },
+    keys = {
+      {
+        "<leader>t<leader>",
+        function()
+          require("markdown-togglecheck").toggle()
+        end,
+        desc = "toggle checkbox"
+      }
+    }
+  },
 }
