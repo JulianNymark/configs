@@ -1,3 +1,6 @@
+alias ll='ls -lAh'
+alias la='ls -lAhrt'
+
 # new git project setup (using bare repos & worktrees)
 # USAGE: repo githubuser/reponame
 #
