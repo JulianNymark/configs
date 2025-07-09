@@ -79,6 +79,88 @@ yt-sample () {
 }
 
 ffmpeg_resize () {
+  local input="$1"
+  local target_size_mb="$2"
+  local output="$3"
+
+  if [[ -z "$input" || -z "$target_size_mb" ]]; then
+    echo "Usage: compress_video input_file target_size_MB [output_file]"
+    return 1
+  fi
+
+  if [[ ! -f "$input" ]]; then
+    echo "Error: Input file not found: $input"
+    return 1
+  fi
+
+  # Default output name if not provided
+  if [[ -z "$output" ]]; then
+    local base="${input:t:r}"  # filename without path or extension
+    output="${base}-${target_size_mb}mb.webm"
+  fi
+
+  local extension="${output:e:l}"  # get lowercase extension
+  local codec_v codec_a format audio_bitrate_kbps
+
+  # Choose codecs and container based on output extension
+  if [[ "$extension" == "mp4" ]]; then
+    codec_v="libx264"
+    codec_a="aac"
+    format="mp4"
+    audio_bitrate_kbps=128
+  elif [[ "$extension" == "webm" ]]; then
+    codec_v="libvpx-vp9"
+    codec_a="libopus"
+    format="webm"
+    audio_bitrate_kbps=96
+  else
+    echo "Error: Unsupported output format '$extension'. Use .mp4 or .webm"
+    return 1
+  fi
+
+  # Convert MB to bits
+  local target_size_bits=$(( target_size_mb * 1024 * 1024 * 8 ))
+
+  # Get video duration
+  local duration
+  duration=$(ffprobe -v error -select_streams v:0 -show_entries format=duration \
+            -of default=noprint_wrappers=1:nokey=1 "$input")
+
+  if [[ -z "$duration" ]]; then
+    echo "Error: Could not get duration from input file."
+    return 1
+  fi
+
+  local duration_int=$(( ${duration%.*} + 1 ))
+
+  # Calculate video bitrate (subtract audio)
+  local target_bitrate_kbps=$(( (target_size_bits / duration_int / 1000) - audio_bitrate_kbps ))
+
+  if (( target_bitrate_kbps < 100 )); then
+    echo "⚠️ Warning: Very low target video bitrate (${target_bitrate_kbps} kbps)."
+  fi
+
+  echo "🎞️  Compressing '$input' to '$output'"
+  echo "📏 Target size: ${target_size_mb}MB"
+  echo "⏱ Duration: ${duration_int}s"
+  echo "🎥 Video bitrate: ${target_bitrate_kbps} kbps"
+  echo "🎧 Audio bitrate: ${audio_bitrate_kbps} kbps"
+  echo "📦 Format: ${format}"
+
+  # Run two-pass compression
+  ffmpeg -y -i "$input" \
+    -c:v "$codec_v" -b:v ${target_bitrate_kbps}k -pass 1 -an -f "$format" /dev/null && \
+  ffmpeg -i "$input" \
+    -c:v "$codec_v" -b:v ${target_bitrate_kbps}k -pass 2 \
+    -c:a "$codec_a" -b:a ${audio_bitrate_kbps}k "$output"
+
+  # Clean up
+  rm -f ffmpeg2pass-0.log ffmpeg2pass-0.log.mbtree
+
+  echo "✅ Done: Saved as $output"
+}
+
+ffmpeg_resize_old () {
     file=$1
     target_size_mb=$2  # target size in MB
     target_size=$(( $target_size_mb * 1000 * 1000 * 8 )) # target size in bits
@@ -90,7 +172,7 @@ ffmpeg_resize () {
     ffmpeg -i "$file" -b:v $video_bitrate -maxrate:v $video_bitrate -bufsize:v $(( $target_size / 20 )) -an "${file}-${target_size_mb}mb.webm"
 }
 
-ffmpeg_resize_generic () {
+ffmpeg_resize_generic_old () {
     file=$1
     target_size_mb=$2  # target size in MB
     target_size=$(( $target_size_mb * 1000 * 1000 * 8 )) # target size in bits
