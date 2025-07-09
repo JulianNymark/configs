@@ -47,10 +47,10 @@ vim.opt.scrolloff = 10
 
 vim.opt.hlsearch = true
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.softtabstop = 2
+vim.opt.expandtab = true -- use spaces instead of tab for indent
+vim.opt.shiftwidth = 2   -- indent width
+vim.opt.tabstop = 2      -- tab character width
+vim.opt.softtabstop = 2  -- backspace behaviour
 
 -- load "per project" config via .nvimrc
 vim.o.exrc = true
@@ -81,10 +81,6 @@ if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
--- I want to ensure filetypes exist _before_ loading any
--- lazy plugins, specifically the treesitter one
-require("filetypes")
 
 -- [[ Configure and install plugins ]]
 --
@@ -133,4 +129,6 @@ vim.diagnostic.config({
 })
 
 require("remap")
+require("commands")
 require("snippets")
+require("filetype")

@@ -42,6 +42,17 @@ return {
       end
     end
 
+    local filetype_logic = function(event)
+      local bufnr = event.buf
+      local ft = vim.bo[bufnr].filetype
+      if ft == "python" or ft == "gdscript" then
+        vim.bo[bufnr].expandtab = true
+        vim.bo[bufnr].tabstop = 4
+        vim.bo[bufnr].shiftwidth = 4
+        vim.bo[bufnr].softtabstop = 4
+      end
+    end
+
     vim.api.nvim_create_autocmd("BufWinEnter", {
       pattern = "*.gd",
       callback = function(event)
@@ -90,6 +101,8 @@ return {
         -- WARN: automatically disable certain LSPs under certain conditions!!
         -- this could lead to strange behaviour! (beware of doing too much "magic", add printouts!)
         custom_lsp_disables(event)
+
+        filetype_logic(event)
 
         local map = function(keys, func, desc)
           vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
