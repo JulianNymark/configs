@@ -36,6 +36,8 @@ alias nvimswpdel='rm ~/.local/state/nvim/swap/*'
 
 alias rga='rg --no-ignore-vcs' # rg "all"
 
+alias gd_export='/Applications/Godot.app/Contents/MacOS/Godot --export-debug Web ./dist/index.html'
+
 # split strings
 s () {
   node -r 'fs' -e "console.log(fs.readFileSync(process.stdin.fd).toString().split('$1' || ' '))" 
