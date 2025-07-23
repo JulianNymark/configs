@@ -168,6 +168,10 @@ map("n", "<Leader>fx", function()
   vim.ui.open(vim.fn.expand("%"))
 end, { desc = "open current file" })
 
+map("n", "<Leader>fr", function()
+  vim.cmd('edit!')
+end, { desc = "reload current file" })
+
 ---@param mode string the mode
 ---@param key_string string a string of inputs (accepts termcodes eg. <CR>)
 local function feedkeys(mode, key_string)
