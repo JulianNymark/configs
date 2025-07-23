@@ -89,6 +89,20 @@ return {
               return { { "`${" }, { "}`" } }
             end,
           },
+          -- BBCode block
+          ["b"] = {
+            add = function()
+              local input = surr_utils.get_input("Enter a BBCode tag: ")
+              if input and input ~= "" then
+                return {
+                  { "[" .. input .. "]" },
+                  { "[/" .. input .. "]"
+                  },
+                }
+              end
+              return { { "[code]" }, { "[/code]" } }
+            end,
+          },
           -- fancy comment header
           ["h"] = {
             add = function()
