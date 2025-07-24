@@ -125,6 +125,16 @@ vim.diagnostic.config({
   float = {
     border = "rounded",
     source = true,
+    max_width = 75,
+    format = function(diagnostic)
+      local msg = diagnostic.message
+      -- squash the diagnostic code into message
+      if diagnostic.code then
+        msg = msg .. " [" .. diagnostic.code .. "]"
+      end
+      diagnostic.code = nil
+      return msg .. "\n"
+    end,
   },
 })
 
