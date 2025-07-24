@@ -216,7 +216,7 @@ return {
 
       -- Document existing key chains
       wk.add({
-        { "<leader><leader>", group = "utility" },
+        { "<leader><leader>", group = "FileType specific" },
         { "<leader>a",        group = "[a]i" },
         { "<leader>b",        group = "[b]rowse" },
         { "<leader>c",        group = "[c]ode" },

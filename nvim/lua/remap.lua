@@ -7,8 +7,8 @@ local map = vim.keymap.set
 map("n", "<Esc>", vim.cmd.nohlsearch, { desc = "clear highlight search hits" })
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic message" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic message" })
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
--- map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- map("n", "<leader>De", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
+-- map("n", "<leader>Dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 map("n", "<leader>q", "<cmd>copen<CR>", { desc = "Open [q]uickfix list" })
 map("n", "]q", "<cmd>cnext<CR>zz", { desc = "Go to next [q]uickfix item" })
 map("n", "[q", "<cmd>cprev<CR>zz", { desc = "Go to previous [q]uickfix item" })
@@ -111,8 +111,6 @@ map("n", "k", function()
   end
   return "gk"
 end, { remap = false, expr = true })
-
-map("n", "<Leader><Leader>s", "<cmd>source ~/.config/nvim/lua/snippets.lua<CR>", { desc = "[s]ource snippets" })
 
 -- Notifications
 map("n", "<leader>nd", function()
