@@ -191,3 +191,5 @@ map('c', '<C-j>', '<Down>', { noremap = true })
 map('c', '<C-k>', '<Up>', { noremap = true })
 map('c', '<C-b>', '<S-Left>', { noremap = true })
 map('c', '<C-f>', '<S-Right>', { noremap = true })
+
+map('v', '/', "\"fy/\\V<C-R>f<CR>", { desc = "search selection" })
