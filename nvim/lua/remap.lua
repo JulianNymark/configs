@@ -53,7 +53,7 @@ local function git_sharelink_prefix()
     return ""
   end
 
-  local raw_url = vim.fn.system("git remote get-url origin")
+  local raw_url = vim.fn.system("git remote get-url origin"):gsub("\n", "")
   local processed_url = raw_url:gsub("^.-@", ""):gsub(":", "/"):gsub("%.git", "")
   local main_branch_name = verify_git_branch("master") and "master" or "main"
 
