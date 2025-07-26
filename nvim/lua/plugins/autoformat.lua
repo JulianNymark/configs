@@ -34,7 +34,7 @@ return {
     end,
     formatters = {
       gdformat = {
-        prepend_args = { "--use-spaces=4", "--line-length=80" }
+        prepend_args = { "--use-spaces=4", "--line-length=75" }
       }
     },
     formatters_by_ft = {
