@@ -1,5 +1,5 @@
 [notebook]
-dir = "~/zettelkasten/random"
+dir = "~/zettelkasten/random_notes"
 
 # NOTE SETTINGS
 [note]
@@ -102,6 +102,35 @@ bl = "zk list --link-to $@"
 log = "zk list --quiet --format path --delimiter0 $@ | xargs -0 git log --patch --"
 # save notes to git repository
 save = 'git add . && git commit -m "update notes" && git push origin main'
+sync = """
+_zk_sync_all() {
+    # Loop through all subdirectories in the main notebook home
+    for notebook in "$ZK_NOTEBOOK_HOME"/*/; do
+        # Check if the subdirectory is a git repository
+        if [ -d "$notebook/.git" ]; then
+            (
+                # Run sync operations within the notebook's directory
+                cd "$notebook" || continue
+
+                echo "🔄 Syncing notebook: $(basename "$notebook")"
+                git pull --rebase origin main
+
+                if ! git diff-index --quiet HEAD --; then
+                    git add .
+                    git commit -m "sync: $(date +'%Y-%m-%d %H:%M:%S')"
+                fi
+
+                git push origin main
+                echo "✅  $(basename "$notebook") sync complete."
+                echo "---"
+            )
+        fi
+    done
+};
+
+# Call the main function
+_zk_sync_all
+"""
 
 # LSP (EDITOR INTEGRATION)
 [lsp]
