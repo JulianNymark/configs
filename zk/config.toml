@@ -3,40 +3,29 @@ dir = "~/zettelkasten/random"
 
 # NOTE SETTINGS
 [note]
-
 # Language used when writing notes.
 # This is used to generate slugs or with date formats.
 language = "en"
-
 # The default title used for new note, if no `--title` flag is provided.
 default-title = "Untitled"
-
 # Template used to generate a note's filename, without extension.
 filename = "{{id}}"
-
 # The file extension used for the notes.
 extension = "md"
-
 # Template used to generate a note's content.
 # If not an absolute path, it is relative to .zk/templates/
 template = "default.md"
-
 # Configure random ID generation.
-
 # The charset used for random IDs.
 id-charset = "alphanum"
-
 # Length of the generated IDs.
 id-length = 8
-
 # Letter case for the random IDs.
 id-case = "lower"
-
 
 # EXTRA VARIABLES
 [extra]
 author = "J"
-
 
 # GROUP OVERRIDES
 [group.journal]
@@ -59,19 +48,14 @@ hashtags = true
 # Enable support for :colon:separated:tags:
 colon-tags = true
 
-
 # EXTERNAL TOOLS
 [tool]
-
 # Default editor used to open notes.
 editor = "nvim"
-
 # Default shell used by aliases and commands.
 shell = "/bin/bash"
-
 # Pager used to scroll through long output.
 pager = "less -FIRX"
-
 # Command used to preview a note during interactive fzf mode.
 fzf-preview = "bat -p --color always {-1}"
 
@@ -81,25 +65,19 @@ recents = "--sort created- --created-after 'last two weeks'"
 
 # COMMAND ALIASES
 [alias]
-
 # Show a random note.
 lucky = "zk list --quiet --format full --sort random --limit 1"
-
 config = 'nvim "$HOME/Repos/configs/zk/config.toml"'
-
-#---------------
+# ---------------
 # new notes
-#---------------
-
-n = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random"'
-ni = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random" --group ideas'
-daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal" --group journal'
-standup = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/standup" --group standup'
-
-#---------------
+# ---------------
+n = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random_notes"'
+ni = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random_notes" --group ideas'
+daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal_notes" --group journal'
+standup = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/standup_notes" --group standup'
+# ---------------
 # fzf edit notes
-#---------------
-
+# ---------------
 # list notes for editing
 ls = "zk edit --interactive"
 # Edit the notes selected interactively among the notes created the last two weeks.
@@ -107,24 +85,17 @@ recent = "zk edit --sort created- --created-after 'last two weeks' --interactive
 journal = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/journal --interactive"
 ls-standup = 'zk edit -W "$ZK_NOTEBOOK_HOME/standup" --sort created- --interactive'
 edlast = "zk edit --limit 1 --sort modified- $@"
-
 # search notes by tags
 t = "zk edit --interactive --tag $@"
-
 ideas = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/ideas --interactive"
-
 # update zk notes
 update = "cd $ZK_NOTEBOOK_HOME; git add -A; git commit -am 'updating'; git push; cd -"
-
 # remove a files
 rm = "zk list --interactive --quiet --format path --delimiter0 $@ | xargs -0 rm -vf --"
-
 # open last zk in slides
 slides = "zk list --interactive --quiet --format path --delimiter0 $@ | xargs -0 slides"
-
 # word count notes
 wc = "zk list --format '{{word-count}}\t{{title}}' --sort word-count $@"
-
 # print backlinks of a note
 bl = "zk list --link-to $@"
 # browse git history of selected notes
@@ -132,11 +103,8 @@ log = "zk list --quiet --format path --delimiter0 $@ | xargs -0 git log --patch 
 # save notes to git repository
 save = 'git add . && git commit -m "update notes" && git push origin main'
 
-###
-
 # LSP (EDITOR INTEGRATION)
 [lsp]
-
 [lsp.diagnostics]
 # Report titles of wiki-links as hints.
 wiki-title = "hint"
