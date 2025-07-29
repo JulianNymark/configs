@@ -5,5 +5,9 @@ excluded_dirs = [
 ]
 
 [[search_dirs]]
-path = "~/Repos"
+path = "~/Repos/"
 depth = 10
+
+[[search_dirs]]
+path = "~/zettelkasten/"
+depth = 5
