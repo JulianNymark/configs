@@ -92,7 +92,7 @@ config = 'nvim "$HOME/Repos/configs/zk/config.toml"'
 #---------------
 
 n = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random"'
-ni = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/ideas" --group ideas --title $@'
+ni = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random" --group ideas'
 daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal" --group journal'
 standup = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/standup" --group standup'
 
@@ -121,6 +121,16 @@ rm = "zk list --interactive --quiet --format path --delimiter0 $@ | xargs -0 rm 
 
 # open last zk in slides
 slides = "zk list --interactive --quiet --format path --delimiter0 $@ | xargs -0 slides"
+
+# word count notes
+wc = "zk list --format '{{word-count}}\t{{title}}' --sort word-count $@"
+
+# print backlinks of a note
+bl = "zk list --link-to $@"
+# browse git history of selected notes
+log = "zk list --quiet --format path --delimiter0 $@ | xargs -0 git log --patch --"
+# save notes to git repository
+save = 'git add . && git commit -m "update notes" && git push origin main'
 
 ###
 
