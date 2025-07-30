@@ -2,16 +2,68 @@ vim.g.mapleader = " "
 vim.opt.hlsearch = true
 
 local map = vim.keymap.set
--- map("n", "<leader>pv", vim.cmd.Ex, { desc = ":Ex netrw [P]eruse [V]olumes (disk)" })
+
+-- scroll_and_recenter: A robust, flicker-free function for scrolling inside tmux.
+-- It calculates the final state and executes it as a single atomic command.
+-- @param direction string: "down" or "up"
+local function scroll_and_recenter(direction)
+  -- 1. Calculate how many lines to scroll
+  local scroll_amount = vim.wo.scroll
+  if scroll_amount == 0 then
+    scroll_amount = math.floor(vim.api.nvim_win_get_height(0) / 2)
+  end
+
+  -- 1. Get the current window and cursor position
+  local line_count = vim.api.nvim_buf_line_count(0)
+  local win = 0                                        -- 0 is the current window
+  local current_pos = vim.api.nvim_win_get_cursor(win) -- returns {row, col}
+  local col = current_pos[2]                           -- Keep the same column
+  local new_row = current_pos[1]
+
+  if direction == "down" then
+    new_row = new_row + scroll_amount
+  elseif direction == "up" then
+    new_row = new_row - scroll_amount
+  else
+    return -- Do nothing if the direction is invalid
+  end
+
+  -- clamp within buffer
+  new_row = math.max(1, math.min(line_count, new_row))
+
+  vim.api.nvim_win_set_cursor(win, { new_row, col })
+  vim.cmd("normal! zz")
+end
+
+-- Create the keymaps using the new function
+vim.keymap.set("n", "<C-d>", function() scroll_and_recenter("down") end, {
+  noremap = true,
+  silent = true,
+  desc = "Scroll down",
+})
+
+vim.keymap.set("n", "<C-u>", function() scroll_and_recenter("up") end, {
+  noremap = true,
+  silent = true,
+  desc = "Scroll up",
+})
 
 map("n", "<Esc>", vim.cmd.nohlsearch, { desc = "clear highlight search hits" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic message" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic message" })
+map("n", "[d",
+  function()
+    vim.diagnostic.jump({ count = -1, float = true })
+    vim.cmd("normal! zz")
+  end, { desc = "Go to previous [d]iagnostic message" })
+map("n", "]d",
+  function()
+    vim.diagnostic.jump({ count = 1, float = true })
+    vim.cmd("normal! zz")
+  end, { desc = "Go to next [d]iagnostic message" })
 -- map("n", "<leader>De", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
 -- map("n", "<leader>Dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 map("n", "<leader>q", "<cmd>copen<CR>", { desc = "Open [q]uickfix list" })
-map("n", "]q", "<cmd>cnext<CR>zz", { desc = "Go to next [q]uickfix item" })
-map("n", "[q", "<cmd>cprev<CR>zz", { desc = "Go to previous [q]uickfix item" })
+map("n", "]q", "<cmd>cnext<CR>", { desc = "Next [q]uickfix item (recentered)" })
+map("n", "[q", "<cmd>cprev<CR>", { desc = "Previous [q]uickfix item (recentered)" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -24,17 +76,11 @@ map("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 map("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 map("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
-map("n", "<C-d>", "<C-d>zz", { remap = false })
-map("n", "<C-u>", "<C-u>zz", { remap = false })
 -- map("n", "<Leader>p", 'vi""*p', { desc = '[p]aste clipboard into ""' })
 
 vim.api.nvim_create_user_command("JsonF", function()
   vim.cmd("%!jq .")
 end, { nargs = 0 })
-
--- TODO: mini.move does this better + preserves history
--- map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move selection [J] dir" })
--- map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move selection [K] dir" })
 
 local function git_sharelink_prefix()
   local function is_git_repo()
