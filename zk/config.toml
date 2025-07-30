@@ -71,8 +71,8 @@ config = 'nvim "$HOME/Repos/configs/zk/config.toml"'
 # ---------------
 # new notes
 # ---------------
-n = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random_notes"'
-ni = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/random_notes" --group ideas'
+n = "zk new --no-input"
+ni = "zk new --no-input --group ideas"
 daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal_notes" --group journal'
 standup = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/standup_notes" --group standup'
 # ---------------
