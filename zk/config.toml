@@ -113,10 +113,8 @@ _zk_sync_all() {
                 echo "🔄 Syncing notebook: $(basename "$notebook")"
                 git pull --rebase origin main
 
-                if ! git diff-index --quiet HEAD --; then
-                    git add .
-                    git commit -m "sync: $(date +'%Y-%m-%d %H:%M:%S')"
-                fi
+                git add .
+                git commit -m "sync: $(date +'%Y-%m-%d %H:%M:%S')"
 
                 git push origin main
                 echo "✅  $(basename "$notebook") sync complete."
