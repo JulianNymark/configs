@@ -102,22 +102,31 @@ bl = "zk list --link-to $@"
 log = "zk list --quiet --format path --delimiter0 $@ | xargs -0 git log --patch --"
 sync = """
 _zk_sync_all() {
-    # Loop through all subdirectories in the main notebook home
     for notebook in "$ZK_NOTEBOOK_HOME"/*/; do
-        # Check if the subdirectory is a git repository
         if [ -d "$notebook/.git" ]; then
             (
-                # Run sync operations within the notebook's directory
                 cd "$notebook" || continue
 
                 echo "🔄 Syncing notebook: $(basename "$notebook")"
-                git pull --rebase origin main
 
-                git add .
-                git commit -m "sync: $(date +'%Y-%m-%d %H:%M:%S')"
+                if ! git diff-index --quiet HEAD --; then
+                    echo "📝 Local changes detected, committing first..."
+                    git add .
+                    git commit -m "autosync: $(date +'%Y-%m-%d %H:%M:%S')"
+                fi
 
-                git push origin main
-                echo "✅  $(basename "$notebook") sync complete."
+                if ! git pull --rebase origin main; then
+                    echo "⚠️  Pull failed - there might be conflicts to resolve manually"
+                    echo "   Repository: $notebook"
+                    echo "---"
+                    continue
+                fi
+
+                if git push origin main; then
+                    echo "✅  $(basename "$notebook") sync complete."
+                else
+                    echo "❌  Push failed for $(basename "$notebook")"
+                fi
                 echo "---"
             )
         fi
