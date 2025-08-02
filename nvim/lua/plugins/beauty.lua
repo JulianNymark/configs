@@ -56,6 +56,7 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
@@ -65,6 +66,29 @@ return {
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      styles = {
+        input = {
+          relative = "cursor",
+          row = -3,
+          col = -2
+        }
+      },
+      input = {
+        enabled = true,
+      },
     },
+    config = function(_, opts) -- for @type
+      local snacks = require("snacks")
+      snacks.setup(opts)
+    end
   },
+  {
+    "smjonas/inc-rename.nvim",
+    -- it's a bit buggy when the preview triggers before i select the command
+    -- if type `:Inc` in the command input (but it's not meant to be used that way)
+    -- but it shouldn't "do that"
+    opts = {
+      input_buffer_type = "snacks",
+    }
+  }
 }

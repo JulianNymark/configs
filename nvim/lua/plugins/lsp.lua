@@ -12,6 +12,7 @@ return {
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     { "folke/lazydev.nvim",   opts = {} },
+    "smjonas/inc-rename.nvim",
   },
   config = function()
     local custom_lsp_disables = function(event)
@@ -119,6 +120,9 @@ return {
 
         -- map("<leader>rn", vim.lsp.buf.rename, "re[n]ame")
         -- NOTE: grn is a nvim default now (as of 0.11)
+        vim.keymap.set("n", "grn", function()
+          return ":IncRename " .. vim.fn.expand("<cword>")
+        end, { desc = "re[n]ame variable", expr = true })
 
         -- map("<leader>ca", vim.lsp.buf.code_action, "[a]ction")
         -- NOTE: gra is a nvim default now (as of 0.11)
