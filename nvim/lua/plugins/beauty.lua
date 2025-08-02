@@ -86,7 +86,9 @@ return {
     -- it's a bit buggy when the preview triggers before i select the command
     -- if type `:Inc` in the command input (but it's not meant to be used that way)
     -- but it shouldn't "do that"
-    "smjonas/inc-rename.nvim",
+    -- "smjonas/inc-rename.nvim",
+    "JulianNymark/inc-rename.nvim",
+    branch = "snacks-set-title",
     opts = {
       input_buffer_type = "snacks",
     },
