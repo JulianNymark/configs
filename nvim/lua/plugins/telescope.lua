@@ -105,7 +105,7 @@ return {
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[h]elp" })
       -- vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[k]eymaps" })
       vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[f]iles" })
-      vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[s]elect Telescope" })
+      -- vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[s]elect Telescope" })
       vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "current [w]ord" })
 
       vim.keymap.set("v", "<leader>s", function()

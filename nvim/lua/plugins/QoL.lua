@@ -271,4 +271,19 @@ return {
       require("ufo").setup()
     end,
   },
+  {
+    'MagicDuck/grug-far.nvim',
+    config = function()
+      local grug = require("grug-far")
+      grug.setup({});
+
+      vim.keymap.set({ "n", "x" }, '<leader>ss', function()
+        grug.open()
+      end, { desc = "replace" })
+
+      vim.keymap.set({ "n", "x" }, '<leader>sS', function()
+        grug.open({ visualSelectionUsage = 'operate-within-range' })
+      end, { desc = "replace within visual" })
+    end
+  },
 }
