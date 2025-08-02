@@ -52,7 +52,7 @@ return {
       svelte = { "prettierd", "eslint" },
       graphql = { "prettierd", "eslint" },
 
-      markdown = { "prettierd", "eslint" },
+      -- markdown = { "prettierd", "eslint" },
       json = { "prettierd", "eslint", lsp_format = "prefer" },
       toml = { "tombi" },
 

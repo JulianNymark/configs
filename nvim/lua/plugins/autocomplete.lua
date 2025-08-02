@@ -30,6 +30,7 @@ return {
     --  into multiple repos for maintenance purposes.
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
+    "hrsh7th/cmp-emoji",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-buffer",
     "KieranBrannigan/cmp-css-variables",
@@ -146,6 +147,7 @@ return {
         { name = "path" },
         { name = "buffer",       keyword_length = 5 },
         { name = "css-variables" },
+        { name = "emoji" },
       },
     })
   end,
