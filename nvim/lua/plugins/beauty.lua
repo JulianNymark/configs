@@ -83,12 +83,16 @@ return {
     end
   },
   {
-    "smjonas/inc-rename.nvim",
     -- it's a bit buggy when the preview triggers before i select the command
     -- if type `:Inc` in the command input (but it's not meant to be used that way)
     -- but it shouldn't "do that"
+    "smjonas/inc-rename.nvim",
     opts = {
       input_buffer_type = "snacks",
-    }
+    },
+    config = function(_, opts)
+      local incr = require("inc_rename")
+      incr.setup(opts)
+    end
   }
 }
