@@ -26,6 +26,7 @@ return {
             ["diffLine"] = { fg = "#888888" },
             ["diffRemoved"] = { fg = "#ff0000" },
             ["diffAdded"] = { fg = "#00ff00" },
+            ["CursorLine"] = { bg = "#120818" }
           }
         end
 
@@ -96,5 +97,12 @@ return {
       local incr = require("inc_rename")
       incr.setup(opts)
     end
+  },
+  {
+    'tummetott/reticle.nvim',
+    event = 'VeryLazy', -- optionally lazy load the plugin
+    opts = {
+      -- add options here if you wish to override the default settings
+    },
   }
 }
