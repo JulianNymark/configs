@@ -109,8 +109,8 @@ _zk_sync_all() {
 
                 echo "🔄 Syncing notebook: $(basename "$notebook")"
 
-                if ! git diff-index --quiet HEAD --; then
-                    echo "📝 Local changes detected, committing first..."
+                if [ -n "$(git status --porcelain)" ]; then
+                    echo "📝 Local changes or untracked files detected, committing..."
                     git add .
                     git commit -m "autosync: $(date +'%Y-%m-%d %H:%M:%S')"
                 fi
