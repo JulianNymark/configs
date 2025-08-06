@@ -38,6 +38,8 @@ alias rga='rg --no-ignore-vcs' # rg "all"
 
 alias gd_export='/Applications/Godot.app/Contents/MacOS/Godot --export-debug Web ./dist/index.html'
 
+alias activate='source .venv/bin/activate'
+
 # split strings
 s () {
   node -r 'fs' -e "console.log(fs.readFileSync(process.stdin.fd).toString().split('$1' || ' '))" 
