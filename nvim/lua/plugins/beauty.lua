@@ -26,7 +26,8 @@ return {
             ["diffLine"] = { fg = "#888888" },
             ["diffRemoved"] = { fg = "#ff0000" },
             ["diffAdded"] = { fg = "#00ff00" },
-            ["CursorLine"] = { bg = "#120818" }
+            ["CursorLine"] = { bg = "#25003d" },
+            ["Visual"] = { bg = "#460088" },
           }
         end
 
