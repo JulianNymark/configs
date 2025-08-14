@@ -39,6 +39,10 @@ return {
     },
     opts = {
       scope = "git_branch",
+      win_opts = {
+        width = 0.9,
+        height = 20
+      }
     },
     keys = {
       { "<leader>fa", "<cmd>Grapple toggle<cr>",          desc = "Tag a file" },
