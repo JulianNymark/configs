@@ -239,3 +239,9 @@ map('c', '<C-b>', '<S-Left>', { noremap = true })
 map('c', '<C-f>', '<S-Right>', { noremap = true })
 
 map('v', '/', "\"fy/\\V<C-R>f<CR>", { desc = "search selection" })
+
+vim.keymap.set('n', '<leader>p', function()
+  vim.o.paste = true
+  vim.cmd('normal! "+p')
+  vim.o.paste = false
+end, { desc = 'Paste without formatting (after cursor)' })
