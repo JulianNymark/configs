@@ -148,6 +148,7 @@ return {
         { name = "buffer",       keyword_length = 5 },
         { name = "css-variables" },
         { name = "emoji" },
+        { name = "crates" },
       },
     })
   end,
