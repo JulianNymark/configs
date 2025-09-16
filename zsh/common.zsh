@@ -209,4 +209,6 @@ export GPG_TTY=$(tty)
 # add the following to ~/.gnupg/gpg.conf:
 # pinentry-program /opt/homebrew/bin/pinentry-mac
 
+export PATH=$PATH:$HOME/go/bin
+
 source $HOME/.config/zsh/completion.zsh
