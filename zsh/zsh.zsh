@@ -11,7 +11,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ## oh-my-zsh
 ##################
 ZSH_THEME="robbyrussell"
-plugins=(git per-directory-history kubectl fzf asdf yarn)
+plugins=(git per-directory-history kubectl fzf asdf yarn direnv)
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 source $HOME/.config/zsh/common.zsh
