@@ -135,6 +135,8 @@ return {
         local allowed = {
           gdscript = true,
           python = true,
+          yaml = true,
+          toml = true,
         }
         curr = vim.opt_local.filetype:get()
         return allowed[curr]

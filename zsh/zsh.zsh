@@ -19,3 +19,4 @@ source $HOME/.config/zsh/common.zsh
 if [ -f $HOME/.config/zsh/_after.zsh ]; then
   source $HOME/.config/zsh/_after.zsh
 fi
+. "/Users/juliannymark/.deno/env"
