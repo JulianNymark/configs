@@ -5,23 +5,13 @@ return {
   config = function(_, opts)
     local conform = require("conform")
     conform.setup(opts)
-    vim.keymap.set(
-      "n",
-      "<leader>ff",
-      function()
-        conform.format({ async = true, lsp_format = "prefer" })
-      end,
-      { desc = "[f]ormat" }
-    )
+    vim.keymap.set("n", "<leader>ff", function()
+      conform.format({ async = true, lsp_format = "prefer" })
+    end, { desc = "[f]ormat" })
 
-    vim.keymap.set(
-      "n",
-      "<leader>fF",
-      function()
-        conform.format({ async = true, lsp_format = "fallback" })
-      end,
-      { desc = "[F]ormat without LSP" }
-    )
+    vim.keymap.set("n", "<leader>fF", function()
+      conform.format({ async = true, lsp_format = "fallback" })
+    end, { desc = "[F]ormat without LSP" })
   end,
   opts = {
     notify_on_error = false,
@@ -34,8 +24,8 @@ return {
     end,
     formatters = {
       gdformat = {
-        prepend_args = { "--use-spaces=4", "--line-length=75" }
-      }
+        prepend_args = { "--use-spaces=4", "--line-length=75" },
+      },
     },
     formatters_by_ft = {
       c = { lsp_format = "prefer" },
@@ -57,6 +47,9 @@ return {
       toml = { "tombi" },
 
       gdscript = { "gdformat" },
+
+      -- TODO: nixfmt currently doesn't install easy via Mason... :sad_trombone:
+      nix = { "alejandra" },
     },
   },
 }
