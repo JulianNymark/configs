@@ -27,17 +27,8 @@ id-case = "lower"
 [extra]
 author = "J"
 
-# GROUP OVERRIDES
-[group.journal]
-paths = ["journal/weekly", "journal/daily"]
-
-[group.journal.note]
-filename = "{{format-date now}}"
-template = "journal.md"
-
 [group.standup.note]
 filename = "{{format-date now}}"
-template = "standup.md"
 
 # MARKDOWN SETTINGS
 [format.markdown]
@@ -70,7 +61,6 @@ config = 'nvim "$HOME/Repos/configs/zk/config.toml"'
 # new notes
 # ---------------
 n = "zk new --no-input"
-daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal_notes" --group journal'
 standup = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/standup_notes" --group standup'
 # ---------------
 # fzf edit notes
@@ -79,7 +69,6 @@ standup = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/standup_notes" --group standu
 ls = "zk edit --sort created- --interactive"
 # Edit the notes selected interactively among the notes created the last two weeks.
 recents = "zk edit --sort created- --created-after 'last two weeks' --interactive"
-journal = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/journal --interactive"
 ls-standup = 'zk edit -W "$ZK_NOTEBOOK_HOME/standup" --sort created- --interactive'
 edlast = "zk edit --limit 1 --sort modified- $@"
 # search notes by tags
