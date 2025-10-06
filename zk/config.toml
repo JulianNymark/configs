@@ -39,8 +39,6 @@ template = "journal.md"
 filename = "{{format-date now}}"
 template = "standup.md"
 
-[group.ideas.note]
-
 # MARKDOWN SETTINGS
 [format.markdown]
 # Enable support for #hashtags
@@ -72,22 +70,20 @@ config = 'nvim "$HOME/Repos/configs/zk/config.toml"'
 # new notes
 # ---------------
 n = "zk new --no-input"
-ni = "zk new --no-input --group ideas"
 daily = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/journal_notes" --group journal'
 standup = 'zk new --no-input -W "$ZK_NOTEBOOK_HOME/standup_notes" --group standup'
 # ---------------
 # fzf edit notes
 # ---------------
 # list notes for editing
-ls = "zk edit --interactive"
+ls = "zk edit --sort created- --interactive"
 # Edit the notes selected interactively among the notes created the last two weeks.
-recent = "zk edit --sort created- --created-after 'last two weeks' --interactive"
+recents = "zk edit --sort created- --created-after 'last two weeks' --interactive"
 journal = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/journal --interactive"
 ls-standup = 'zk edit -W "$ZK_NOTEBOOK_HOME/standup" --sort created- --interactive'
 edlast = "zk edit --limit 1 --sort modified- $@"
 # search notes by tags
 t = "zk edit --interactive --tag $@"
-ideas = "zk edit --sort created- -W $ZK_NOTEBOOK_HOME/ideas --interactive"
 # update zk notes
 update = "cd $ZK_NOTEBOOK_HOME; git add -A; git commit -am 'updating'; git push; cd -"
 # remove a files
