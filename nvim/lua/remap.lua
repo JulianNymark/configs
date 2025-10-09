@@ -225,11 +225,11 @@ end
 -- [r]efactor: [s]quash self
 -- (eg. turn "string.match(target, pattern)" -> "target:match(pattern)")
 -- implemented for: lua
-map("n", "<Leader>rs", function()
-  if vim.bo.filetype == "lua" then
-    feedkeys("n", "F.hdiwr:m`/(<CR>ldw``P/(<CR>ldw")
-  end
-end, { desc = "[s]quash" })
+-- map("n", "<Leader>rs", function()
+--   if vim.bo.filetype == "lua" then
+--     feedkeys("n", "F.hdiwr:m`/(<CR>ldw``P/(<CR>ldw")
+--   end
+-- end, { desc = "[s]quash" })
 
 map('c', '<C-h>', '<Left>', { noremap = true })
 map('c', '<C-l>', '<Right>', { noremap = true })

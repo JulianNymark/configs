@@ -131,13 +131,16 @@ return {
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
       vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
-      vim.keymap.set("n", "<leader>b<leader>", function()
+      vim.keymap.set("n", "<C-p>", function()
         require("telescope").extensions.file_browser.file_browser()
-      end, { desc = "[b]rowse files" })
-      vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "project files (git)" })
-      vim.keymap.set("n", "<leader>sp", function()
-        builtin.grep_string({ search = vim.fn.input("Grep > ") })
-      end, { desc = "gre[p] string" })
+      end, { desc = "[b]rowse" })
+      -- TODO: make <C-S-p> actually work? (tmux drops it)
+      vim.keymap.set("n", "<C-S-p>", builtin.git_files, { desc = "project files (git)" })
+
+      -- NOTE: UFALT (unused for a long time)
+      -- vim.keymap.set("n", "<leader>sp", function()
+      --   builtin.grep_string({ search = vim.fn.input("Grep > ") })
+      -- end, { desc = "gre[p] string" })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set("n", "<leader>/", function()
@@ -163,22 +166,10 @@ return {
       end, { desc = "[n]eovim files" })
     end,
   },
-  -- {
-  -- 	"nvim-telescope/telescope-file-browser.nvim",
-  -- 	dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  -- 	config = function()
-  -- 		local fb = require("telescope").extensions.file_browser
-  -- 		vim.keymap.set("n", "<Leader>bc", function()
-  -- 			fb.file_browser({
-  -- 				cwd = vim.fn.expand("%:p:h"),
-  -- 				hidden = {
-  -- 					file_browser = true,
-  -- 					folder_browser = true,
-  -- 				},
-  -- 			})
-  -- 		end, { desc = "[b]rowse [c]urrent directory" })
-  -- 	end,
-  -- },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  },
   {
     "JulianNymark/telescope-grouped-keymaps.nvim",
     dependencies = {
@@ -193,8 +184,8 @@ return {
         function()
           require("telescope-grouped-keymaps").picker_grouped_keymaps({})
         end,
-        desc = "[k]eymaps"
-      }
+        desc = "[k]eymaps",
+      },
     },
   },
 }

@@ -277,13 +277,13 @@ return {
       local grug = require("grug-far")
       grug.setup({});
 
-      vim.keymap.set({ "n", "x" }, '<leader>ss', function()
+      vim.keymap.set({ "n", "x" }, '<leader>rf', function()
         grug.open()
-      end, { desc = "replace" })
+      end, { desc = "[r]eplace" })
 
-      vim.keymap.set({ "n", "x" }, '<leader>sS', function()
+      vim.keymap.set({ "n", "x" }, '<leader>rF', function()
         grug.open({ visualSelectionUsage = 'operate-within-range' })
-      end, { desc = "replace within visual" })
+      end, { desc = "[r]eplace within visual" })
     end
   },
 }
