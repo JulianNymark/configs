@@ -131,10 +131,7 @@ return {
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
       vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
-      vim.keymap.set("n", "<C-p>", function()
-        require("telescope").extensions.file_browser.file_browser()
-      end, { desc = "[b]rowse" })
-      -- TODO: make <C-S-p> actually work? (tmux drops it)
+      vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "[b]rowse" })
       vim.keymap.set("n", "<C-S-p>", builtin.git_files, { desc = "project files (git)" })
 
       -- NOTE: UFALT (unused for a long time)
@@ -165,10 +162,6 @@ return {
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
       end, { desc = "[n]eovim files" })
     end,
-  },
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
   {
     "JulianNymark/telescope-grouped-keymaps.nvim",
