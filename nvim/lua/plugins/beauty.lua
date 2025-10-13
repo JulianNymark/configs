@@ -28,6 +28,16 @@ return {
             ["diffAdded"] = { fg = "#00ff00" },
             ["CursorLine"] = { bg = "#35008d" },
             ["Visual"] = { bg = "#4600b8" },
+            ["DiffAdd"] = { fg = "#ffffff", bg = "#001500" },
+            ["DiffDelete"] = { fg = "#ffffff", bg = "#220000" },
+            ["DiffChange"] = { fg = "#ffffff", bg = "#221500" },
+
+            ["GitSignsAdd"] = { fg = "#00ff00" },
+            ["GitSignsChange"] = { fg = "#ffaa00" },
+            ["GitSignsDelete"] = { fg = "#ff0000" },
+            ["GitSignsAddInline"] = { fg = "#00ff00", bg = "#004400" },
+            ["GitSignsChangeInline"] = { fg = "#88aa00", bg = "#223300" },
+            ["GitSignsDeleteInline"] = { fg = "#ff0000", bg = "#440000" },
           }
         end
 
@@ -72,8 +82,8 @@ return {
         input = {
           relative = "cursor",
           row = -3,
-          col = -2
-        }
+          col = -2,
+        },
       },
       input = {
         enabled = true,
@@ -82,7 +92,7 @@ return {
     config = function(_, opts) -- for @type
       local snacks = require("snacks")
       snacks.setup(opts)
-    end
+    end,
   },
   {
     -- it's a bit buggy when the preview triggers before i select the command
@@ -97,13 +107,13 @@ return {
     config = function(_, opts)
       local incr = require("inc_rename")
       incr.setup(opts)
-    end
+    end,
   },
   {
-    'tummetott/reticle.nvim',
-    event = 'VeryLazy', -- optionally lazy load the plugin
+    "tummetott/reticle.nvim",
+    event = "VeryLazy", -- optionally lazy load the plugin
     opts = {
       -- add options here if you wish to override the default settings
     },
-  }
+  },
 }

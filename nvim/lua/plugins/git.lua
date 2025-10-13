@@ -1,68 +1,81 @@
 return {
-  {
-    "tanvirtin/vgit.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function() -- This is the function that runs, AFTER loading
-      local vgit = require("vgit")
-      vgit.setup({
-        settings = {
-          live_blame = { enabled = false },
-          buffer_gutter_blame_preview = {},
-        },
-      })
-      vim.keymap.set("n", "<C-k>", vgit.hunk_up, { desc = "hunk up" })
-      vim.keymap.set("n", "<C-j>", vgit.hunk_down, { desc = "hunk down" })
-      vim.keymap.set("n", "<leader>gs", vgit.buffer_hunk_stage, { desc = "buffer hunk [s]tage" })
-      vim.keymap.set("n", "<leader>gr", vgit.buffer_hunk_reset, { desc = "buffer hunk [r]eset" })
-      vim.keymap.set("n", "<leader>gp", vgit.buffer_hunk_preview, { desc = "buffer hunk [p]review" })
-      vim.keymap.set("n", "<leader>gb", vgit.buffer_blame_preview, { desc = "buffer [b]lame preview" })
-      vim.keymap.set("n", "<leader>gf", vgit.buffer_diff_preview, { desc = "buffer di[f]f preview" })
-      vim.keymap.set("n", "<leader>gh", vgit.buffer_history_preview, { desc = "buffer hunk [h]istory preview" })
-      vim.keymap.set("n", "<leader>gu", vgit.buffer_reset, { desc = "buffer [u]ndo all" })
-      -- vim.keymap.set(
-      -- 	"n",
-      -- 	"<leader>gg",
-      -- 	vgit.buffer_gutter_blame_preview,
-      -- 	{ desc = "[g]utter buffer blame preview" }
-      -- )
-      -- vim.keymap.set("n", "<leader>glu", vgit.project_hunks_preview, { desc = "[u]nstaged" })
-      -- vim.keymap.set("n", "<leader>gls", vgit.project_hunks_staged_preview, { desc = "[l]ist [s]taged" })
-      vim.keymap.set("n", "<leader>gd", vgit.project_diff_preview, { desc = "[d]iff" })
-      -- vim.keymap.set("n", "<leader>gq", vgit.project_hunks_qf, { desc = "[q]uickfix hunks" })
-      vim.keymap.set("n", "<leader>gx", vgit.toggle_diff_preference, { desc = "toggle betwi[x]t diff pref" })
+  "lewis6991/gitsigns.nvim",
+  opts = {
+    on_attach = function(bufnr)
+      local gitsigns = require("gitsigns")
+
+      local function map(mode, l, r, opts)
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, l, r, opts)
+      end
+
+      -- Navigation
+      map("n", "]c", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "]c", bang = true })
+        else
+          gitsigns.nav_hunk("next", { greedy = false })
+        end
+      end, { desc = "next hunk" })
+
+      map("n", "[c", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "[c", bang = true })
+        else
+          gitsigns.nav_hunk("prev", { greedy = false })
+        end
+      end, { desc = "prev hunk" })
+
+      map("n", "<C-j>", function()
+        gitsigns.nav_hunk("next", { greedy = false })
+      end, { desc = "next hunk" })
+
+      map("n", "<C-k>", function()
+        gitsigns.nav_hunk("prev", { greedy = false })
+      end, { desc = "prev hunk" })
+
+      -- Actions
+      map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "[r]eset hunk" })
+      map("v", "<leader>gr", function()
+        gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end, { desc = "[r]eset hunk (visual)" })
+      map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "[R]eset buffer" })
+      map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "[p]review hunk" })
+      map("n", "<leader>gb", function()
+        gitsigns.blame_line({ full = true })
+      end, { desc = "[b]lame line" })
+      map("n", "<leader>gB", function()
+        gitsigns.blame()
+      end, { desc = "[B]lame buffer" })
+      map("n", "<leader>gq", gitsigns.setqflist, { desc = "[q]uickfix list" })
+      map("n", "<leader>gQ", function()
+        gitsigns.setqflist("all")
+      end, { desc = "[Q]uickfix all" })
+      map("n", "<leader>gd", gitsigns.diffthis, { desc = "[d]iff file" })
+      map("n", "<leader>gD", function()
+        gitsigns.diffthis("~")
+      end, { desc = "[D]iff HEAD" })
+
+      -- Toggles
+      map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "git [b]lame" })
+      map("n", "<leader>tw", gitsigns.toggle_word_diff, { desc = "git [w]ord diff" })
     end,
+    current_line_blame_opts = {
+      virt_text = true,
+      virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+      delay = 10,
+      ignore_whitespace = false,
+      virt_text_priority = 100,
+      use_focus = true,
+    },
   },
   -- {
-  -- 	-- snacks and mini both have git stuff... grok it all
-  -- 	"NeogitOrg/neogit",
-  -- 	dependencies = {
-  -- 		"nvim-lua/plenary.nvim", -- required
-  -- 		"sindrets/diffview.nvim", -- optional - Diff integration
-  --
-  -- 		-- Only one of these is needed.
-  -- 		"nvim-telescope/telescope.nvim", -- optional
-  -- 	},
-  -- },
-  -- {
-  -- 	"kdheepak/lazygit.nvim",
-  -- 	lazy = true,
-  -- 	cmd = {
-  -- 		"LazyGit",
-  -- 		"LazyGitConfig",
-  -- 		"LazyGitCurrentFile",
-  -- 		"LazyGitFilter",
-  -- 		"LazyGitFilterCurrentFile",
-  -- 	},
-  -- 	-- optional for floating window border decoration
-  -- 	dependencies = {
-  -- 		"nvim-lua/plenary.nvim",
-  -- 	},
-  -- 	-- setting the keybinding for LazyGit with 'keys' is recommended in
-  -- 	-- order to load the plugin when the command is run for the first time
-  -- 	keys = {
-  -- 		{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-  -- 	},
-  -- },
+  --   "NeogitOrg/neogit",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",  -- required
+  --     "sindrets/diffview.nvim", -- optional - Diff integration
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- }
 }

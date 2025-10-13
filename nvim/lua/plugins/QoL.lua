@@ -223,7 +223,6 @@ return {
         { "<leader>d",        group = "[d]ebug" },
         { "<leader>f",        group = "[f]ile" },
         { "<leader>g",        group = "[g]it" },
-        { "<leader>h",        group = "Git [h]unk" },
         { "<leader>n",        group = "[n]oice" },
         { "<leader>r",        group = "[r]efactor" },
         { "<leader>s",        group = "[s]earch" },
