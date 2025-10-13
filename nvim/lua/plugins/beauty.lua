@@ -38,6 +38,15 @@ return {
             ["GitSignsAddInline"] = { fg = "#00ff00", bg = "#004400" },
             ["GitSignsChangeInline"] = { fg = "#88aa00", bg = "#223300" },
             ["GitSignsDeleteInline"] = { fg = "#ff0000", bg = "#440000" },
+
+            ["NeogitDiffAdd"] = { fg = "#ffffff", bg = "#001500" },
+            ["NeogitDiffDelete"] = { fg = "#ffffff", bg = "#220000" },
+            ["NeogitDiffContext"] = { fg = "#ffffff", bg = "NONE" },
+            ["NeogitDiffAddHighlight"] = { fg = "#00ff00", bg = "#004400" },
+            ["NeogitDiffDeleteHighlight"] = { fg = "#ff0000", bg = "#440000" },
+            ["NeogitDiffContextHighlight"] = { fg = "#ffffff", bg = "#111111" },
+            ["NeogitHunkHeader"] = { fg = "#888888", bg = "#1a1a1a" },
+            ["NeogitHunkHeaderHighlight"] = { fg = "#ffffff", bg = "#2a2a2a" },
           }
         end
 
