@@ -91,5 +91,16 @@ return {
       vim.keymap.set("n", "<leader>gg", ng.open)
       -- vim.keymap.set('c', '<C-f>', '<S-Right>', { noremap = true })
     end
-  }
+  },
+  {
+    'JulianNymark/co-author.nvim',
+    dependencies = {
+      'folke/snacks.nvim',
+    },
+    event = "VeryLazy",
+    cmd = { 'CoAuthor' },
+    config = function(_, opts)
+      vim.keymap.set("n", "<leader>gC", "<cmd>:CoAuthor<CR>", { desc = "[C]o-Author" })
+    end
+  },
 }
