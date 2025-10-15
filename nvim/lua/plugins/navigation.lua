@@ -2,6 +2,12 @@ return {
   {
     -- even better % and matching words
     "andymass/vim-matchup",
+    config = function()
+      -- vim script based plugins define config globals in shared namespace
+      -- it also doesn't have a setup() to call, so all we need to do is
+      -- set the expected variables (usually prefixed by plugin name)
+      vim.g.matchup_matchparen_offscreen = {}
+    end
   },
   {
     "folke/flash.nvim",
