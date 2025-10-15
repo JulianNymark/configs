@@ -41,6 +41,8 @@ alias gd_export='/Applications/Godot.app/Contents/MacOS/Godot --export-debug Web
 
 alias activate='source .venv/bin/activate'
 
+alias nvim_minimal='nvim -u ~/Repos/configs/nvim/minimal.lua'
+
 # split strings
 s () {
   node -r 'fs' -e "console.log(fs.readFileSync(process.stdin.fd).toString().split('$1' || ' '))" 
