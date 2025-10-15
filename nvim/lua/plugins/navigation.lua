@@ -7,7 +7,7 @@ return {
       -- it also doesn't have a setup() to call, so all we need to do is
       -- set the expected variables (usually prefixed by plugin name)
       vim.g.matchup_matchparen_offscreen = {}
-    end
+    end,
   },
   {
     "folke/flash.nvim",
@@ -48,8 +48,8 @@ return {
       icons = false,
       win_opts = {
         width = 0.9,
-        height = 20
-      }
+        height = 20,
+      },
     },
     keys = {
       { "<leader>fa", "<cmd>Grapple toggle<cr>",         desc = "Tag a file" },
@@ -59,7 +59,7 @@ return {
       { "<c-t>",      "<cmd>Grapple select index=2<cr>", desc = "grapple 2" },
       { "<c-n>",      "<cmd>Grapple select index=3<cr>", desc = "grapple 3" },
       { "<c-s>",      "<cmd>Grapple select index=4<cr>", desc = "grapple 4" },
-      { "<c-_>",      "<cmd>Grapple select index=5<cr>", desc = "grapple 5" },
+      { "<C-->",      "<cmd>Grapple select index=5<cr>", desc = "grapple 5" },
 
       -- { "<c-s-n>",    "<cmd>Grapple cycle_tags next<cr>", desc = "Go to next tag" },
       -- { "<c-s-p>",    "<cmd>Grapple cycle_tags prev<cr>", desc = "Go to previous tag" },
