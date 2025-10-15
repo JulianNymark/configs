@@ -1,13 +1,13 @@
 return {
   {
-    'saecki/crates.nvim',
-    tag = 'stable',
+    "saecki/crates.nvim",
+    tag = "stable",
     config = function()
-      require('crates').setup({
+      require("crates").setup({
         completion = {
           cmp = {
-            enabled = true
-          }
+            enabled = true,
+          },
         },
         lsp = {
           enabled = true,
@@ -21,5 +21,5 @@ return {
         },
       })
     end,
-  }
+  },
 }
