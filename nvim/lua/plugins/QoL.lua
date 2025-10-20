@@ -225,6 +225,7 @@ return {
         { "<leader>g",        group = "[g]it" },
         { "<leader>n",        group = "[n]oice" },
         { "<leader>r",        group = "[r]efactor" },
+        { "<leader>R",        group = "[R]equests" },
         { "<leader>s",        group = "[s]earch" },
         { "<leader>t",        group = "[t]oggle" },
         { "<leader>w",        group = "[w]orkspace" },

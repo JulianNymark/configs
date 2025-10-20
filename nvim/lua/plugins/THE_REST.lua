@@ -28,4 +28,18 @@ return {
       })
     end,
   },
+  {
+    "mistweaverco/kulala.nvim",
+    keys = {
+      { "<leader>Rs", desc = "[s]end request" },
+      { "<leader>Ra", desc = "Send [a]ll requests" },
+      { "<leader>Rb", desc = "Open scratch [b]uffer" },
+    },
+    ft = { "http", "rest" },
+    opts = {
+      global_keymaps = true,
+      global_keymaps_prefix = "<leader>R",
+      kulala_keymaps_prefix = "",
+    },
+  },
 }
