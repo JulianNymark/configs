@@ -245,3 +245,9 @@ vim.keymap.set('n', '<leader>p', function()
   vim.cmd('normal! "+p')
   vim.o.paste = false
 end, { desc = 'Paste without formatting (after cursor)' })
+
+
+map('n', '<leader>Bd', vim.api.nvim_buf_delete, { desc = "[d]elete current buffer"} )
+map('n', '<leader>BD', function()
+  vim.api.nvim_buf_delete(0, { force = true })
+end, { desc = "force [D]elete current buffer"} )
