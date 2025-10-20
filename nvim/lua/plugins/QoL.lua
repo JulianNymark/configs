@@ -10,13 +10,13 @@ return {
       -- I want to be able to distinguish between both, but usually I think I want code cognizant matches (so tree-sitter)
       -- require("mini.surround").setup() -- USING nvim.surround instead! (has more features)
 
-      local statusline = require("mini.statusline")
-      statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return "%2l:%-2v"
-      end
+      -- local statusline = require("mini.statusline")
+      -- statusline.setup({ use_icons = vim.g.have_nerd_font })
+      --
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_location = function()
+      --   return "%2l:%-2v"
+      -- end
 
       require("mini.move").setup({
         mappings = {
@@ -286,4 +286,12 @@ return {
       end, { desc = "[r]eplace within visual" })
     end
   },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      -- options = { theme = 'iceberg_dark' }
+      options = { theme = 'palenight' }
+    }
+  }
 }
