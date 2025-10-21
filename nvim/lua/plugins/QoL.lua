@@ -291,7 +291,10 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       -- options = { theme = 'iceberg_dark' }
-      options = { theme = 'palenight' }
+      options = { theme = 'palenight' },
+      sections = {
+        lualine_c = { { 'filename', path = 1 } }
+      }
     }
   }
 }
