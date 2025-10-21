@@ -36,4 +36,51 @@ function M.get_visual_selection()
   return table.concat(lines, "\n")
 end
 
+-- Git helper functions
+local function is_git_repo()
+  local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
+  return vim.v.shell_error == 0
+end
+
+local function verify_git_branch(branch_name)
+  local _ = vim.fn.system("git rev-parse --verify " .. branch_name)
+  return vim.v.shell_error == 0
+end
+
+function M.get_git_relative_path()
+  if not is_git_repo() then
+    return vim.fn.expand("%")  -- fallback to current file path
+  end
+
+  -- Get the absolute path of the current file
+  local abs_path = vim.fn.expand("%:p")
+
+  -- Get the git repository root
+  local git_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
+
+  if vim.v.shell_error ~= 0 then
+    return vim.fn.expand("%")  -- fallback if git command fails
+  end
+
+  -- Make sure git_root ends without a slash for consistent path building
+  git_root = git_root:gsub("/$", "")
+
+  -- Get the relative path from git root to the file
+  local relative_path = abs_path:gsub("^" .. git_root:gsub("([^%w])", "%%%1") .. "/", "")
+
+  return relative_path
+end
+
+function M.git_sharelink_prefix()
+  if not is_git_repo() then
+    return ""
+  end
+
+  local raw_url = vim.fn.system("git remote get-url origin"):gsub("\n", "")
+  local processed_url = raw_url:gsub("^.-@", ""):gsub(":", "/"):gsub("%.git", "")
+  local main_branch_name = verify_git_branch("master") and "master" or "main"
+
+  return processed_url .. "/blob/" .. main_branch_name .. "/"
+end
+
 return M
