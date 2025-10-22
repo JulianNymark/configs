@@ -19,34 +19,58 @@ return {
       config = function()
         local fm = require("fluoromachine")
 
+        local redBg = "#350000"
+        local greenBg = "#002500"
+        local yellowBg = "#352500"
+        local redBgStrong = "#440000"
+        local greenBgStrong = "#004400"
+        local yellowBgStrong = "#444400"
+
+        local redFg = "#ffffff"
+        local greenFg = "#ffffff"
+        local yellowFg = "#ffffff"
+        local redFgStrong = "#ff0000"
+        local greenFgStrong = "#00ff00"
+        local yellowFgStrong = "#ffaa00"
+
+        local neogitCursorFg = "#ffffff"
+        local neogitCursorBg = "#444444"
+        local neogitCursorRedFg = "#ff0000"
+        local neogitCursorRedBg = "#663333"
+        local neogitCursorGreenFg = "#00ff00"
+        local neogitCursorGreenBg = "#336633"
+
         local function overrides(c, color)
           return {
             ["@text.diff.add"] = { link = "DiffAdd" },
             ["@text.diff.delete"] = { link = "DiffDelete" },
             ["diffLine"] = { fg = "#888888" },
-            ["diffRemoved"] = { fg = "#ff0000" },
-            ["diffAdded"] = { fg = "#00ff00" },
+            ["diffAdded"] = { fg = greenFgStrong },
+            ["diffRemoved"] = { fg = redFgStrong },
             ["CursorLine"] = { bg = "#35008d" },
             ["Visual"] = { bg = "#4600b8" },
-            ["DiffAdd"] = { fg = "#ffffff", bg = "#001500" },
-            ["DiffDelete"] = { fg = "#ffffff", bg = "#220000" },
-            ["DiffChange"] = { fg = "#ffffff", bg = "#221500" },
+            ["DiffAdd"] = { fg = greenFg, bg = greenBg },
+            ["DiffDelete"] = { fg = redFg, bg = redBg },
+            ["DiffChange"] = { fg = yellowFg, bg = yellowBg },
 
-            ["GitSignsAdd"] = { fg = "#00ff00" },
-            ["GitSignsChange"] = { fg = "#ffaa00" },
-            ["GitSignsDelete"] = { fg = "#ff0000" },
-            ["GitSignsAddInline"] = { fg = "#00ff00", bg = "#004400" },
-            ["GitSignsChangeInline"] = { fg = "#88aa00", bg = "#223300" },
-            ["GitSignsDeleteInline"] = { fg = "#ff0000", bg = "#440000" },
+            ["GitSignsAdd"] = { fg = greenFgStrong },
+            ["GitSignsDelete"] = { fg = redFgStrong },
+            ["GitSignsChange"] = { fg = yellowFgStrong },
+            ["GitSignsAddInline"] = { fg = greenFgStrong, bg = greenBgStrong },
+            ["GitSignsDeleteInline"] = { fg = redFgStrong, bg = redBgStrong },
+            ["GitSignsChangeInline"] = { fg = yellowFgStrong, bg = yellowBgStrong },
 
-            ["NeogitDiffAdd"] = { fg = "#ffffff", bg = "#001500" },
-            ["NeogitDiffDelete"] = { fg = "#ffffff", bg = "#220000" },
-            ["NeogitDiffContext"] = { fg = "#ffffff", bg = "NONE" },
-            ["NeogitDiffAddHighlight"] = { fg = "#00ff00", bg = "#004400" },
-            ["NeogitDiffDeleteHighlight"] = { fg = "#ff0000", bg = "#440000" },
-            ["NeogitDiffContextHighlight"] = { fg = "#ffffff", bg = "#111111" },
+            ["NeogitDiffAdd"] = { fg = greenFg, bg = greenBg },
+            ["NeogitDiffDelete"] = { fg = redFg, bg = redBg },
+            ["NeogitDiffContext"] = { fg = yellowFg, bg = "NONE" },
+            ["NeogitDiffAddHighlight"] = { fg = greenFgStrong, bg = greenBgStrong },
+            ["NeogitDiffDeleteHighlight"] = { fg = redFgStrong, bg = redBgStrong },
+            ["NeogitDiffContextHighlight"] = { fg = "#ffffff", bg = "NONE" },
             ["NeogitHunkHeader"] = { fg = "#888888", bg = "#1a1a1a" },
-            ["NeogitHunkHeaderHighlight"] = { fg = "#ffffff", bg = "#2a2a2a" },
+            ["NeogitHunkHeaderHighlight"] = { fg = "#ffffff", bg = "NONE" },
+            ["NeogitDiffContextCursor"] = { fg = neogitCursorFg, bg = neogitCursorBg },
+            ["NeogitDiffAddCursor"] = { fg = neogitCursorGreenFg, bg = neogitCursorGreenBg },
+            ["NeogitDiffDeleteCursor"] = { fg = neogitCursorRedFg, bg = neogitCursorRedBg },
           }
         end
 
