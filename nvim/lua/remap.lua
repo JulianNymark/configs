@@ -82,34 +82,12 @@ vim.api.nvim_create_user_command("JsonF", function()
   vim.cmd("%!jq .")
 end, { nargs = 0 })
 
-local function git_sharelink_prefix()
-  local function is_git_repo()
-    local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
-
-    return vim.v.shell_error == 0
-  end
-
-  local function verify_git_branch(branch_name)
-    local _ = vim.fn.system("git rev-parse --verify " .. branch_name)
-
-    return vim.v.shell_error == 0
-  end
-
-  if not is_git_repo() then
-    return ""
-  end
-
-  local raw_url = vim.fn.system("git remote get-url origin"):gsub("\n", "")
-  local processed_url = raw_url:gsub("^.-@", ""):gsub(":", "/"):gsub("%.git", "")
-  local main_branch_name = verify_git_branch("master") and "master" or "main"
-
-  return processed_url .. "/blob/" .. main_branch_name .. "/"
-end
-
 -- line sharing
+utils = require("utils")
 map("n", "<Leader>fl", function()
-  local line_link = vim.fn.expand("%") .. "#L" .. vim.fn.line(".")
-  local share_link = git_sharelink_prefix() .. line_link
+  local file_path = utils.get_git_relative_path()
+  local line_link = file_path .. "#L" .. vim.fn.line(".")
+  local share_link = utils.git_sharelink_prefix() .. line_link
 
   vim.fn.setreg("*", share_link) -- send to the clipboard
 end, { desc = "Copy [f]ile & [l]ine_number to clipboard" })
@@ -121,9 +99,9 @@ map("v", "<Leader>fl", function()
   local l_from = vim.fn.getpos("'<")[2]
   local l_to = vim.fn.getpos("'>")[2]
 
-  local file_link = vim.fn.expand("%")
-  local line_link = file_link .. "#L" .. l_from .. "-L" .. l_to
-  local share_link = git_sharelink_prefix() .. line_link
+  local file_path = utils.get_git_relative_path()
+  local line_link = file_path .. "#L" .. l_from .. "-L" .. l_to
+  local share_link = utils.git_sharelink_prefix() .. line_link
 
   vim.fn.setreg("*", share_link) -- send to the clipboard
 end, { desc = "Copy file & [l]ine_number to clipboard" })
@@ -247,7 +225,7 @@ vim.keymap.set('n', '<leader>p', function()
 end, { desc = 'Paste without formatting (after cursor)' })
 
 
-map('n', '<leader>Bd', vim.api.nvim_buf_delete, { desc = "[d]elete current buffer"} )
+map('n', '<leader>Bd', vim.api.nvim_buf_delete, { desc = "[d]elete current buffer" })
 map('n', '<leader>BD', function()
   vim.api.nvim_buf_delete(0, { force = true })
-end, { desc = "force [D]elete current buffer"} )
+end, { desc = "force [D]elete current buffer" })
