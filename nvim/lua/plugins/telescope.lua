@@ -129,7 +129,7 @@ return {
       vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[d]iagnostics" })
       vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[r]esume" })
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
-      vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
+      vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "existing [b]uffers" })
 
       vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "[b]rowse" })
       vim.keymap.set("n", "<C-S-p>", builtin.git_files, { desc = "project files (git)" })
